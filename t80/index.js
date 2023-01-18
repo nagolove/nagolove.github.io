@@ -99,12 +99,19 @@ Module.expectedDataFileDownloads++;
     if (!check) throw msg + new Error().stack;
    }
    Module["FS_createPath"]("/", "assets", true, true);
+   Module["FS_createPath"]("/assets", "wfc_src_white", true, true);
+   Module["FS_createPath"]("/assets/wfc_src_white", "dst.2", true, true);
+   Module["FS_createPath"]("/assets", "sfx", true, true);
    Module["FS_createPath"]("/assets", "decals", true, true);
    Module["FS_createPath"]("/assets", "xturret", true, true);
    Module["FS_createPath"]("/assets", "vertex", true, true);
    Module["FS_createPath"]("/assets", "teleport02", true, true);
    Module["FS_createPath"]("/assets", "forest", true, true);
    Module["FS_createPath"]("/assets", "store", true, true);
+   Module["FS_createPath"]("/assets", "wfc_src", true, true);
+   Module["FS_createPath"]("/assets/wfc_src", "dst.2", true, true);
+   Module["FS_createPath"]("/assets/wfc_src", "dst.1", true, true);
+   Module["FS_createPath"]("/assets/wfc_src", "dst", true, true);
    function DataRequest(start, end, audio) {
     this.start = start;
     this.end = end;
@@ -174,440 +181,1074 @@ Module.expectedDataFileDownloads++;
    "start": 414,
    "end": 1062
   }, {
-   "filename": "/assets/vector.lua",
+   "filename": "/assets/brown1.png",
    "start": 1062,
-   "end": 6544
+   "end": 1353
+  }, {
+   "filename": "/assets/vector.lua",
+   "start": 1353,
+   "end": 6835
+  }, {
+   "filename": "/assets/sfx_speech.aup3",
+   "start": 6835,
+   "end": 10459827
+  }, {
+   "filename": "/assets/green2.aseprite",
+   "start": 10459827,
+   "end": 10460468
   }, {
    "filename": "/assets/hangar01.png",
-   "start": 6544,
-   "end": 27430
+   "start": 10460468,
+   "end": 10481354
+  }, {
+   "filename": "/assets/grass2.png",
+   "start": 10481354,
+   "end": 10481633
+  }, {
+   "filename": "/assets/64_64_template.aseprite",
+   "start": 10481633,
+   "end": 10482867
+  }, {
+   "filename": "/assets/8per8_512.png",
+   "start": 10482867,
+   "end": 10496375
+  }, {
+   "filename": "/assets/brown1.out.png",
+   "start": 10496375,
+   "end": 10533440
   }, {
    "filename": "/assets/helicopter01.png",
-   "start": 27430,
-   "end": 28914
+   "start": 10533440,
+   "end": 10534924
   }, {
    "filename": "/assets/aim_selection.png~",
-   "start": 28914,
-   "end": 31949
+   "start": 10534924,
+   "end": 10537959
   }, {
    "filename": "/assets/body_decal.png",
-   "start": 31949,
-   "end": 33883
+   "start": 10537959,
+   "end": 10539893
+  }, {
+   "filename": "/assets/grass1.png",
+   "start": 10539893,
+   "end": 10540800
   }, {
    "filename": "/assets/teleport_radar_01.png",
-   "start": 33883,
-   "end": 34229
+   "start": 10540800,
+   "end": 10541146
+  }, {
+   "filename": "/assets/64_64_template.png",
+   "start": 10541146,
+   "end": 10541975
   }, {
    "filename": "/assets/flower01.aseprite",
-   "start": 34229,
-   "end": 35118
+   "start": 10541975,
+   "end": 10542864
   }, {
    "filename": "/assets/flame2.png",
-   "start": 35118,
-   "end": 262830
+   "start": 10542864,
+   "end": 10770576
   }, {
    "filename": "/assets/100_minimap_stencil.glsl~",
-   "start": 262830,
-   "end": 264899
+   "start": 10770576,
+   "end": 10772645
   }, {
    "filename": "/assets/330_minimap_stencil.glsl~",
-   "start": 264899,
-   "end": 265397
+   "start": 10772645,
+   "end": 10773143
+  }, {
+   "filename": "/assets/heart_filled.aseprite",
+   "start": 10773143,
+   "end": 10773758
   }, {
    "filename": "/assets/init.lua",
-   "start": 265397,
-   "end": 268339
+   "start": 10773758,
+   "end": 10776836
+  }, {
+   "filename": "/assets/rect1.png",
+   "start": 10776836,
+   "end": 10777043
   }, {
    "filename": "/assets/bullet.png",
-   "start": 268339,
-   "end": 268535
+   "start": 10777043,
+   "end": 10777239
+  }, {
+   "filename": "/assets/wfc",
+   "start": 10777239,
+   "end": 11022775
+  }, {
+   "filename": "/assets/8per8_512.aseprite",
+   "start": 11022775,
+   "end": 11040025
   }, {
    "filename": "/assets/bullet2.png",
-   "start": 268535,
-   "end": 268729
+   "start": 11040025,
+   "end": 11040219
+  }, {
+   "filename": "/assets/brown1-export.png",
+   "start": 11040219,
+   "end": 11040510
   }, {
    "filename": "/assets/dejavusansmono.ttf",
-   "start": 268729,
-   "end": 609441
+   "start": 11040510,
+   "end": 11381222
   }, {
    "filename": "/assets/hack-regular.ttf",
-   "start": 609441,
-   "end": 918849
+   "start": 11381222,
+   "end": 11690630
   }, {
    "filename": "/assets/inspect.lua",
-   "start": 918849,
-   "end": 928141
+   "start": 11690630,
+   "end": 11699922
+  }, {
+   "filename": "/assets/heart.aseprite",
+   "start": 11699922,
+   "end": 11700528
+  }, {
+   "filename": "/assets/grass1_alpha.out.png",
+   "start": 11700528,
+   "end": 11702640
   }, {
    "filename": "/assets/body.png",
-   "start": 928141,
-   "end": 973363
+   "start": 11702640,
+   "end": 11747862
   }, {
    "filename": "/assets/body_decal.png~",
-   "start": 973363,
-   "end": 1011518
+   "start": 11747862,
+   "end": 11786017
+  }, {
+   "filename": "/assets/grass1.aseprite",
+   "start": 11786017,
+   "end": 11787058
+  }, {
+   "filename": "/assets/green1.png",
+   "start": 11787058,
+   "end": 11787325
   }, {
    "filename": "/assets/flower01.png",
-   "start": 1011518,
-   "end": 1011854
+   "start": 11787325,
+   "end": 11787661
   }, {
    "filename": "/assets/aim_selection_r.png",
-   "start": 1011854,
-   "end": 1015696
+   "start": 11787661,
+   "end": 11791503
   }, {
    "filename": "/assets/stage_fight_store.lua~",
-   "start": 1015696,
-   "end": 1015958
+   "start": 11791503,
+   "end": 11791765
   }, {
    "filename": "/assets/01.lua~",
-   "start": 1015958,
-   "end": 1016021
+   "start": 11791765,
+   "end": 11791828
+  }, {
+   "filename": "/assets/grass2.aseprite",
+   "start": 11791828,
+   "end": 11792486
   }, {
    "filename": "/assets/npc.lua",
-   "start": 1016021,
-   "end": 1031020
+   "start": 11792486,
+   "end": 11807485
   }, {
    "filename": "/assets/helicopter02.aseprite",
-   "start": 1031020,
-   "end": 1035179
+   "start": 11807485,
+   "end": 11811644
   }, {
    "filename": "/assets/terminus.ttf",
-   "start": 1035179,
-   "end": 1498411
+   "start": 11811644,
+   "end": 12274876
+  }, {
+   "filename": "/assets/heart_non2.aseprite",
+   "start": 12274876,
+   "end": 12275485
+  }, {
+   "filename": "/assets/green2.png",
+   "start": 12275485,
+   "end": 12275758
   }, {
    "filename": "/assets/teleport_radar_02.png",
-   "start": 1498411,
-   "end": 1498843
+   "start": 12275758,
+   "end": 12276190
   }, {
    "filename": "/assets/xturret.lua~",
-   "start": 1498843,
-   "end": 1500526
+   "start": 12276190,
+   "end": 12277873
   }, {
    "filename": "/assets/lifebar.png",
-   "start": 1500526,
-   "end": 1501417
+   "start": 12277873,
+   "end": 12278764
+  }, {
+   "filename": "/assets/2023-01-15 20-53.sunvox",
+   "start": 12278764,
+   "end": 12323845
   }, {
    "filename": "/assets/vector-light.lua~",
-   "start": 1501417,
-   "end": 1504651
+   "start": 12323845,
+   "end": 12327079
   }, {
    "filename": "/assets/helicopter01_blades2.png",
-   "start": 1504651,
-   "end": 1504849
+   "start": 12327079,
+   "end": 12327277
   }, {
    "filename": "/assets/npc.lua~",
-   "start": 1504849,
-   "end": 1519771
+   "start": 12327277,
+   "end": 12342276
+  }, {
+   "filename": "/assets/gree1n.out.flip.png",
+   "start": 12342276,
+   "end": 12343050
   }, {
    "filename": "/assets/init.lua~",
-   "start": 1519771,
-   "end": 1522713
+   "start": 12343050,
+   "end": 12346128
+  }, {
+   "filename": "/assets/rect1.aseprite",
+   "start": 12346128,
+   "end": 12346712
+  }, {
+   "filename": "/assets/heart_non2.png",
+   "start": 12346712,
+   "end": 12346884
   }, {
    "filename": "/assets/helicopter01_blades.png",
-   "start": 1522713,
-   "end": 1523951
+   "start": 12346884,
+   "end": 12348122
   }, {
    "filename": "/assets/turret.png",
-   "start": 1523951,
-   "end": 1564791
+   "start": 12348122,
+   "end": 12388962
+  }, {
+   "filename": "/assets/green2.out.png",
+   "start": 12388962,
+   "end": 12449097
   }, {
    "filename": "/assets/veramono.ttf",
-   "start": 1564791,
-   "end": 1614015
+   "start": 12449097,
+   "end": 12498321
+  }, {
+   "filename": "/assets/sfx_speech.aup3-wal",
+   "start": 12498321,
+   "end": 12498321
+  }, {
+   "filename": "/assets/gree1n.out.flip.512.png",
+   "start": 12498321,
+   "end": 12539267
+  }, {
+   "filename": "/assets/.sunvox_prev_session.sunvox",
+   "start": 12539267,
+   "end": 12584348
   }, {
    "filename": "/assets/background.png",
-   "start": 1614015,
-   "end": 3538067
+   "start": 12584348,
+   "end": 14508400
   }, {
    "filename": "/assets/flame.png",
-   "start": 3538067,
-   "end": 3613818
+   "start": 14508400,
+   "end": 14584151
+  }, {
+   "filename": "/assets/.sunvox_clipboard.sunpat",
+   "start": 14584151,
+   "end": 14584175
+  }, {
+   "filename": "/assets/green1.aseprite",
+   "start": 14584175,
+   "end": 14584815
+  }, {
+   "filename": "/assets/.sunvox_clipboard.sunpats",
+   "start": 14584815,
+   "end": 14585765
   }, {
    "filename": "/assets/helicopter01.aseprite",
-   "start": 3613818,
-   "end": 3616796
+   "start": 14585765,
+   "end": 14588743
   }, {
    "filename": "/assets/teleport01.png",
-   "start": 3616796,
-   "end": 3635607
+   "start": 14588743,
+   "end": 14607554
   }, {
    "filename": "/assets/xturret.lua",
-   "start": 3635607,
-   "end": 3637290
+   "start": 14607554,
+   "end": 14609237
   }, {
    "filename": "/assets/vector-light.lua",
-   "start": 3637290,
-   "end": 3640523
+   "start": 14609237,
+   "end": 14612470
   }, {
    "filename": "/assets/aim_selection.png",
-   "start": 3640523,
-   "end": 3644755
+   "start": 14612470,
+   "end": 14616702
+  }, {
+   "filename": "/assets/grass1_alpha.aseprite",
+   "start": 14616702,
+   "end": 14617742
+  }, {
+   "filename": "/assets/grass1_alpha.png",
+   "start": 14617742,
+   "end": 14618621
+  }, {
+   "filename": "/assets/wfc_src_white/green.png",
+   "start": 14618621,
+   "end": 14618857
+  }, {
+   "filename": "/assets/wfc_src_white/very_dark_white.png",
+   "start": 14618857,
+   "end": 14619103
+  }, {
+   "filename": "/assets/wfc_src_white/white.png",
+   "start": 14619103,
+   "end": 14619363
+  }, {
+   "filename": "/assets/wfc_src_white/light_white.png",
+   "start": 14619363,
+   "end": 14619591
+  }, {
+   "filename": "/assets/wfc_src_white/deep_sea.png",
+   "start": 14619591,
+   "end": 14619846
+  }, {
+   "filename": "/assets/wfc_src_white/shallow_sea.png",
+   "start": 14619846,
+   "end": 14620110
+  }, {
+   "filename": "/assets/wfc_src_white/dark_brown.png",
+   "start": 14620110,
+   "end": 14620322
+  }, {
+   "filename": "/assets/wfc_src_white/light_brown.png",
+   "start": 14620322,
+   "end": 14620568
+  }, {
+   "filename": "/assets/wfc_src_white/dark_white.png",
+   "start": 14620568,
+   "end": 14620819
+  }, {
+   "filename": "/assets/wfc_src_white/dark_green.png",
+   "start": 14620819,
+   "end": 14621127
+  }, {
+   "filename": "/assets/wfc_src_white/light_green.png",
+   "start": 14621127,
+   "end": 14621357
+  }, {
+   "filename": "/assets/wfc_src_white/very_dark_brown.png",
+   "start": 14621357,
+   "end": 14621580
+  }, {
+   "filename": "/assets/wfc_src_white/brown.png",
+   "start": 14621580,
+   "end": 14621797
+  }, {
+   "filename": "/assets/wfc_src_white/very_dark_green.png",
+   "start": 14621797,
+   "end": 14622076
+  }, {
+   "filename": "/assets/wfc_src_white/sea.png",
+   "start": 14622076,
+   "end": 14622302
+  }, {
+   "filename": "/assets/wfc_src_white/very_deep_sea.png",
+   "start": 14622302,
+   "end": 14622557
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/very_dark_white.png",
+   "start": 14622557,
+   "end": 14688906
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/white.png",
+   "start": 14688906,
+   "end": 14752545
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/light_white.png",
+   "start": 14752545,
+   "end": 14780048
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/deep_sea.png",
+   "start": 14780048,
+   "end": 14840632
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/shallow_sea.png",
+   "start": 14840632,
+   "end": 14918285
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/dark_brown.png",
+   "start": 14918285,
+   "end": 14940628
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/light_brown.png",
+   "start": 14940628,
+   "end": 14999373
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/dark_white.png",
+   "start": 14999373,
+   "end": 15063044
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/dark_green.png",
+   "start": 15063044,
+   "end": 15135145
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/light_green.png",
+   "start": 15135145,
+   "end": 15161903
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/very_dark_brown.png",
+   "start": 15161903,
+   "end": 15220518
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/brown.png",
+   "start": 15220518,
+   "end": 15243232
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/very_dark_green.png",
+   "start": 15243232,
+   "end": 15321563
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/sea.png",
+   "start": 15321563,
+   "end": 15384686
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/very_deep_sea.png",
+   "start": 15384686,
+   "end": 15440333
+  }, {
+   "filename": "/assets/sfx/ally_aviation.wav",
+   "start": 15440333,
+   "end": 15873913,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/enemy_aviation.wav",
+   "start": 15873913,
+   "end": 16344485,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/laser_01.wav",
+   "start": 16344485,
+   "end": 16767889,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/load_01.wav",
+   "start": 16767889,
+   "end": 17076797,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/need_pvo_01.wav",
+   "start": 17076797,
+   "end": 17527145,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/hit_01.wav",
+   "start": 17527145,
+   "end": 17868053,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/load_02.wav",
+   "start": 17868053,
+   "end": 18019649,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/no_fuel_01.wav",
+   "start": 18019649,
+   "end": 18241133,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/no_fuel_02.wav",
+   "start": 18241133,
+   "end": 18579353,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/swamp_01.wav",
+   "start": 18579353,
+   "end": 18902469,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/direct_hit_01.wav",
+   "start": 18902469,
+   "end": 19442161,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/cannon.wav",
+   "start": 19442161,
+   "end": 20119581,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/full_acceleration_01.wav",
+   "start": 20119581,
+   "end": 20286665,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/phrase_01.wav",
+   "start": 20286665,
+   "end": 20518645,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/no_fuel_03.wav",
+   "start": 20518645,
+   "end": 20962721,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/laser_03.wav",
+   "start": 20962721,
+   "end": 21407293,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/laser_02.wav",
+   "start": 21407293,
+   "end": 21851865,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/no_shots_01.wav",
+   "start": 21851865,
+   "end": 22121989,
+   "audio": 1
   }, {
    "filename": "/assets/decals/body_decal_06.png",
-   "start": 3644755,
-   "end": 3645617
+   "start": 22121989,
+   "end": 22122851
   }, {
    "filename": "/assets/decals/body_decal_02.png",
-   "start": 3645617,
-   "end": 3646480
+   "start": 22122851,
+   "end": 22123714
   }, {
    "filename": "/assets/decals/body_decal_05.png",
-   "start": 3646480,
-   "end": 3647343
+   "start": 22123714,
+   "end": 22124577
   }, {
    "filename": "/assets/decals/body_decal_08.png",
-   "start": 3647343,
-   "end": 3648199
+   "start": 22124577,
+   "end": 22125433
   }, {
    "filename": "/assets/decals/body_decal_03.png",
-   "start": 3648199,
-   "end": 3649062
+   "start": 22125433,
+   "end": 22126296
   }, {
    "filename": "/assets/decals/body_decal_04.png",
-   "start": 3649062,
-   "end": 3649928
+   "start": 22126296,
+   "end": 22127162
   }, {
    "filename": "/assets/decals/body_decal_01.png",
-   "start": 3649928,
-   "end": 3650882
+   "start": 22127162,
+   "end": 22128116
   }, {
    "filename": "/assets/decals/body_decal_07.png",
-   "start": 3650882,
-   "end": 3651734
+   "start": 22128116,
+   "end": 22128968
   }, {
    "filename": "/assets/xturret/turret_base_1.png",
-   "start": 3651734,
-   "end": 3653642
+   "start": 22128968,
+   "end": 22130876
   }, {
    "filename": "/assets/xturret/turret_turret_2.png",
-   "start": 3653642,
-   "end": 3655071
+   "start": 22130876,
+   "end": 22132305
   }, {
    "filename": "/assets/xturret/turret_base_2.png",
-   "start": 3655071,
-   "end": 3656984
+   "start": 22132305,
+   "end": 22134218
   }, {
    "filename": "/assets/xturret/turret_turret_1.png",
-   "start": 3656984,
-   "end": 3658414
+   "start": 22134218,
+   "end": 22135648
+  }, {
+   "filename": "/assets/vertex/100_laser.glsl~",
+   "start": 22135648,
+   "end": 22136557
   }, {
    "filename": "/assets/vertex/100_fragment_stencil.glsl~",
-   "start": 3658414,
-   "end": 3658897
+   "start": 22136557,
+   "end": 22137040
+  }, {
+   "filename": "/assets/vertex/100_laser.glsl",
+   "start": 22137040,
+   "end": 22137949
   }, {
    "filename": "/assets/vertex/330_minimap_stencil.glsl",
-   "start": 3658897,
-   "end": 3659395
+   "start": 22137949,
+   "end": 22138447
+  }, {
+   "filename": "/assets/vertex/sporlight.glsl~",
+   "start": 22138447,
+   "end": 22140503
+  }, {
+   "filename": "/assets/vertex/spotlight.glsl",
+   "start": 22140503,
+   "end": 22142559
   }, {
    "filename": "/assets/vertex/100_minimap_stencil.glsl~",
-   "start": 3659395,
-   "end": 3661529
+   "start": 22142559,
+   "end": 22144693
   }, {
    "filename": "/assets/vertex/100_minimap_stencil2.glsl~",
-   "start": 3661529,
-   "end": 3663356
+   "start": 22144693,
+   "end": 22146520
   }, {
    "filename": "/assets/vertex/100_fragment_stencil.glsl",
-   "start": 3663356,
-   "end": 3663839
+   "start": 22146520,
+   "end": 22147003
   }, {
    "filename": "/assets/vertex/100_minimap_stencil2.glsl",
-   "start": 3663839,
-   "end": 3665666
+   "start": 22147003,
+   "end": 22148830
+  }, {
+   "filename": "/assets/vertex/spotlight.glsl~",
+   "start": 22148830,
+   "end": 22150886
   }, {
    "filename": "/assets/vertex/100_minimap_stencil.glsl",
-   "start": 3665666,
-   "end": 3667800
+   "start": 22150886,
+   "end": 22153020
   }, {
    "filename": "/assets/vertex/100_team_decal.glsl",
-   "start": 3667800,
-   "end": 3669869
+   "start": 22153020,
+   "end": 22155089
   }, {
    "filename": "/assets/teleport02/teleport02-out.png",
-   "start": 3669869,
-   "end": 3686657
+   "start": 22155089,
+   "end": 22171877
   }, {
    "filename": "/assets/teleport02/teleport02-in.png",
-   "start": 3686657,
-   "end": 3703451
+   "start": 22171877,
+   "end": 22188671
   }, {
    "filename": "/assets/teleport02/teleport02-inout.png",
-   "start": 3703451,
-   "end": 3721071
+   "start": 22188671,
+   "end": 22206291
   }, {
    "filename": "/assets/forest/forest_2.png",
-   "start": 3721071,
-   "end": 3721624
+   "start": 22206291,
+   "end": 22206844
   }, {
    "filename": "/assets/forest/forest_1.png",
-   "start": 3721624,
-   "end": 3723834
+   "start": 22206844,
+   "end": 22209054
   }, {
    "filename": "/assets/store/14.lua",
-   "start": 3723834,
-   "end": 3728349
+   "start": 22209054,
+   "end": 22213569
   }, {
    "filename": "/assets/store/aaa.lua",
-   "start": 3728349,
-   "end": 3763945
+   "start": 22213569,
+   "end": 22249165
   }, {
    "filename": "/assets/store/07.lua~",
-   "start": 3763945,
-   "end": 3764564
+   "start": 22249165,
+   "end": 22249784
   }, {
    "filename": "/assets/store/01.lua",
-   "start": 3764564,
-   "end": 3767336
+   "start": 22249784,
+   "end": 22252556
   }, {
    "filename": "/assets/store/15.lua",
-   "start": 3767336,
-   "end": 3767954
+   "start": 22252556,
+   "end": 22253174
   }, {
    "filename": "/assets/store/07.lua",
-   "start": 3767954,
-   "end": 3767978
+   "start": 22253174,
+   "end": 22253198
   }, {
    "filename": "/assets/store/16.lua~",
-   "start": 3767978,
-   "end": 3768427
+   "start": 22253198,
+   "end": 22253647
   }, {
    "filename": "/assets/store/10.lua",
-   "start": 3768427,
-   "end": 3769371
+   "start": 22253647,
+   "end": 22254591
   }, {
    "filename": "/assets/store/08.lua~",
-   "start": 3769371,
-   "end": 3769399
+   "start": 22254591,
+   "end": 22254619
+  }, {
+   "filename": "/assets/store/20.lua~",
+   "start": 22254619,
+   "end": 22254948
   }, {
    "filename": "/assets/store/17.lua",
-   "start": 3769399,
-   "end": 3769415
+   "start": 22254948,
+   "end": 22254964
   }, {
    "filename": "/assets/store/11.lua~",
-   "start": 3769415,
-   "end": 3770616
+   "start": 22254964,
+   "end": 22256165
   }, {
    "filename": "/assets/store/13.lua",
-   "start": 3770616,
-   "end": 3771890
+   "start": 22256165,
+   "end": 22257439
   }, {
    "filename": "/assets/store/11.lua",
-   "start": 3771890,
-   "end": 3773091
+   "start": 22257439,
+   "end": 22258640
   }, {
    "filename": "/assets/store/03.lua~",
-   "start": 3773091,
-   "end": 3774895
+   "start": 22258640,
+   "end": 22260444
   }, {
    "filename": "/assets/store/from_menu.lua",
-   "start": 3774895,
-   "end": 3778810
+   "start": 22260444,
+   "end": 22264359
   }, {
    "filename": "/assets/store/05.lua~",
-   "start": 3778810,
-   "end": 3778810
+   "start": 22264359,
+   "end": 22264359
   }, {
    "filename": "/assets/store/16.lua",
-   "start": 3778810,
-   "end": 3779259
+   "start": 22264359,
+   "end": 22264808
   }, {
    "filename": "/assets/store/hangar.lua",
-   "start": 3779259,
-   "end": 3780618
+   "start": 22264808,
+   "end": 22266167
   }, {
    "filename": "/assets/store/15.lua~",
-   "start": 3780618,
-   "end": 3781235
+   "start": 22266167,
+   "end": 22266784
   }, {
    "filename": "/assets/store/13.lua~",
-   "start": 3781235,
-   "end": 3781235
+   "start": 22266784,
+   "end": 22266784
   }, {
    "filename": "/assets/store/19.lua~",
-   "start": 3781235,
-   "end": 3781524
+   "start": 22266784,
+   "end": 22267073
+  }, {
+   "filename": "/assets/store/20.lua",
+   "start": 22267073,
+   "end": 22267402
   }, {
    "filename": "/assets/store/01.lua~",
-   "start": 3781524,
-   "end": 3784296
+   "start": 22267402,
+   "end": 22270174
   }, {
    "filename": "/assets/store/02.lua",
-   "start": 3784296,
-   "end": 3785966
+   "start": 22270174,
+   "end": 22271844
   }, {
    "filename": "/assets/store/19.lua",
-   "start": 3785966,
-   "end": 3786294
+   "start": 22271844,
+   "end": 22272172
   }, {
    "filename": "/assets/store/04.lua~",
-   "start": 3786294,
-   "end": 3786359
+   "start": 22272172,
+   "end": 22272237
   }, {
    "filename": "/assets/store/08.lua",
-   "start": 3786359,
-   "end": 3786387
+   "start": 22272237,
+   "end": 22272265
   }, {
    "filename": "/assets/store/04.lua",
-   "start": 3786387,
-   "end": 3786452
+   "start": 22272265,
+   "end": 22272330
   }, {
    "filename": "/assets/store/09.lua~",
-   "start": 3786452,
-   "end": 3786730
+   "start": 22272330,
+   "end": 22272608
   }, {
    "filename": "/assets/store/1111.lua",
-   "start": 3786730,
-   "end": 3872560
+   "start": 22272608,
+   "end": 22358438
   }, {
    "filename": "/assets/store/06.lua",
-   "start": 3872560,
-   "end": 3907095
+   "start": 22358438,
+   "end": 22392973
   }, {
    "filename": "/assets/store/02.lua~",
-   "start": 3907095,
-   "end": 3908765
+   "start": 22392973,
+   "end": 22394643
   }, {
    "filename": "/assets/store/05.lua",
-   "start": 3908765,
-   "end": 3908789
+   "start": 22394643,
+   "end": 22394667
   }, {
    "filename": "/assets/store/14.lua~",
-   "start": 3908789,
-   "end": 3913306
+   "start": 22394667,
+   "end": 22399184
   }, {
    "filename": "/assets/store/17.lua~",
-   "start": 3913306,
-   "end": 3913322
+   "start": 22399184,
+   "end": 22399200
   }, {
    "filename": "/assets/store/03.lua",
-   "start": 3913322,
-   "end": 3915126
+   "start": 22399200,
+   "end": 22401004
   }, {
    "filename": "/assets/store/hangar.lua~",
-   "start": 3915126,
-   "end": 3916485
+   "start": 22401004,
+   "end": 22402363
   }, {
    "filename": "/assets/store/18.lua~",
-   "start": 3916485,
-   "end": 3917353
+   "start": 22402363,
+   "end": 22403334
   }, {
    "filename": "/assets/store/06.lua~",
-   "start": 3917353,
-   "end": 3951888
+   "start": 22403334,
+   "end": 22437869
   }, {
    "filename": "/assets/store/12.lua",
-   "start": 3951888,
-   "end": 3951888
+   "start": 22437869,
+   "end": 22437869
   }, {
    "filename": "/assets/store/18.lua",
-   "start": 3951888,
-   "end": 3952860
+   "start": 22437869,
+   "end": 22438840
   }, {
    "filename": "/assets/store/09.lua",
-   "start": 3952860,
-   "end": 3953164
+   "start": 22438840,
+   "end": 22439144
+  }, {
+   "filename": "/assets/wfc_src/green.png",
+   "start": 22439144,
+   "end": 22439444
+  }, {
+   "filename": "/assets/wfc_src/very_dark_white.png",
+   "start": 22439444,
+   "end": 22439730
+  }, {
+   "filename": "/assets/wfc_src/white.png",
+   "start": 22439730,
+   "end": 22440009
+  }, {
+   "filename": "/assets/wfc_src/light_white.png",
+   "start": 22440009,
+   "end": 22440189
+  }, {
+   "filename": "/assets/wfc_src/deep_sea.png",
+   "start": 22440189,
+   "end": 22440479
+  }, {
+   "filename": "/assets/wfc_src/shallow_sea.png",
+   "start": 22440479,
+   "end": 22440725
+  }, {
+   "filename": "/assets/wfc_src/dark_brown.png",
+   "start": 22440725,
+   "end": 22441027
+  }, {
+   "filename": "/assets/wfc_src/light_brown.png",
+   "start": 22441027,
+   "end": 22441279
+  }, {
+   "filename": "/assets/wfc_src/dark_white.png",
+   "start": 22441279,
+   "end": 22441538
+  }, {
+   "filename": "/assets/wfc_src/dark_green.png",
+   "start": 22441538,
+   "end": 22441812
+  }, {
+   "filename": "/assets/wfc_src/light_green.png",
+   "start": 22441812,
+   "end": 22442172
+  }, {
+   "filename": "/assets/wfc_src/very_dark_brown.png",
+   "start": 22442172,
+   "end": 22442449
+  }, {
+   "filename": "/assets/wfc_src/brown.png",
+   "start": 22442449,
+   "end": 22442683
+  }, {
+   "filename": "/assets/wfc_src/very_dark_green.png",
+   "start": 22442683,
+   "end": 22442983
+  }, {
+   "filename": "/assets/wfc_src/sea.png",
+   "start": 22442983,
+   "end": 22443183
+  }, {
+   "filename": "/assets/wfc_src/very_deep_sea.png",
+   "start": 22443183,
+   "end": 22443466
+  }, {
+   "filename": "/assets/wfc_src/dst.2/green.png",
+   "start": 22443466,
+   "end": 22510593
+  }, {
+   "filename": "/assets/wfc_src/dst.2/very_dark_white.png",
+   "start": 22510593,
+   "end": 22591964
+  }, {
+   "filename": "/assets/wfc_src/dst.2/white.png",
+   "start": 22591964,
+   "end": 22683878
+  }, {
+   "filename": "/assets/wfc_src/dst.2/light_white.png",
+   "start": 22683878,
+   "end": 22709500
+  }, {
+   "filename": "/assets/wfc_src/dst.2/deep_sea.png",
+   "start": 22709500,
+   "end": 22767982
+  }, {
+   "filename": "/assets/wfc_src/dst.2/shallow_sea.png",
+   "start": 22767982,
+   "end": 22820332
+  }, {
+   "filename": "/assets/wfc_src/dst.2/dark_brown.png",
+   "start": 22820332,
+   "end": 22892031
+  }, {
+   "filename": "/assets/wfc_src/dst.2/light_brown.png",
+   "start": 22892031,
+   "end": 22956055
+  }, {
+   "filename": "/assets/wfc_src/dst.2/dark_white.png",
+   "start": 22956055,
+   "end": 23015611
+  }, {
+   "filename": "/assets/wfc_src/dst.2/dark_green.png",
+   "start": 23015611,
+   "end": 23073750
+  }, {
+   "filename": "/assets/wfc_src/dst.2/light_green.png",
+   "start": 23073750,
+   "end": 23180982
+  }, {
+   "filename": "/assets/wfc_src/dst.2/very_dark_brown.png",
+   "start": 23180982,
+   "end": 23244318
+  }, {
+   "filename": "/assets/wfc_src/dst.2/brown.png",
+   "start": 23244318,
+   "end": 23268602
+  }, {
+   "filename": "/assets/wfc_src/dst.2/very_dark_green.png",
+   "start": 23268602,
+   "end": 23367371
+  }, {
+   "filename": "/assets/wfc_src/dst.2/sea.png",
+   "start": 23367371,
+   "end": 23389409
+  }, {
+   "filename": "/assets/wfc_src/dst.2/very_deep_sea.png",
+   "start": 23389409,
+   "end": 23453402
+  }, {
+   "filename": "/assets/wfc_src/dst.1/green.png",
+   "start": 23453402,
+   "end": 23530272
+  }, {
+   "filename": "/assets/wfc_src/dst.1/very_dark_white.png",
+   "start": 23530272,
+   "end": 23610850
+  }, {
+   "filename": "/assets/wfc_src/dst.1/white.png",
+   "start": 23610850,
+   "end": 23649659
+  }, {
+   "filename": "/assets/wfc_src/dst.1/light_white.png",
+   "start": 23649659,
+   "end": 23697067
+  }, {
+   "filename": "/assets/wfc_src/dst.1/deep_sea.png",
+   "start": 23697067,
+   "end": 23756061
+  }, {
+   "filename": "/assets/wfc_src/dst.1/shallow_sea.png",
+   "start": 23756061,
+   "end": 23808480
+  }, {
+   "filename": "/assets/wfc_src/dst.1/dark_brown.png",
+   "start": 23808480,
+   "end": 23875206
+  }, {
+   "filename": "/assets/wfc_src/dst.1/light_brown.png",
+   "start": 23875206,
+   "end": 23936388
+  }, {
+   "filename": "/assets/wfc_src/dst.1/dark_white.png",
+   "start": 23936388,
+   "end": 23995045
+  }, {
+   "filename": "/assets/wfc_src/dst.1/dark_green.png",
+   "start": 23995045,
+   "end": 24054012
+  }, {
+   "filename": "/assets/wfc_src/dst.1/light_green.png",
+   "start": 24054012,
+   "end": 24114690
+  }, {
+   "filename": "/assets/wfc_src/dst.1/very_dark_brown.png",
+   "start": 24114690,
+   "end": 24176402
+  }, {
+   "filename": "/assets/wfc_src/dst.1/brown.png",
+   "start": 24176402,
+   "end": 24206525
+  }, {
+   "filename": "/assets/wfc_src/dst.1/very_dark_green.png",
+   "start": 24206525,
+   "end": 24264023
+  }, {
+   "filename": "/assets/wfc_src/dst.1/sea.png",
+   "start": 24264023,
+   "end": 24331197
+  }, {
+   "filename": "/assets/wfc_src/dst.1/very_deep_sea.png",
+   "start": 24331197,
+   "end": 24395599
+  }, {
+   "filename": "/assets/wfc_src/dst/green.png",
+   "start": 24395599,
+   "end": 24472469
+  }, {
+   "filename": "/assets/wfc_src/dst/very_dark_white.png",
+   "start": 24472469,
+   "end": 24553047
+  }, {
+   "filename": "/assets/wfc_src/dst/white.png",
+   "start": 24553047,
+   "end": 24591856
+  }, {
+   "filename": "/assets/wfc_src/dst/light_white.png",
+   "start": 24591856,
+   "end": 24639264
+  }, {
+   "filename": "/assets/wfc_src/dst/deep_sea.png",
+   "start": 24639264,
+   "end": 24698258
+  }, {
+   "filename": "/assets/wfc_src/dst/shallow_sea.png",
+   "start": 24698258,
+   "end": 24750677
+  }, {
+   "filename": "/assets/wfc_src/dst/dark_brown.png",
+   "start": 24750677,
+   "end": 24817403
+  }, {
+   "filename": "/assets/wfc_src/dst/light_brown.png",
+   "start": 24817403,
+   "end": 24878585
+  }, {
+   "filename": "/assets/wfc_src/dst/dark_white.png",
+   "start": 24878585,
+   "end": 24937242
+  }, {
+   "filename": "/assets/wfc_src/dst/dark_green.png",
+   "start": 24937242,
+   "end": 24996209
+  }, {
+   "filename": "/assets/wfc_src/dst/light_green.png",
+   "start": 24996209,
+   "end": 25056887
+  }, {
+   "filename": "/assets/wfc_src/dst/very_dark_brown.png",
+   "start": 25056887,
+   "end": 25118599
+  }, {
+   "filename": "/assets/wfc_src/dst/brown.png",
+   "start": 25118599,
+   "end": 25148722
+  }, {
+   "filename": "/assets/wfc_src/dst/very_dark_green.png",
+   "start": 25148722,
+   "end": 25206220
+  }, {
+   "filename": "/assets/wfc_src/dst/sea.png",
+   "start": 25206220,
+   "end": 25273394
+  }, {
+   "filename": "/assets/wfc_src/dst/very_deep_sea.png",
+   "start": 25273394,
+   "end": 25337796
   } ],
-  "remote_package_size": 3953164,
-  "package_uuid": "8f79b161-5441-4736-b5ac-8d8c7e1cb54a"
+  "remote_package_size": 25337796,
+  "package_uuid": "6edd2cea-2976-4e91-ab71-7a62b78f9bb3"
  });
 })();
 
@@ -1586,6 +2227,7 @@ function initRuntime() {
  if (!Module["noFSInit"] && !FS.init.initialized) FS.init();
  FS.ignorePermissions = false;
  TTY.init();
+ SOCKFS.root = FS.mount(SOCKFS, {}, null);
  callRuntimeCallbacks(__ATINIT__);
 }
 
@@ -1863,7 +2505,243 @@ var tempDouble;
 
 var tempI64;
 
-var ASM_CONSTS = {};
+var ASM_CONSTS = {
+ 115471: function() {
+  if (typeof window === "undefined" || (window.AudioContext || window.webkitAudioContext) === undefined) {
+   return 0;
+  }
+  if (typeof window.miniaudio === "undefined") {
+   window.miniaudio = {
+    referenceCount: 0
+   };
+   miniaudio.devices = [];
+   miniaudio.track_device = function(device) {
+    for (var iDevice = 0; iDevice < miniaudio.devices.length; ++iDevice) {
+     if (miniaudio.devices[iDevice] == null) {
+      miniaudio.devices[iDevice] = device;
+      return iDevice;
+     }
+    }
+    miniaudio.devices.push(device);
+    return miniaudio.devices.length - 1;
+   };
+   miniaudio.untrack_device_by_index = function(deviceIndex) {
+    miniaudio.devices[deviceIndex] = null;
+    while (miniaudio.devices.length > 0) {
+     if (miniaudio.devices[miniaudio.devices.length - 1] == null) {
+      miniaudio.devices.pop();
+     } else {
+      break;
+     }
+    }
+   };
+   miniaudio.untrack_device = function(device) {
+    for (var iDevice = 0; iDevice < miniaudio.devices.length; ++iDevice) {
+     if (miniaudio.devices[iDevice] == device) {
+      return miniaudio.untrack_device_by_index(iDevice);
+     }
+    }
+   };
+   miniaudio.get_device_by_index = function(deviceIndex) {
+    return miniaudio.devices[deviceIndex];
+   };
+   miniaudio.unlock_event_types = function() {
+    return [ "touchstart", "touchend", "click" ];
+   }();
+   miniaudio.unlock = function() {
+    for (var i = 0; i < miniaudio.devices.length; ++i) {
+     var device = miniaudio.devices[i];
+     if (device != null && device.webaudio != null && device.state === 2) {
+      device.webaudio.resume();
+     }
+    }
+    miniaudio.unlock_event_types.map(function(event_type) {
+     document.removeEventListener(event_type, miniaudio.unlock, true);
+    });
+   };
+   miniaudio.unlock_event_types.map(function(event_type) {
+    document.addEventListener(event_type, miniaudio.unlock, true);
+   });
+  }
+  window.miniaudio.referenceCount++;
+  return 1;
+ },
+ 117170: function() {
+  if (typeof window.miniaudio !== "undefined") {
+   window.miniaudio.referenceCount--;
+   if (window.miniaudio.referenceCount === 0) {
+    delete window.miniaudio;
+   }
+  }
+ },
+ 117331: function() {
+  return navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia !== undefined;
+ },
+ 117435: function() {
+  try {
+   var temp = new (window.AudioContext || window.webkitAudioContext)();
+   var sampleRate = temp.sampleRate;
+   temp.close();
+   return sampleRate;
+  } catch (e) {
+   return 0;
+  }
+ },
+ 117606: function($0, $1, $2, $3, $4) {
+  var channels = $0;
+  var sampleRate = $1;
+  var bufferSize = $2;
+  var isCapture = $3;
+  var pDevice = $4;
+  if (typeof window.miniaudio === "undefined") {
+   return -1;
+  }
+  var device = {};
+  device.webaudio = new (window.AudioContext || window.webkitAudioContext)({
+   sampleRate: sampleRate
+  });
+  device.webaudio.suspend();
+  device.state = 1;
+  device.intermediaryBufferSizeInBytes = channels * bufferSize * 4;
+  device.intermediaryBuffer = Module._malloc(device.intermediaryBufferSizeInBytes);
+  device.intermediaryBufferView = new Float32Array(Module.HEAPF32.buffer, device.intermediaryBuffer, device.intermediaryBufferSizeInBytes);
+  device.scriptNode = device.webaudio.createScriptProcessor(bufferSize, isCapture ? channels : 0, isCapture ? 0 : channels);
+  if (isCapture) {
+   device.scriptNode.onaudioprocess = function(e) {
+    if (device.intermediaryBuffer === undefined) {
+     return;
+    }
+    if (device.intermediaryBufferView.length == 0) {
+     device.intermediaryBufferView = new Float32Array(Module.HEAPF32.buffer, device.intermediaryBuffer, device.intermediaryBufferSizeInBytes);
+    }
+    for (var iChannel = 0; iChannel < e.outputBuffer.numberOfChannels; ++iChannel) {
+     e.outputBuffer.getChannelData(iChannel).fill(0);
+    }
+    var sendSilence = false;
+    if (device.streamNode === undefined) {
+     sendSilence = true;
+    }
+    if (e.inputBuffer.numberOfChannels != channels) {
+     console.log("Capture: Channel count mismatch. " + e.inputBufer.numberOfChannels + " != " + channels + ". Sending silence.");
+     sendSilence = true;
+    }
+    var totalFramesProcessed = 0;
+    while (totalFramesProcessed < e.inputBuffer.length) {
+     var framesRemaining = e.inputBuffer.length - totalFramesProcessed;
+     var framesToProcess = framesRemaining;
+     if (framesToProcess > device.intermediaryBufferSizeInBytes / channels / 4) {
+      framesToProcess = device.intermediaryBufferSizeInBytes / channels / 4;
+     }
+     if (sendSilence) {
+      device.intermediaryBufferView.fill(0);
+     } else {
+      for (var iFrame = 0; iFrame < framesToProcess; ++iFrame) {
+       for (var iChannel = 0; iChannel < e.inputBuffer.numberOfChannels; ++iChannel) {
+        device.intermediaryBufferView[iFrame * channels + iChannel] = e.inputBuffer.getChannelData(iChannel)[totalFramesProcessed + iFrame];
+       }
+      }
+     }
+     _ma_device_process_pcm_frames_capture__webaudio(pDevice, framesToProcess, device.intermediaryBuffer);
+     totalFramesProcessed += framesToProcess;
+    }
+   };
+   navigator.mediaDevices.getUserMedia({
+    audio: true,
+    video: false
+   }).then(function(stream) {
+    device.streamNode = device.webaudio.createMediaStreamSource(stream);
+    device.streamNode.connect(device.scriptNode);
+    device.scriptNode.connect(device.webaudio.destination);
+   }).catch(function(error) {
+    device.scriptNode.connect(device.webaudio.destination);
+   });
+  } else {
+   device.scriptNode.onaudioprocess = function(e) {
+    if (device.intermediaryBuffer === undefined) {
+     return;
+    }
+    if (device.intermediaryBufferView.length == 0) {
+     device.intermediaryBufferView = new Float32Array(Module.HEAPF32.buffer, device.intermediaryBuffer, device.intermediaryBufferSizeInBytes);
+    }
+    var outputSilence = false;
+    if (e.outputBuffer.numberOfChannels != channels) {
+     console.log("Playback: Channel count mismatch. " + e.outputBufer.numberOfChannels + " != " + channels + ". Outputting silence.");
+     outputSilence = true;
+     return;
+    }
+    var totalFramesProcessed = 0;
+    while (totalFramesProcessed < e.outputBuffer.length) {
+     var framesRemaining = e.outputBuffer.length - totalFramesProcessed;
+     var framesToProcess = framesRemaining;
+     if (framesToProcess > device.intermediaryBufferSizeInBytes / channels / 4) {
+      framesToProcess = device.intermediaryBufferSizeInBytes / channels / 4;
+     }
+     _ma_device_process_pcm_frames_playback__webaudio(pDevice, framesToProcess, device.intermediaryBuffer);
+     if (outputSilence) {
+      for (var iChannel = 0; iChannel < e.outputBuffer.numberOfChannels; ++iChannel) {
+       e.outputBuffer.getChannelData(iChannel).fill(0);
+      }
+     } else {
+      for (var iChannel = 0; iChannel < e.outputBuffer.numberOfChannels; ++iChannel) {
+       var outputBuffer = e.outputBuffer.getChannelData(iChannel);
+       var intermediaryBuffer = device.intermediaryBufferView;
+       for (var iFrame = 0; iFrame < framesToProcess; ++iFrame) {
+        outputBuffer[totalFramesProcessed + iFrame] = intermediaryBuffer[iFrame * channels + iChannel];
+       }
+      }
+     }
+     totalFramesProcessed += framesToProcess;
+    }
+   };
+   device.scriptNode.connect(device.webaudio.destination);
+  }
+  return miniaudio.track_device(device);
+ },
+ 121896: function($0) {
+  return miniaudio.get_device_by_index($0).webaudio.sampleRate;
+ },
+ 121962: function($0) {
+  var device = miniaudio.get_device_by_index($0);
+  if (device.scriptNode !== undefined) {
+   device.scriptNode.onaudioprocess = function(e) {};
+   device.scriptNode.disconnect();
+   device.scriptNode = undefined;
+  }
+  if (device.streamNode !== undefined) {
+   device.streamNode.disconnect();
+   device.streamNode = undefined;
+  }
+  device.webaudio.close();
+  device.webaudio = undefined;
+  if (device.intermediaryBuffer !== undefined) {
+   Module._free(device.intermediaryBuffer);
+   device.intermediaryBuffer = undefined;
+   device.intermediaryBufferView = undefined;
+   device.intermediaryBufferSizeInBytes = undefined;
+  }
+  miniaudio.untrack_device_by_index($0);
+ },
+ 122588: function($0) {
+  var device = miniaudio.get_device_by_index($0);
+  device.webaudio.resume();
+  device.state = 2;
+ },
+ 122684: function($0) {
+  var device = miniaudio.get_device_by_index($0);
+  device.webaudio.resume();
+  device.state = 2;
+ },
+ 122780: function($0) {
+  var device = miniaudio.get_device_by_index($0);
+  device.webaudio.suspend();
+  device.state = 1;
+ },
+ 122877: function($0) {
+  var device = miniaudio.get_device_by_index($0);
+  device.webaudio.suspend();
+  device.state = 1;
+ }
+};
 
 function GetCanvasHeight() {
  return canvas.clientHeight;
@@ -4446,6 +5324,835 @@ var SYSCALLS = {
  }
 };
 
+function ___syscall__newselect(nfds, readfds, writefds, exceptfds, timeout) {
+ try {
+  assert(nfds <= 64, "nfds must be less than or equal to 64");
+  assert(!exceptfds, "exceptfds not supported");
+  var total = 0;
+  var srcReadLow = readfds ? HEAP32[readfds >>> 2] : 0, srcReadHigh = readfds ? HEAP32[readfds + 4 >>> 2] : 0;
+  var srcWriteLow = writefds ? HEAP32[writefds >>> 2] : 0, srcWriteHigh = writefds ? HEAP32[writefds + 4 >>> 2] : 0;
+  var srcExceptLow = exceptfds ? HEAP32[exceptfds >>> 2] : 0, srcExceptHigh = exceptfds ? HEAP32[exceptfds + 4 >>> 2] : 0;
+  var dstReadLow = 0, dstReadHigh = 0;
+  var dstWriteLow = 0, dstWriteHigh = 0;
+  var dstExceptLow = 0, dstExceptHigh = 0;
+  var allLow = (readfds ? HEAP32[readfds >>> 2] : 0) | (writefds ? HEAP32[writefds >>> 2] : 0) | (exceptfds ? HEAP32[exceptfds >>> 2] : 0);
+  var allHigh = (readfds ? HEAP32[readfds + 4 >>> 2] : 0) | (writefds ? HEAP32[writefds + 4 >>> 2] : 0) | (exceptfds ? HEAP32[exceptfds + 4 >>> 2] : 0);
+  var check = function(fd, low, high, val) {
+   return fd < 32 ? low & val : high & val;
+  };
+  for (var fd = 0; fd < nfds; fd++) {
+   var mask = 1 << fd % 32;
+   if (!check(fd, allLow, allHigh, mask)) {
+    continue;
+   }
+   var stream = FS.getStream(fd);
+   if (!stream) throw new FS.ErrnoError(8);
+   var flags = SYSCALLS.DEFAULT_POLLMASK;
+   if (stream.stream_ops.poll) {
+    flags = stream.stream_ops.poll(stream);
+   }
+   if (flags & 1 && check(fd, srcReadLow, srcReadHigh, mask)) {
+    fd < 32 ? dstReadLow = dstReadLow | mask : dstReadHigh = dstReadHigh | mask;
+    total++;
+   }
+   if (flags & 4 && check(fd, srcWriteLow, srcWriteHigh, mask)) {
+    fd < 32 ? dstWriteLow = dstWriteLow | mask : dstWriteHigh = dstWriteHigh | mask;
+    total++;
+   }
+   if (flags & 2 && check(fd, srcExceptLow, srcExceptHigh, mask)) {
+    fd < 32 ? dstExceptLow = dstExceptLow | mask : dstExceptHigh = dstExceptHigh | mask;
+    total++;
+   }
+  }
+  if (readfds) {
+   HEAP32[readfds >>> 2] = dstReadLow;
+   HEAP32[readfds + 4 >>> 2] = dstReadHigh;
+  }
+  if (writefds) {
+   HEAP32[writefds >>> 2] = dstWriteLow;
+   HEAP32[writefds + 4 >>> 2] = dstWriteHigh;
+  }
+  if (exceptfds) {
+   HEAP32[exceptfds >>> 2] = dstExceptLow;
+   HEAP32[exceptfds + 4 >>> 2] = dstExceptHigh;
+  }
+  return total;
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
+var SOCKFS = {
+ mount: function(mount) {
+  Module["websocket"] = Module["websocket"] && "object" === typeof Module["websocket"] ? Module["websocket"] : {};
+  Module["websocket"]._callbacks = {};
+  Module["websocket"]["on"] = function(event, callback) {
+   if ("function" === typeof callback) {
+    this._callbacks[event] = callback;
+   }
+   return this;
+  };
+  Module["websocket"].emit = function(event, param) {
+   if ("function" === typeof this._callbacks[event]) {
+    this._callbacks[event].call(this, param);
+   }
+  };
+  return FS.createNode(null, "/", 16384 | 511, 0);
+ },
+ createSocket: function(family, type, protocol) {
+  type &= ~526336;
+  var streaming = type == 1;
+  if (streaming && protocol && protocol != 6) {
+   throw new FS.ErrnoError(66);
+  }
+  var sock = {
+   family: family,
+   type: type,
+   protocol: protocol,
+   server: null,
+   error: null,
+   peers: {},
+   pending: [],
+   recv_queue: [],
+   sock_ops: SOCKFS.websocket_sock_ops
+  };
+  var name = SOCKFS.nextname();
+  var node = FS.createNode(SOCKFS.root, name, 49152, 0);
+  node.sock = sock;
+  var stream = FS.createStream({
+   path: name,
+   node: node,
+   flags: 2,
+   seekable: false,
+   stream_ops: SOCKFS.stream_ops
+  });
+  sock.stream = stream;
+  return sock;
+ },
+ getSocket: function(fd) {
+  var stream = FS.getStream(fd);
+  if (!stream || !FS.isSocket(stream.node.mode)) {
+   return null;
+  }
+  return stream.node.sock;
+ },
+ stream_ops: {
+  poll: function(stream) {
+   var sock = stream.node.sock;
+   return sock.sock_ops.poll(sock);
+  },
+  ioctl: function(stream, request, varargs) {
+   var sock = stream.node.sock;
+   return sock.sock_ops.ioctl(sock, request, varargs);
+  },
+  read: function(stream, buffer, offset, length, position) {
+   var sock = stream.node.sock;
+   var msg = sock.sock_ops.recvmsg(sock, length);
+   if (!msg) {
+    return 0;
+   }
+   buffer.set(msg.buffer, offset);
+   return msg.buffer.length;
+  },
+  write: function(stream, buffer, offset, length, position) {
+   var sock = stream.node.sock;
+   return sock.sock_ops.sendmsg(sock, buffer, offset, length);
+  },
+  close: function(stream) {
+   var sock = stream.node.sock;
+   sock.sock_ops.close(sock);
+  }
+ },
+ nextname: function() {
+  if (!SOCKFS.nextname.current) {
+   SOCKFS.nextname.current = 0;
+  }
+  return "socket[" + SOCKFS.nextname.current++ + "]";
+ },
+ websocket_sock_ops: {
+  createPeer: function(sock, addr, port) {
+   var ws;
+   if (typeof addr == "object") {
+    ws = addr;
+    addr = null;
+    port = null;
+   }
+   if (ws) {
+    if (ws._socket) {
+     addr = ws._socket.remoteAddress;
+     port = ws._socket.remotePort;
+    } else {
+     var result = /ws[s]?:\/\/([^:]+):(\d+)/.exec(ws.url);
+     if (!result) {
+      throw new Error("WebSocket URL must be in the format ws(s)://address:port");
+     }
+     addr = result[1];
+     port = parseInt(result[2], 10);
+    }
+   } else {
+    try {
+     var runtimeConfig = Module["websocket"] && "object" === typeof Module["websocket"];
+     var url = "ws:#".replace("#", "//");
+     if (runtimeConfig) {
+      if ("string" === typeof Module["websocket"]["url"]) {
+       url = Module["websocket"]["url"];
+      }
+     }
+     if (url === "ws://" || url === "wss://") {
+      var parts = addr.split("/");
+      url = url + parts[0] + ":" + port + "/" + parts.slice(1).join("/");
+     }
+     var subProtocols = "binary";
+     if (runtimeConfig) {
+      if ("string" === typeof Module["websocket"]["subprotocol"]) {
+       subProtocols = Module["websocket"]["subprotocol"];
+      }
+     }
+     var opts = undefined;
+     if (subProtocols !== "null") {
+      subProtocols = subProtocols.replace(/^ +| +$/g, "").split(/ *, */);
+      opts = ENVIRONMENT_IS_NODE ? {
+       "protocol": subProtocols.toString()
+      } : subProtocols;
+     }
+     if (runtimeConfig && null === Module["websocket"]["subprotocol"]) {
+      subProtocols = "null";
+      opts = undefined;
+     }
+     var WebSocketConstructor;
+     if (ENVIRONMENT_IS_NODE) {
+      WebSocketConstructor = require("ws");
+     } else {
+      WebSocketConstructor = WebSocket;
+     }
+     ws = new WebSocketConstructor(url, opts);
+     ws.binaryType = "arraybuffer";
+    } catch (e) {
+     throw new FS.ErrnoError(23);
+    }
+   }
+   var peer = {
+    addr: addr,
+    port: port,
+    socket: ws,
+    dgram_send_queue: []
+   };
+   SOCKFS.websocket_sock_ops.addPeer(sock, peer);
+   SOCKFS.websocket_sock_ops.handlePeerEvents(sock, peer);
+   if (sock.type === 2 && typeof sock.sport != "undefined") {
+    peer.dgram_send_queue.push(new Uint8Array([ 255, 255, 255, 255, "p".charCodeAt(0), "o".charCodeAt(0), "r".charCodeAt(0), "t".charCodeAt(0), (sock.sport & 65280) >> 8, sock.sport & 255 ]));
+   }
+   return peer;
+  },
+  getPeer: function(sock, addr, port) {
+   return sock.peers[addr + ":" + port];
+  },
+  addPeer: function(sock, peer) {
+   sock.peers[peer.addr + ":" + peer.port] = peer;
+  },
+  removePeer: function(sock, peer) {
+   delete sock.peers[peer.addr + ":" + peer.port];
+  },
+  handlePeerEvents: function(sock, peer) {
+   var first = true;
+   var handleOpen = function() {
+    Module["websocket"].emit("open", sock.stream.fd);
+    try {
+     var queued = peer.dgram_send_queue.shift();
+     while (queued) {
+      peer.socket.send(queued);
+      queued = peer.dgram_send_queue.shift();
+     }
+    } catch (e) {
+     peer.socket.close();
+    }
+   };
+   function handleMessage(data) {
+    if (typeof data == "string") {
+     var encoder = new TextEncoder();
+     data = encoder.encode(data);
+    } else {
+     assert(data.byteLength !== undefined);
+     if (data.byteLength == 0) {
+      return;
+     } else {
+      data = new Uint8Array(data);
+     }
+    }
+    var wasfirst = first;
+    first = false;
+    if (wasfirst && data.length === 10 && data[0] === 255 && data[1] === 255 && data[2] === 255 && data[3] === 255 && data[4] === "p".charCodeAt(0) && data[5] === "o".charCodeAt(0) && data[6] === "r".charCodeAt(0) && data[7] === "t".charCodeAt(0)) {
+     var newport = data[8] << 8 | data[9];
+     SOCKFS.websocket_sock_ops.removePeer(sock, peer);
+     peer.port = newport;
+     SOCKFS.websocket_sock_ops.addPeer(sock, peer);
+     return;
+    }
+    sock.recv_queue.push({
+     addr: peer.addr,
+     port: peer.port,
+     data: data
+    });
+    Module["websocket"].emit("message", sock.stream.fd);
+   }
+   if (ENVIRONMENT_IS_NODE) {
+    peer.socket.on("open", handleOpen);
+    peer.socket.on("message", function(data, flags) {
+     if (!flags.binary) {
+      return;
+     }
+     handleMessage(new Uint8Array(data).buffer);
+    });
+    peer.socket.on("close", function() {
+     Module["websocket"].emit("close", sock.stream.fd);
+    });
+    peer.socket.on("error", function(error) {
+     sock.error = 14;
+     Module["websocket"].emit("error", [ sock.stream.fd, sock.error, "ECONNREFUSED: Connection refused" ]);
+    });
+   } else {
+    peer.socket.onopen = handleOpen;
+    peer.socket.onclose = function() {
+     Module["websocket"].emit("close", sock.stream.fd);
+    };
+    peer.socket.onmessage = function peer_socket_onmessage(event) {
+     handleMessage(event.data);
+    };
+    peer.socket.onerror = function(error) {
+     sock.error = 14;
+     Module["websocket"].emit("error", [ sock.stream.fd, sock.error, "ECONNREFUSED: Connection refused" ]);
+    };
+   }
+  },
+  poll: function(sock) {
+   if (sock.type === 1 && sock.server) {
+    return sock.pending.length ? 64 | 1 : 0;
+   }
+   var mask = 0;
+   var dest = sock.type === 1 ? SOCKFS.websocket_sock_ops.getPeer(sock, sock.daddr, sock.dport) : null;
+   if (sock.recv_queue.length || !dest || dest && dest.socket.readyState === dest.socket.CLOSING || dest && dest.socket.readyState === dest.socket.CLOSED) {
+    mask |= 64 | 1;
+   }
+   if (!dest || dest && dest.socket.readyState === dest.socket.OPEN) {
+    mask |= 4;
+   }
+   if (dest && dest.socket.readyState === dest.socket.CLOSING || dest && dest.socket.readyState === dest.socket.CLOSED) {
+    mask |= 16;
+   }
+   return mask;
+  },
+  ioctl: function(sock, request, arg) {
+   switch (request) {
+   case 21531:
+    var bytes = 0;
+    if (sock.recv_queue.length) {
+     bytes = sock.recv_queue[0].data.length;
+    }
+    HEAP32[arg >>> 2] = bytes;
+    return 0;
+
+   default:
+    return 28;
+   }
+  },
+  close: function(sock) {
+   if (sock.server) {
+    try {
+     sock.server.close();
+    } catch (e) {}
+    sock.server = null;
+   }
+   var peers = Object.keys(sock.peers);
+   for (var i = 0; i < peers.length; i++) {
+    var peer = sock.peers[peers[i]];
+    try {
+     peer.socket.close();
+    } catch (e) {}
+    SOCKFS.websocket_sock_ops.removePeer(sock, peer);
+   }
+   return 0;
+  },
+  bind: function(sock, addr, port) {
+   if (typeof sock.saddr != "undefined" || typeof sock.sport != "undefined") {
+    throw new FS.ErrnoError(28);
+   }
+   sock.saddr = addr;
+   sock.sport = port;
+   if (sock.type === 2) {
+    if (sock.server) {
+     sock.server.close();
+     sock.server = null;
+    }
+    try {
+     sock.sock_ops.listen(sock, 0);
+    } catch (e) {
+     if (!(e instanceof FS.ErrnoError)) throw e;
+     if (e.errno !== 138) throw e;
+    }
+   }
+  },
+  connect: function(sock, addr, port) {
+   if (sock.server) {
+    throw new FS.ErrnoError(138);
+   }
+   if (typeof sock.daddr != "undefined" && typeof sock.dport != "undefined") {
+    var dest = SOCKFS.websocket_sock_ops.getPeer(sock, sock.daddr, sock.dport);
+    if (dest) {
+     if (dest.socket.readyState === dest.socket.CONNECTING) {
+      throw new FS.ErrnoError(7);
+     } else {
+      throw new FS.ErrnoError(30);
+     }
+    }
+   }
+   var peer = SOCKFS.websocket_sock_ops.createPeer(sock, addr, port);
+   sock.daddr = peer.addr;
+   sock.dport = peer.port;
+   throw new FS.ErrnoError(26);
+  },
+  listen: function(sock, backlog) {
+   if (!ENVIRONMENT_IS_NODE) {
+    throw new FS.ErrnoError(138);
+   }
+   if (sock.server) {
+    throw new FS.ErrnoError(28);
+   }
+   var WebSocketServer = require("ws").Server;
+   var host = sock.saddr;
+   sock.server = new WebSocketServer({
+    host: host,
+    port: sock.sport
+   });
+   Module["websocket"].emit("listen", sock.stream.fd);
+   sock.server.on("connection", function(ws) {
+    if (sock.type === 1) {
+     var newsock = SOCKFS.createSocket(sock.family, sock.type, sock.protocol);
+     var peer = SOCKFS.websocket_sock_ops.createPeer(newsock, ws);
+     newsock.daddr = peer.addr;
+     newsock.dport = peer.port;
+     sock.pending.push(newsock);
+     Module["websocket"].emit("connection", newsock.stream.fd);
+    } else {
+     SOCKFS.websocket_sock_ops.createPeer(sock, ws);
+     Module["websocket"].emit("connection", sock.stream.fd);
+    }
+   });
+   sock.server.on("closed", function() {
+    Module["websocket"].emit("close", sock.stream.fd);
+    sock.server = null;
+   });
+   sock.server.on("error", function(error) {
+    sock.error = 23;
+    Module["websocket"].emit("error", [ sock.stream.fd, sock.error, "EHOSTUNREACH: Host is unreachable" ]);
+   });
+  },
+  accept: function(listensock) {
+   if (!listensock.server || !listensock.pending.length) {
+    throw new FS.ErrnoError(28);
+   }
+   var newsock = listensock.pending.shift();
+   newsock.stream.flags = listensock.stream.flags;
+   return newsock;
+  },
+  getname: function(sock, peer) {
+   var addr, port;
+   if (peer) {
+    if (sock.daddr === undefined || sock.dport === undefined) {
+     throw new FS.ErrnoError(53);
+    }
+    addr = sock.daddr;
+    port = sock.dport;
+   } else {
+    addr = sock.saddr || 0;
+    port = sock.sport || 0;
+   }
+   return {
+    addr: addr,
+    port: port
+   };
+  },
+  sendmsg: function(sock, buffer, offset, length, addr, port) {
+   if (sock.type === 2) {
+    if (addr === undefined || port === undefined) {
+     addr = sock.daddr;
+     port = sock.dport;
+    }
+    if (addr === undefined || port === undefined) {
+     throw new FS.ErrnoError(17);
+    }
+   } else {
+    addr = sock.daddr;
+    port = sock.dport;
+   }
+   var dest = SOCKFS.websocket_sock_ops.getPeer(sock, addr, port);
+   if (sock.type === 1) {
+    if (!dest || dest.socket.readyState === dest.socket.CLOSING || dest.socket.readyState === dest.socket.CLOSED) {
+     throw new FS.ErrnoError(53);
+    } else if (dest.socket.readyState === dest.socket.CONNECTING) {
+     throw new FS.ErrnoError(6);
+    }
+   }
+   if (ArrayBuffer.isView(buffer)) {
+    offset += buffer.byteOffset;
+    buffer = buffer.buffer;
+   }
+   var data;
+   data = buffer.slice(offset, offset + length);
+   if (sock.type === 2) {
+    if (!dest || dest.socket.readyState !== dest.socket.OPEN) {
+     if (!dest || dest.socket.readyState === dest.socket.CLOSING || dest.socket.readyState === dest.socket.CLOSED) {
+      dest = SOCKFS.websocket_sock_ops.createPeer(sock, addr, port);
+     }
+     dest.dgram_send_queue.push(data);
+     return length;
+    }
+   }
+   try {
+    dest.socket.send(data);
+    return length;
+   } catch (e) {
+    throw new FS.ErrnoError(28);
+   }
+  },
+  recvmsg: function(sock, length) {
+   if (sock.type === 1 && sock.server) {
+    throw new FS.ErrnoError(53);
+   }
+   var queued = sock.recv_queue.shift();
+   if (!queued) {
+    if (sock.type === 1) {
+     var dest = SOCKFS.websocket_sock_ops.getPeer(sock, sock.daddr, sock.dport);
+     if (!dest) {
+      throw new FS.ErrnoError(53);
+     } else if (dest.socket.readyState === dest.socket.CLOSING || dest.socket.readyState === dest.socket.CLOSED) {
+      return null;
+     } else {
+      throw new FS.ErrnoError(6);
+     }
+    } else {
+     throw new FS.ErrnoError(6);
+    }
+   }
+   var queuedLength = queued.data.byteLength || queued.data.length;
+   var queuedOffset = queued.data.byteOffset || 0;
+   var queuedBuffer = queued.data.buffer || queued.data;
+   var bytesRead = Math.min(length, queuedLength);
+   var res = {
+    buffer: new Uint8Array(queuedBuffer, queuedOffset, bytesRead),
+    addr: queued.addr,
+    port: queued.port
+   };
+   if (sock.type === 1 && bytesRead < queuedLength) {
+    var bytesRemaining = queuedLength - bytesRead;
+    queued.data = new Uint8Array(queuedBuffer, queuedOffset + bytesRead, bytesRemaining);
+    sock.recv_queue.unshift(queued);
+   }
+   return res;
+  }
+ }
+};
+
+function getSocketFromFD(fd) {
+ var socket = SOCKFS.getSocket(fd);
+ if (!socket) throw new FS.ErrnoError(8);
+ return socket;
+}
+
+function setErrNo(value) {
+ HEAP32[___errno_location() >>> 2] = value;
+ return value;
+}
+
+var Sockets = {
+ BUFFER_SIZE: 10240,
+ MAX_BUFFER_SIZE: 10485760,
+ nextFd: 1,
+ fds: {},
+ nextport: 1,
+ maxport: 65535,
+ peer: null,
+ connections: {},
+ portmap: {},
+ localAddr: 4261412874,
+ addrPool: [ 33554442, 50331658, 67108874, 83886090, 100663306, 117440522, 134217738, 150994954, 167772170, 184549386, 201326602, 218103818, 234881034 ]
+};
+
+function inetPton4(str) {
+ var b = str.split(".");
+ for (var i = 0; i < 4; i++) {
+  var tmp = Number(b[i]);
+  if (isNaN(tmp)) return null;
+  b[i] = tmp;
+ }
+ return (b[0] | b[1] << 8 | b[2] << 16 | b[3] << 24) >>> 0;
+}
+
+function jstoi_q(str) {
+ return parseInt(str);
+}
+
+function inetPton6(str) {
+ var words;
+ var w, offset, z, i;
+ var valid6regx = /^((?=.*::)(?!.*::.+::)(::)?([\dA-F]{1,4}:(:|\b)|){5}|([\dA-F]{1,4}:){6})((([\dA-F]{1,4}((?!\3)::|:\b|$))|(?!\2\3)){2}|(((2[0-4]|1\d|[1-9])?\d|25[0-5])\.?\b){4})$/i;
+ var parts = [];
+ if (!valid6regx.test(str)) {
+  return null;
+ }
+ if (str === "::") {
+  return [ 0, 0, 0, 0, 0, 0, 0, 0 ];
+ }
+ if (str.startsWith("::")) {
+  str = str.replace("::", "Z:");
+ } else {
+  str = str.replace("::", ":Z:");
+ }
+ if (str.indexOf(".") > 0) {
+  str = str.replace(new RegExp("[.]", "g"), ":");
+  words = str.split(":");
+  words[words.length - 4] = jstoi_q(words[words.length - 4]) + jstoi_q(words[words.length - 3]) * 256;
+  words[words.length - 3] = jstoi_q(words[words.length - 2]) + jstoi_q(words[words.length - 1]) * 256;
+  words = words.slice(0, words.length - 2);
+ } else {
+  words = str.split(":");
+ }
+ offset = 0;
+ z = 0;
+ for (w = 0; w < words.length; w++) {
+  if (typeof words[w] == "string") {
+   if (words[w] === "Z") {
+    for (z = 0; z < 8 - words.length + 1; z++) {
+     parts[w + z] = 0;
+    }
+    offset = z - 1;
+   } else {
+    parts[w + offset] = _htons(parseInt(words[w], 16));
+   }
+  } else {
+   parts[w + offset] = words[w];
+  }
+ }
+ return [ parts[1] << 16 | parts[0], parts[3] << 16 | parts[2], parts[5] << 16 | parts[4], parts[7] << 16 | parts[6] ];
+}
+
+function writeSockaddr(sa, family, addr, port, addrlen) {
+ switch (family) {
+ case 2:
+  addr = inetPton4(addr);
+  zeroMemory(sa, 16);
+  if (addrlen) {
+   HEAP32[addrlen >>> 2] = 16;
+  }
+  HEAP16[sa >>> 1] = family;
+  HEAP32[sa + 4 >>> 2] = addr;
+  HEAP16[sa + 2 >>> 1] = _htons(port);
+  break;
+
+ case 10:
+  addr = inetPton6(addr);
+  zeroMemory(sa, 28);
+  if (addrlen) {
+   HEAP32[addrlen >>> 2] = 28;
+  }
+  HEAP32[sa >>> 2] = family;
+  HEAP32[sa + 8 >>> 2] = addr[0];
+  HEAP32[sa + 12 >>> 2] = addr[1];
+  HEAP32[sa + 16 >>> 2] = addr[2];
+  HEAP32[sa + 20 >>> 2] = addr[3];
+  HEAP16[sa + 2 >>> 1] = _htons(port);
+  break;
+
+ default:
+  return 5;
+ }
+ return 0;
+}
+
+var DNS = {
+ address_map: {
+  id: 1,
+  addrs: {},
+  names: {}
+ },
+ lookup_name: function(name) {
+  var res = inetPton4(name);
+  if (res !== null) {
+   return name;
+  }
+  res = inetPton6(name);
+  if (res !== null) {
+   return name;
+  }
+  var addr;
+  if (DNS.address_map.addrs[name]) {
+   addr = DNS.address_map.addrs[name];
+  } else {
+   var id = DNS.address_map.id++;
+   assert(id < 65535, "exceeded max address mappings of 65535");
+   addr = "172.29." + (id & 255) + "." + (id & 65280);
+   DNS.address_map.names[addr] = name;
+   DNS.address_map.addrs[name] = addr;
+  }
+  return addr;
+ },
+ lookup_addr: function(addr) {
+  if (DNS.address_map.names[addr]) {
+   return DNS.address_map.names[addr];
+  }
+  return null;
+ }
+};
+
+function ___syscall_accept4(fd, addr, addrlen, flags) {
+ try {
+  var sock = getSocketFromFD(fd);
+  var newsock = sock.sock_ops.accept(sock);
+  if (addr) {
+   var errno = writeSockaddr(addr, newsock.family, DNS.lookup_name(newsock.daddr), newsock.dport, addrlen);
+   assert(!errno);
+  }
+  return newsock.stream.fd;
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
+function inetNtop4(addr) {
+ return (addr & 255) + "." + (addr >> 8 & 255) + "." + (addr >> 16 & 255) + "." + (addr >> 24 & 255);
+}
+
+function inetNtop6(ints) {
+ var str = "";
+ var word = 0;
+ var longest = 0;
+ var lastzero = 0;
+ var zstart = 0;
+ var len = 0;
+ var i = 0;
+ var parts = [ ints[0] & 65535, ints[0] >> 16, ints[1] & 65535, ints[1] >> 16, ints[2] & 65535, ints[2] >> 16, ints[3] & 65535, ints[3] >> 16 ];
+ var hasipv4 = true;
+ var v4part = "";
+ for (i = 0; i < 5; i++) {
+  if (parts[i] !== 0) {
+   hasipv4 = false;
+   break;
+  }
+ }
+ if (hasipv4) {
+  v4part = inetNtop4(parts[6] | parts[7] << 16);
+  if (parts[5] === -1) {
+   str = "::ffff:";
+   str += v4part;
+   return str;
+  }
+  if (parts[5] === 0) {
+   str = "::";
+   if (v4part === "0.0.0.0") v4part = "";
+   if (v4part === "0.0.0.1") v4part = "1";
+   str += v4part;
+   return str;
+  }
+ }
+ for (word = 0; word < 8; word++) {
+  if (parts[word] === 0) {
+   if (word - lastzero > 1) {
+    len = 0;
+   }
+   lastzero = word;
+   len++;
+  }
+  if (len > longest) {
+   longest = len;
+   zstart = word - longest + 1;
+  }
+ }
+ for (word = 0; word < 8; word++) {
+  if (longest > 1) {
+   if (parts[word] === 0 && word >= zstart && word < zstart + longest) {
+    if (word === zstart) {
+     str += ":";
+     if (zstart === 0) str += ":";
+    }
+    continue;
+   }
+  }
+  str += Number(_ntohs(parts[word] & 65535)).toString(16);
+  str += word < 7 ? ":" : "";
+ }
+ return str;
+}
+
+function readSockaddr(sa, salen) {
+ var family = HEAP16[sa >>> 1];
+ var port = _ntohs(HEAPU16[sa + 2 >>> 1]);
+ var addr;
+ switch (family) {
+ case 2:
+  if (salen !== 16) {
+   return {
+    errno: 28
+   };
+  }
+  addr = HEAP32[sa + 4 >>> 2];
+  addr = inetNtop4(addr);
+  break;
+
+ case 10:
+  if (salen !== 28) {
+   return {
+    errno: 28
+   };
+  }
+  addr = [ HEAP32[sa + 8 >>> 2], HEAP32[sa + 12 >>> 2], HEAP32[sa + 16 >>> 2], HEAP32[sa + 20 >>> 2] ];
+  addr = inetNtop6(addr);
+  break;
+
+ default:
+  return {
+   errno: 5
+  };
+ }
+ return {
+  family: family,
+  addr: addr,
+  port: port
+ };
+}
+
+function getSocketAddress(addrp, addrlen, allowNull) {
+ if (allowNull && addrp === 0) return null;
+ var info = readSockaddr(addrp, addrlen);
+ if (info.errno) throw new FS.ErrnoError(info.errno);
+ info.addr = DNS.lookup_addr(info.addr) || info.addr;
+ return info;
+}
+
+function ___syscall_bind(fd, addr, addrlen) {
+ try {
+  var sock = getSocketFromFD(fd);
+  var info = getSocketAddress(addr, addrlen);
+  sock.sock_ops.bind(sock, info.addr, info.port);
+  return 0;
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
+function ___syscall_connect(fd, addr, addrlen) {
+ try {
+  var sock = getSocketFromFD(fd);
+  var info = getSocketAddress(addr, addrlen);
+  sock.sock_ops.connect(sock, info.addr, info.port);
+  return 0;
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
 function ___syscall_dup3(fd, suggestFD, flags) {
  try {
   var old = SYSCALLS.getStreamFromFD(fd);
@@ -4458,11 +6165,6 @@ function ___syscall_dup3(fd, suggestFD, flags) {
   if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
-}
-
-function setErrNo(value) {
- HEAP32[___errno_location() >>> 2] = value;
- return value;
 }
 
 function ___syscall_fcntl64(fd, cmd, varargs) {
@@ -4540,6 +6242,54 @@ function ___syscall_getcwd(buf, size) {
  }
 }
 
+function ___syscall_getdents64(fd, dirp, count) {
+ try {
+  var stream = SYSCALLS.getStreamFromFD(fd);
+  if (!stream.getdents) {
+   stream.getdents = FS.readdir(stream.path);
+  }
+  var struct_size = 280;
+  var pos = 0;
+  var off = FS.llseek(stream, 0, 1);
+  var idx = Math.floor(off / struct_size);
+  while (idx < stream.getdents.length && pos + struct_size <= count) {
+   var id;
+   var type;
+   var name = stream.getdents[idx];
+   if (name === ".") {
+    id = stream.node.id;
+    type = 4;
+   } else if (name === "..") {
+    var lookup = FS.lookupPath(stream.path, {
+     parent: true
+    });
+    id = lookup.node.id;
+    type = 4;
+   } else {
+    var child = FS.lookupNode(stream.node, name);
+    id = child.id;
+    type = FS.isChrdev(child.mode) ? 2 : FS.isDir(child.mode) ? 4 : FS.isLink(child.mode) ? 10 : 8;
+   }
+   assert(id);
+   tempI64 = [ id >>> 0, (tempDouble = id, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
+   HEAP32[dirp + pos >>> 2] = tempI64[0], HEAP32[dirp + pos + 4 >>> 2] = tempI64[1];
+   tempI64 = [ (idx + 1) * struct_size >>> 0, (tempDouble = (idx + 1) * struct_size, 
+   +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
+   HEAP32[dirp + pos + 8 >>> 2] = tempI64[0], HEAP32[dirp + pos + 12 >>> 2] = tempI64[1];
+   HEAP16[dirp + pos + 16 >>> 1] = 280;
+   HEAP8[dirp + pos + 18 >>> 0] = type;
+   stringToUTF8(name, dirp + pos + 19, 256);
+   pos += struct_size;
+   idx += 1;
+  }
+  FS.llseek(stream, idx * struct_size, 0);
+  return pos;
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
 function ___syscall_ioctl(fd, op, varargs) {
  SYSCALLS.varargs = varargs;
  try {
@@ -4604,6 +6354,17 @@ function ___syscall_ioctl(fd, op, varargs) {
  }
 }
 
+function ___syscall_listen(fd, backlog) {
+ try {
+  var sock = getSocketFromFD(fd);
+  sock.sock_ops.listen(sock, backlog);
+  return 0;
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
 function ___syscall_lstat64(path, buf) {
  try {
   path = SYSCALLS.getStr(path);
@@ -4646,6 +6407,17 @@ function ___syscall_rmdir(path) {
   path = SYSCALLS.getStr(path);
   FS.rmdir(path);
   return 0;
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
+function ___syscall_socket(domain, type, protocol) {
+ try {
+  var sock = SOCKFS.createSocket(domain, type, protocol);
+  assert(sock.stream.fd < 64);
+  return sock.stream.fd;
  } catch (e) {
   if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
@@ -4777,6 +6549,35 @@ function __tzset_js(timezone, daylight, tzname) {
 
 function _abort() {
  abort("native code called abort()");
+}
+
+var readAsmConstArgsArray = [];
+
+function readAsmConstArgs(sigPtr, buf) {
+ assert(Array.isArray(readAsmConstArgsArray));
+ assert(buf % 16 == 0);
+ readAsmConstArgsArray.length = 0;
+ var ch;
+ buf >>= 2;
+ while (ch = HEAPU8[sigPtr++ >>> 0]) {
+  assert(ch === 100 || ch === 102 || ch === 105, "Invalid character " + ch + '("' + String.fromCharCode(ch) + '") in readAsmConstArgs! Use only "d", "f" or "i", and do not specify "v" for void return argument.');
+  var readAsmConstArgsDouble = ch < 105;
+  if (readAsmConstArgsDouble && buf & 1) buf++;
+  readAsmConstArgsArray.push(readAsmConstArgsDouble ? HEAPF64[buf++ >>> 1] : HEAP32[buf >>> 0]);
+  ++buf;
+ }
+ return readAsmConstArgsArray;
+}
+
+function _emscripten_asm_const_int(code, sigPtr, argbuf) {
+ var args = readAsmConstArgs(sigPtr, argbuf);
+ if (!ASM_CONSTS.hasOwnProperty(code)) abort("No EM_ASM constant found at address " + code);
+ return ASM_CONSTS[code].apply(null, args);
+}
+
+function _emscripten_console_error(str) {
+ assert(typeof str == "number");
+ console.error(UTF8ToString(str));
 }
 
 var JSEvents = {
@@ -5903,10 +7704,6 @@ function _emscripten_glGetTexParameteriv(target, pname, params) {
   return;
  }
  HEAP32[params >>> 2] = GLctx.getTexParameter(target, pname);
-}
-
-function jstoi_q(str) {
- return parseInt(str);
 }
 
 function webglGetLeftBracePos(name) {
@@ -8060,12 +9857,123 @@ function _glTexParameteri(x0, x1, x2) {
  GLctx["texParameteri"](x0, x1, x2);
 }
 
+function _glUniform1fv(location, count, value) {
+ if (count <= 288) {
+  var view = miniTempWebGLFloatBuffers[count - 1];
+  for (var i = 0; i < count; ++i) {
+   view[i] = HEAPF32[value + 4 * i >>> 2];
+  }
+ } else {
+  var view = HEAPF32.subarray(value >>> 2, value + count * 4 >>> 2);
+ }
+ GLctx.uniform1fv(webglGetUniformLocation(location), view);
+}
+
 function _glUniform1i(location, v0) {
  GLctx.uniform1i(webglGetUniformLocation(location), v0);
 }
 
+function _glUniform1iv(location, count, value) {
+ if (count <= 288) {
+  var view = __miniTempWebGLIntBuffers[count - 1];
+  for (var i = 0; i < count; ++i) {
+   view[i] = HEAP32[value + 4 * i >>> 2];
+  }
+ } else {
+  var view = HEAP32.subarray(value >>> 2, value + count * 4 >>> 2);
+ }
+ GLctx.uniform1iv(webglGetUniformLocation(location), view);
+}
+
+function _glUniform2fv(location, count, value) {
+ if (count <= 144) {
+  var view = miniTempWebGLFloatBuffers[2 * count - 1];
+  for (var i = 0; i < 2 * count; i += 2) {
+   view[i] = HEAPF32[value + 4 * i >>> 2];
+   view[i + 1] = HEAPF32[value + (4 * i + 4) >>> 2];
+  }
+ } else {
+  var view = HEAPF32.subarray(value >>> 2, value + count * 8 >>> 2);
+ }
+ GLctx.uniform2fv(webglGetUniformLocation(location), view);
+}
+
+function _glUniform2iv(location, count, value) {
+ if (count <= 144) {
+  var view = __miniTempWebGLIntBuffers[2 * count - 1];
+  for (var i = 0; i < 2 * count; i += 2) {
+   view[i] = HEAP32[value + 4 * i >>> 2];
+   view[i + 1] = HEAP32[value + (4 * i + 4) >>> 2];
+  }
+ } else {
+  var view = HEAP32.subarray(value >>> 2, value + count * 8 >>> 2);
+ }
+ GLctx.uniform2iv(webglGetUniformLocation(location), view);
+}
+
+function _glUniform3fv(location, count, value) {
+ if (count <= 96) {
+  var view = miniTempWebGLFloatBuffers[3 * count - 1];
+  for (var i = 0; i < 3 * count; i += 3) {
+   view[i] = HEAPF32[value + 4 * i >>> 2];
+   view[i + 1] = HEAPF32[value + (4 * i + 4) >>> 2];
+   view[i + 2] = HEAPF32[value + (4 * i + 8) >>> 2];
+  }
+ } else {
+  var view = HEAPF32.subarray(value >>> 2, value + count * 12 >>> 2);
+ }
+ GLctx.uniform3fv(webglGetUniformLocation(location), view);
+}
+
+function _glUniform3iv(location, count, value) {
+ if (count <= 96) {
+  var view = __miniTempWebGLIntBuffers[3 * count - 1];
+  for (var i = 0; i < 3 * count; i += 3) {
+   view[i] = HEAP32[value + 4 * i >>> 2];
+   view[i + 1] = HEAP32[value + (4 * i + 4) >>> 2];
+   view[i + 2] = HEAP32[value + (4 * i + 8) >>> 2];
+  }
+ } else {
+  var view = HEAP32.subarray(value >>> 2, value + count * 12 >>> 2);
+ }
+ GLctx.uniform3iv(webglGetUniformLocation(location), view);
+}
+
 function _glUniform4f(location, v0, v1, v2, v3) {
  GLctx.uniform4f(webglGetUniformLocation(location), v0, v1, v2, v3);
+}
+
+function _glUniform4fv(location, count, value) {
+ if (count <= 72) {
+  var view = miniTempWebGLFloatBuffers[4 * count - 1];
+  var heap = HEAPF32;
+  value >>= 2;
+  for (var i = 0; i < 4 * count; i += 4) {
+   var dst = value + i;
+   view[i] = heap[dst >>> 0];
+   view[i + 1] = heap[dst + 1 >>> 0];
+   view[i + 2] = heap[dst + 2 >>> 0];
+   view[i + 3] = heap[dst + 3 >>> 0];
+  }
+ } else {
+  var view = HEAPF32.subarray(value >>> 2, value + count * 16 >>> 2);
+ }
+ GLctx.uniform4fv(webglGetUniformLocation(location), view);
+}
+
+function _glUniform4iv(location, count, value) {
+ if (count <= 72) {
+  var view = __miniTempWebGLIntBuffers[4 * count - 1];
+  for (var i = 0; i < 4 * count; i += 4) {
+   view[i] = HEAP32[value + 4 * i >>> 2];
+   view[i + 1] = HEAP32[value + (4 * i + 4) >>> 2];
+   view[i + 2] = HEAP32[value + (4 * i + 8) >>> 2];
+   view[i + 3] = HEAP32[value + (4 * i + 12) >>> 2];
+  }
+ } else {
+  var view = HEAP32.subarray(value >>> 2, value + count * 16 >>> 2);
+ }
+ GLctx.uniform4iv(webglGetUniformLocation(location), view);
 }
 
 function _glUniformMatrix4fv(location, count, transpose, value) {
@@ -9930,14 +11838,21 @@ var asmLibraryArg = {
  "GetCanvasHeight": GetCanvasHeight,
  "GetCanvasWidth": GetCanvasWidth,
  "__assert_fail": ___assert_fail,
+ "__syscall__newselect": ___syscall__newselect,
+ "__syscall_accept4": ___syscall_accept4,
+ "__syscall_bind": ___syscall_bind,
+ "__syscall_connect": ___syscall_connect,
  "__syscall_dup3": ___syscall_dup3,
  "__syscall_fcntl64": ___syscall_fcntl64,
  "__syscall_getcwd": ___syscall_getcwd,
+ "__syscall_getdents64": ___syscall_getdents64,
  "__syscall_ioctl": ___syscall_ioctl,
+ "__syscall_listen": ___syscall_listen,
  "__syscall_lstat64": ___syscall_lstat64,
  "__syscall_openat": ___syscall_openat,
  "__syscall_renameat": ___syscall_renameat,
  "__syscall_rmdir": ___syscall_rmdir,
+ "__syscall_socket": ___syscall_socket,
  "__syscall_unlinkat": ___syscall_unlinkat,
  "_emscripten_date_now": __emscripten_date_now,
  "_emscripten_get_now_is_monotonic": __emscripten_get_now_is_monotonic,
@@ -9947,6 +11862,8 @@ var asmLibraryArg = {
  "_mktime_js": __mktime_js,
  "_tzset_js": __tzset_js,
  "abort": _abort,
+ "emscripten_asm_const_int": _emscripten_asm_const_int,
+ "emscripten_console_error": _emscripten_console_error,
  "emscripten_get_element_css_size": _emscripten_get_element_css_size,
  "emscripten_get_gamepad_status": _emscripten_get_gamepad_status,
  "emscripten_get_now": _emscripten_get_now,
@@ -10191,8 +12108,16 @@ var asmLibraryArg = {
  "glTexImage2D": _glTexImage2D,
  "glTexParameterf": _glTexParameterf,
  "glTexParameteri": _glTexParameteri,
+ "glUniform1fv": _glUniform1fv,
  "glUniform1i": _glUniform1i,
+ "glUniform1iv": _glUniform1iv,
+ "glUniform2fv": _glUniform2fv,
+ "glUniform2iv": _glUniform2iv,
+ "glUniform3fv": _glUniform3fv,
+ "glUniform3iv": _glUniform3iv,
  "glUniform4f": _glUniform4f,
+ "glUniform4fv": _glUniform4fv,
+ "glUniform4iv": _glUniform4iv,
  "glUniformMatrix4fv": _glUniformMatrix4fv,
  "glUseProgram": _glUseProgram,
  "glVertexAttribPointer": _glVertexAttribPointer,
@@ -10230,6 +12155,10 @@ var asmLibraryArg = {
 var asm = createWasm();
 
 var ___wasm_call_ctors = Module["___wasm_call_ctors"] = createExportWrapper("__wasm_call_ctors");
+
+var _ma_device_process_pcm_frames_capture__webaudio = Module["_ma_device_process_pcm_frames_capture__webaudio"] = createExportWrapper("ma_device_process_pcm_frames_capture__webaudio");
+
+var _ma_device_process_pcm_frames_playback__webaudio = Module["_ma_device_process_pcm_frames_playback__webaudio"] = createExportWrapper("ma_device_process_pcm_frames_playback__webaudio");
 
 var _main = Module["_main"] = createExportWrapper("main");
 
@@ -10307,11 +12236,19 @@ var dynCall_viiiidii = Module["dynCall_viiiidii"] = createExportWrapper("dynCall
 
 var dynCall_di = Module["dynCall_di"] = createExportWrapper("dynCall_di");
 
+var dynCall_iiiiiii = Module["dynCall_iiiiiii"] = createExportWrapper("dynCall_iiiiiii");
+
+var dynCall_jii = Module["dynCall_jii"] = createExportWrapper("dynCall_jii");
+
+var dynCall_iiiji = Module["dynCall_iiiji"] = createExportWrapper("dynCall_iiiji");
+
 var dynCall_diii = Module["dynCall_diii"] = createExportWrapper("dynCall_diii");
 
 var dynCall_i = Module["dynCall_i"] = createExportWrapper("dynCall_i");
 
 var dynCall_f = Module["dynCall_f"] = createExportWrapper("dynCall_f");
+
+var dynCall_iiiiii = Module["dynCall_iiiiii"] = createExportWrapper("dynCall_iiiiii");
 
 var dynCall_viiid = Module["dynCall_viiid"] = createExportWrapper("dynCall_viiid");
 
