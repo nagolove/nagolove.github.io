@@ -7,7 +7,7 @@ if (!Module.expectedDataFileDownloads) {
 Module.expectedDataFileDownloads++;
 
 (function() {
- if (Module["ENVIRONMENT_IS_PTHREAD"]) return;
+ if (Module["ENVIRONMENT_IS_PTHREAD"] || Module["$ww"]) return;
  var loadPackage = function(metadata) {
   var PACKAGE_PATH = "";
   if (typeof window === "object") {
@@ -15,7 +15,7 @@ Module.expectedDataFileDownloads++;
   } else if (typeof process === "undefined" && typeof location !== "undefined") {
    PACKAGE_PATH = encodeURIComponent(location.pathname.toString().substring(0, location.pathname.toString().lastIndexOf("/")) + "/");
   }
-  var PACKAGE_NAME = "index.data";
+  var PACKAGE_NAME = "wasm_build/index.data";
   var REMOTE_PACKAGE_BASE = "index.data";
   if (typeof Module["locateFilePackage"] === "function" && !Module["locateFile"]) {
    Module["locateFile"] = Module["locateFilePackage"];
@@ -23,7 +23,6 @@ Module.expectedDataFileDownloads++;
   }
   var REMOTE_PACKAGE_NAME = Module["locateFile"] ? Module["locateFile"](REMOTE_PACKAGE_BASE, "") : REMOTE_PACKAGE_BASE;
   var REMOTE_PACKAGE_SIZE = metadata["remote_package_size"];
-  var PACKAGE_UUID = metadata["package_uuid"];
   function fetchRemotePackage(packageName, packageSize, callback, errback) {
    if (typeof process === "object" && typeof process.versions === "object" && typeof process.versions.node === "string") {
     require("fs").readFile(packageName, function(err, contents) {
@@ -99,19 +98,24 @@ Module.expectedDataFileDownloads++;
     if (!check) throw msg + new Error().stack;
    }
    Module["FS_createPath"]("/", "assets", true, true);
+   Module["FS_createPath"]("/assets", "background", true, true);
+   Module["FS_createPath"]("/assets", "decals", true, true);
+   Module["FS_createPath"]("/assets", "fonts", true, true);
+   Module["FS_createPath"]("/assets", "gfx", true, true);
+   Module["FS_createPath"]("/assets/gfx", "forest", true, true);
+   Module["FS_createPath"]("/assets", "projects", true, true);
+   Module["FS_createPath"]("/assets", "sfx", true, true);
+   Module["FS_createPath"]("/assets", "store", true, true);
+   Module["FS_createPath"]("/assets", "sunvox", true, true);
+   Module["FS_createPath"]("/assets", "teleport02", true, true);
+   Module["FS_createPath"]("/assets", "vertex", true, true);
+   Module["FS_createPath"]("/assets", "wfc_src", true, true);
+   Module["FS_createPath"]("/assets/wfc_src", "dst.1", true, true);
+   Module["FS_createPath"]("/assets/wfc_src", "dst.2", true, true);
+   Module["FS_createPath"]("/assets/wfc_src", "dst", true, true);
    Module["FS_createPath"]("/assets", "wfc_src_white", true, true);
    Module["FS_createPath"]("/assets/wfc_src_white", "dst.2", true, true);
-   Module["FS_createPath"]("/assets", "sfx", true, true);
-   Module["FS_createPath"]("/assets", "decals", true, true);
    Module["FS_createPath"]("/assets", "xturret", true, true);
-   Module["FS_createPath"]("/assets", "vertex", true, true);
-   Module["FS_createPath"]("/assets", "teleport02", true, true);
-   Module["FS_createPath"]("/assets", "forest", true, true);
-   Module["FS_createPath"]("/assets", "store", true, true);
-   Module["FS_createPath"]("/assets", "wfc_src", true, true);
-   Module["FS_createPath"]("/assets/wfc_src", "dst.2", true, true);
-   Module["FS_createPath"]("/assets/wfc_src", "dst.1", true, true);
-   Module["FS_createPath"]("/assets/wfc_src", "dst", true, true);
    function DataRequest(start, end, audio) {
     this.start = start;
     this.end = end;
@@ -142,7 +146,7 @@ Module.expectedDataFileDownloads++;
    }
    function processPackageData(arrayBuffer) {
     assert(arrayBuffer, "Loading data file failed.");
-    assert(arrayBuffer instanceof ArrayBuffer, "bad input to processPackageData");
+    assert(arrayBuffer.constructor.name === ArrayBuffer.name, "bad input to processPackageData");
     var byteArray = new Uint8Array(arrayBuffer);
     var curr;
     DataRequest.prototype.byteArray = byteArray;
@@ -150,9 +154,9 @@ Module.expectedDataFileDownloads++;
     for (var i = 0; i < files.length; ++i) {
      DataRequest.prototype.requests[files[i].filename].onload();
     }
-    Module["removeRunDependency"]("datafile_index.data");
+    Module["removeRunDependency"]("datafile_wasm_build/index.data");
    }
-   Module["addRunDependency"]("datafile_index.data");
+   Module["addRunDependency"]("datafile_wasm_build/index.data");
    if (!Module.preloadResults) Module.preloadResults = {};
    Module.preloadResults[PACKAGE_NAME] = {
     fromCache: false
@@ -173,1086 +177,1065 @@ Module.expectedDataFileDownloads++;
  };
  loadPackage({
   "files": [ {
-   "filename": "/assets/minimap_stencil.glsl~",
+   "filename": "/assets/background/farm.ogg",
    "start": 0,
-   "end": 414
+   "end": 5420756,
+   "audio": 1
   }, {
-   "filename": "/assets/helicopter01_base.png",
-   "start": 414,
-   "end": 1062
+   "filename": "/assets/background/бит.ogg",
+   "start": 5420756,
+   "end": 8621143,
+   "audio": 1
   }, {
-   "filename": "/assets/brown1.png",
-   "start": 1062,
-   "end": 1353
+   "filename": "/assets/background/волны.ogg",
+   "start": 8621143,
+   "end": 11196872,
+   "audio": 1
   }, {
-   "filename": "/assets/vector.lua",
-   "start": 1353,
-   "end": 6835
+   "filename": "/assets/background/матрок2.ogg",
+   "start": 11196872,
+   "end": 12302664,
+   "audio": 1
   }, {
-   "filename": "/assets/sfx_speech.aup3",
-   "start": 6835,
-   "end": 10459827
+   "filename": "/assets/background/птицы в горах и ручьи.ogg",
+   "start": 12302664,
+   "end": 15295633,
+   "audio": 1
   }, {
-   "filename": "/assets/green2.aseprite",
-   "start": 10459827,
-   "end": 10460468
+   "filename": "/assets/decals/body_decal_01.png",
+   "start": 15295633,
+   "end": 15296587
   }, {
-   "filename": "/assets/hangar01.png",
-   "start": 10460468,
-   "end": 10481354
+   "filename": "/assets/decals/body_decal_02.png",
+   "start": 15296587,
+   "end": 15297450
   }, {
-   "filename": "/assets/grass2.png",
-   "start": 10481354,
-   "end": 10481633
+   "filename": "/assets/decals/body_decal_03.png",
+   "start": 15297450,
+   "end": 15298313
   }, {
-   "filename": "/assets/64_64_template.aseprite",
-   "start": 10481633,
-   "end": 10482867
+   "filename": "/assets/decals/body_decal_04.png",
+   "start": 15298313,
+   "end": 15299179
   }, {
-   "filename": "/assets/8per8_512.png",
-   "start": 10482867,
-   "end": 10496375
+   "filename": "/assets/decals/body_decal_05.png",
+   "start": 15299179,
+   "end": 15300042
   }, {
-   "filename": "/assets/brown1.out.png",
-   "start": 10496375,
-   "end": 10533440
+   "filename": "/assets/decals/body_decal_06.png",
+   "start": 15300042,
+   "end": 15300904
   }, {
-   "filename": "/assets/helicopter01.png",
-   "start": 10533440,
-   "end": 10534924
+   "filename": "/assets/decals/body_decal_07.png",
+   "start": 15300904,
+   "end": 15301756
   }, {
-   "filename": "/assets/aim_selection.png~",
-   "start": 10534924,
-   "end": 10537959
+   "filename": "/assets/decals/body_decal_08.png",
+   "start": 15301756,
+   "end": 15302612
   }, {
-   "filename": "/assets/body_decal.png",
-   "start": 10537959,
-   "end": 10539893
+   "filename": "/assets/fonts/dejavusansmono.ttf",
+   "start": 15302612,
+   "end": 15643324
   }, {
-   "filename": "/assets/grass1.png",
-   "start": 10539893,
-   "end": 10540800
+   "filename": "/assets/fonts/hack-regular.ttf",
+   "start": 15643324,
+   "end": 15952732
   }, {
-   "filename": "/assets/teleport_radar_01.png",
-   "start": 10540800,
-   "end": 10541146
+   "filename": "/assets/fonts/terminus.ttf",
+   "start": 15952732,
+   "end": 16415964
   }, {
-   "filename": "/assets/64_64_template.png",
-   "start": 10541146,
-   "end": 10541975
+   "filename": "/assets/fonts/veramono.ttf",
+   "start": 16415964,
+   "end": 16465188
   }, {
-   "filename": "/assets/flower01.aseprite",
-   "start": 10541975,
-   "end": 10542864
+   "filename": "/assets/gfx/64_64_template.png",
+   "start": 16465188,
+   "end": 16466017
   }, {
-   "filename": "/assets/flame2.png",
-   "start": 10542864,
-   "end": 10770576
+   "filename": "/assets/gfx/8per8_512.png",
+   "start": 16466017,
+   "end": 16479525
   }, {
-   "filename": "/assets/100_minimap_stencil.glsl~",
-   "start": 10770576,
-   "end": 10772645
+   "filename": "/assets/gfx/aim_selection.png",
+   "start": 16479525,
+   "end": 16483757
   }, {
-   "filename": "/assets/330_minimap_stencil.glsl~",
-   "start": 10772645,
-   "end": 10773143
+   "filename": "/assets/gfx/aim_selection_r.png",
+   "start": 16483757,
+   "end": 16487599
   }, {
-   "filename": "/assets/heart_filled.aseprite",
-   "start": 10773143,
-   "end": 10773758
+   "filename": "/assets/gfx/background.png",
+   "start": 16487599,
+   "end": 18411651
+  }, {
+   "filename": "/assets/gfx/body.png",
+   "start": 18411651,
+   "end": 18456873
+  }, {
+   "filename": "/assets/gfx/body_decal.png",
+   "start": 18456873,
+   "end": 18458807
+  }, {
+   "filename": "/assets/gfx/bonus_speedup.png",
+   "start": 18458807,
+   "end": 18459586
+  }, {
+   "filename": "/assets/gfx/brown1-export.png",
+   "start": 18459586,
+   "end": 18459877
+  }, {
+   "filename": "/assets/gfx/brown1.out.png",
+   "start": 18459877,
+   "end": 18496942
+  }, {
+   "filename": "/assets/gfx/brown1.png",
+   "start": 18496942,
+   "end": 18497233
+  }, {
+   "filename": "/assets/gfx/bullet.png",
+   "start": 18497233,
+   "end": 18497429
+  }, {
+   "filename": "/assets/gfx/bullet2.png",
+   "start": 18497429,
+   "end": 18497623
+  }, {
+   "filename": "/assets/gfx/flame.png",
+   "start": 18497623,
+   "end": 18573374
+  }, {
+   "filename": "/assets/gfx/flame2.png",
+   "start": 18573374,
+   "end": 18801086
+  }, {
+   "filename": "/assets/gfx/flower01.png",
+   "start": 18801086,
+   "end": 18801422
+  }, {
+   "filename": "/assets/gfx/forest/forest_1.png",
+   "start": 18801422,
+   "end": 18803632
+  }, {
+   "filename": "/assets/gfx/forest/forest_2.png",
+   "start": 18803632,
+   "end": 18804185
+  }, {
+   "filename": "/assets/gfx/grass1.png",
+   "start": 18804185,
+   "end": 18805092
+  }, {
+   "filename": "/assets/gfx/grass1_alpha.out.png",
+   "start": 18805092,
+   "end": 18807204
+  }, {
+   "filename": "/assets/gfx/grass1_alpha.png",
+   "start": 18807204,
+   "end": 18808083
+  }, {
+   "filename": "/assets/gfx/grass2.png",
+   "start": 18808083,
+   "end": 18808362
+  }, {
+   "filename": "/assets/gfx/gree1n.out.flip.512.png",
+   "start": 18808362,
+   "end": 18849308
+  }, {
+   "filename": "/assets/gfx/gree1n.out.flip.png",
+   "start": 18849308,
+   "end": 18850082
+  }, {
+   "filename": "/assets/gfx/green1.png",
+   "start": 18850082,
+   "end": 18850349
+  }, {
+   "filename": "/assets/gfx/green2.out.png",
+   "start": 18850349,
+   "end": 18910484
+  }, {
+   "filename": "/assets/gfx/green2.png",
+   "start": 18910484,
+   "end": 18910757
+  }, {
+   "filename": "/assets/gfx/hangar01.png",
+   "start": 18910757,
+   "end": 18931643
+  }, {
+   "filename": "/assets/gfx/heart_non2.png",
+   "start": 18931643,
+   "end": 18931815
+  }, {
+   "filename": "/assets/gfx/helicopter01.png",
+   "start": 18931815,
+   "end": 18933299
+  }, {
+   "filename": "/assets/gfx/helicopter01_base.png",
+   "start": 18933299,
+   "end": 18933947
+  }, {
+   "filename": "/assets/gfx/helicopter01_blades.png",
+   "start": 18933947,
+   "end": 18935185
+  }, {
+   "filename": "/assets/gfx/helicopter01_blades2.png",
+   "start": 18935185,
+   "end": 18935383
+  }, {
+   "filename": "/assets/gfx/lifebar.png",
+   "start": 18935383,
+   "end": 18936274
+  }, {
+   "filename": "/assets/gfx/rect1.png",
+   "start": 18936274,
+   "end": 18936481
+  }, {
+   "filename": "/assets/gfx/teleport01.png",
+   "start": 18936481,
+   "end": 18955292
+  }, {
+   "filename": "/assets/gfx/teleport_radar_01.png",
+   "start": 18955292,
+   "end": 18955638
+  }, {
+   "filename": "/assets/gfx/teleport_radar_02.png",
+   "start": 18955638,
+   "end": 18956070
+  }, {
+   "filename": "/assets/gfx/turret.png",
+   "start": 18956070,
+   "end": 18996910
   }, {
    "filename": "/assets/init.lua",
-   "start": 10773758,
-   "end": 10776836
+   "start": 18996910,
+   "end": 19000345
   }, {
-   "filename": "/assets/rect1.png",
-   "start": 10776836,
-   "end": 10777043
-  }, {
-   "filename": "/assets/bullet.png",
-   "start": 10777043,
-   "end": 10777239
-  }, {
-   "filename": "/assets/wfc",
-   "start": 10777239,
-   "end": 11022775
-  }, {
-   "filename": "/assets/8per8_512.aseprite",
-   "start": 11022775,
-   "end": 11040025
-  }, {
-   "filename": "/assets/bullet2.png",
-   "start": 11040025,
-   "end": 11040219
-  }, {
-   "filename": "/assets/brown1-export.png",
-   "start": 11040219,
-   "end": 11040510
-  }, {
-   "filename": "/assets/dejavusansmono.ttf",
-   "start": 11040510,
-   "end": 11381222
-  }, {
-   "filename": "/assets/hack-regular.ttf",
-   "start": 11381222,
-   "end": 11690630
+   "filename": "/assets/inspect.d.tl",
+   "start": 19000345,
+   "end": 19000637
   }, {
    "filename": "/assets/inspect.lua",
-   "start": 11690630,
-   "end": 11699922
+   "start": 19000637,
+   "end": 19009929
   }, {
-   "filename": "/assets/heart.aseprite",
-   "start": 11699922,
-   "end": 11700528
+   "filename": "/assets/labels.lua",
+   "start": 19009929,
+   "end": 19056527
   }, {
-   "filename": "/assets/grass1_alpha.out.png",
-   "start": 11700528,
-   "end": 11702640
-  }, {
-   "filename": "/assets/body.png",
-   "start": 11702640,
-   "end": 11747862
-  }, {
-   "filename": "/assets/body_decal.png~",
-   "start": 11747862,
-   "end": 11786017
-  }, {
-   "filename": "/assets/grass1.aseprite",
-   "start": 11786017,
-   "end": 11787058
-  }, {
-   "filename": "/assets/green1.png",
-   "start": 11787058,
-   "end": 11787325
-  }, {
-   "filename": "/assets/flower01.png",
-   "start": 11787325,
-   "end": 11787661
-  }, {
-   "filename": "/assets/aim_selection_r.png",
-   "start": 11787661,
-   "end": 11791503
-  }, {
-   "filename": "/assets/stage_fight_store.lua~",
-   "start": 11791503,
-   "end": 11791765
-  }, {
-   "filename": "/assets/01.lua~",
-   "start": 11791765,
-   "end": 11791828
-  }, {
-   "filename": "/assets/grass2.aseprite",
-   "start": 11791828,
-   "end": 11792486
+   "filename": "/assets/labels.tl",
+   "start": 19056527,
+   "end": 19104936
   }, {
    "filename": "/assets/npc.lua",
-   "start": 11792486,
-   "end": 11807485
-  }, {
-   "filename": "/assets/helicopter02.aseprite",
-   "start": 11807485,
-   "end": 11811644
-  }, {
-   "filename": "/assets/terminus.ttf",
-   "start": 11811644,
-   "end": 12274876
-  }, {
-   "filename": "/assets/heart_non2.aseprite",
-   "start": 12274876,
-   "end": 12275485
-  }, {
-   "filename": "/assets/green2.png",
-   "start": 12275485,
-   "end": 12275758
-  }, {
-   "filename": "/assets/teleport_radar_02.png",
-   "start": 12275758,
-   "end": 12276190
-  }, {
-   "filename": "/assets/xturret.lua~",
-   "start": 12276190,
-   "end": 12277873
-  }, {
-   "filename": "/assets/lifebar.png",
-   "start": 12277873,
-   "end": 12278764
-  }, {
-   "filename": "/assets/2023-01-15 20-53.sunvox",
-   "start": 12278764,
-   "end": 12323845
-  }, {
-   "filename": "/assets/vector-light.lua~",
-   "start": 12323845,
-   "end": 12327079
-  }, {
-   "filename": "/assets/helicopter01_blades2.png",
-   "start": 12327079,
-   "end": 12327277
-  }, {
-   "filename": "/assets/npc.lua~",
-   "start": 12327277,
-   "end": 12342276
-  }, {
-   "filename": "/assets/gree1n.out.flip.png",
-   "start": 12342276,
-   "end": 12343050
-  }, {
-   "filename": "/assets/init.lua~",
-   "start": 12343050,
-   "end": 12346128
-  }, {
-   "filename": "/assets/rect1.aseprite",
-   "start": 12346128,
-   "end": 12346712
-  }, {
-   "filename": "/assets/heart_non2.png",
-   "start": 12346712,
-   "end": 12346884
-  }, {
-   "filename": "/assets/helicopter01_blades.png",
-   "start": 12346884,
-   "end": 12348122
-  }, {
-   "filename": "/assets/turret.png",
-   "start": 12348122,
-   "end": 12388962
-  }, {
-   "filename": "/assets/green2.out.png",
-   "start": 12388962,
-   "end": 12449097
-  }, {
-   "filename": "/assets/veramono.ttf",
-   "start": 12449097,
-   "end": 12498321
-  }, {
-   "filename": "/assets/sfx_speech.aup3-wal",
-   "start": 12498321,
-   "end": 12498321
-  }, {
-   "filename": "/assets/gree1n.out.flip.512.png",
-   "start": 12498321,
-   "end": 12539267
-  }, {
-   "filename": "/assets/.sunvox_prev_session.sunvox",
-   "start": 12539267,
-   "end": 12584348
-  }, {
-   "filename": "/assets/background.png",
-   "start": 12584348,
-   "end": 14508400
-  }, {
-   "filename": "/assets/flame.png",
-   "start": 14508400,
-   "end": 14584151
-  }, {
-   "filename": "/assets/.sunvox_clipboard.sunpat",
-   "start": 14584151,
-   "end": 14584175
-  }, {
-   "filename": "/assets/green1.aseprite",
-   "start": 14584175,
-   "end": 14584815
-  }, {
-   "filename": "/assets/.sunvox_clipboard.sunpats",
-   "start": 14584815,
-   "end": 14585765
-  }, {
-   "filename": "/assets/helicopter01.aseprite",
-   "start": 14585765,
-   "end": 14588743
-  }, {
-   "filename": "/assets/teleport01.png",
-   "start": 14588743,
-   "end": 14607554
-  }, {
-   "filename": "/assets/xturret.lua",
-   "start": 14607554,
-   "end": 14609237
-  }, {
-   "filename": "/assets/vector-light.lua",
-   "start": 14609237,
-   "end": 14612470
-  }, {
-   "filename": "/assets/aim_selection.png",
-   "start": 14612470,
-   "end": 14616702
-  }, {
-   "filename": "/assets/grass1_alpha.aseprite",
-   "start": 14616702,
-   "end": 14617742
-  }, {
-   "filename": "/assets/grass1_alpha.png",
-   "start": 14617742,
-   "end": 14618621
-  }, {
-   "filename": "/assets/wfc_src_white/green.png",
-   "start": 14618621,
-   "end": 14618857
-  }, {
-   "filename": "/assets/wfc_src_white/very_dark_white.png",
-   "start": 14618857,
-   "end": 14619103
-  }, {
-   "filename": "/assets/wfc_src_white/white.png",
-   "start": 14619103,
-   "end": 14619363
-  }, {
-   "filename": "/assets/wfc_src_white/light_white.png",
-   "start": 14619363,
-   "end": 14619591
-  }, {
-   "filename": "/assets/wfc_src_white/deep_sea.png",
-   "start": 14619591,
-   "end": 14619846
-  }, {
-   "filename": "/assets/wfc_src_white/shallow_sea.png",
-   "start": 14619846,
-   "end": 14620110
-  }, {
-   "filename": "/assets/wfc_src_white/dark_brown.png",
-   "start": 14620110,
-   "end": 14620322
-  }, {
-   "filename": "/assets/wfc_src_white/light_brown.png",
-   "start": 14620322,
-   "end": 14620568
-  }, {
-   "filename": "/assets/wfc_src_white/dark_white.png",
-   "start": 14620568,
-   "end": 14620819
-  }, {
-   "filename": "/assets/wfc_src_white/dark_green.png",
-   "start": 14620819,
-   "end": 14621127
-  }, {
-   "filename": "/assets/wfc_src_white/light_green.png",
-   "start": 14621127,
-   "end": 14621357
-  }, {
-   "filename": "/assets/wfc_src_white/very_dark_brown.png",
-   "start": 14621357,
-   "end": 14621580
-  }, {
-   "filename": "/assets/wfc_src_white/brown.png",
-   "start": 14621580,
-   "end": 14621797
-  }, {
-   "filename": "/assets/wfc_src_white/very_dark_green.png",
-   "start": 14621797,
-   "end": 14622076
-  }, {
-   "filename": "/assets/wfc_src_white/sea.png",
-   "start": 14622076,
-   "end": 14622302
-  }, {
-   "filename": "/assets/wfc_src_white/very_deep_sea.png",
-   "start": 14622302,
-   "end": 14622557
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/very_dark_white.png",
-   "start": 14622557,
-   "end": 14688906
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/white.png",
-   "start": 14688906,
-   "end": 14752545
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/light_white.png",
-   "start": 14752545,
-   "end": 14780048
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/deep_sea.png",
-   "start": 14780048,
-   "end": 14840632
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/shallow_sea.png",
-   "start": 14840632,
-   "end": 14918285
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/dark_brown.png",
-   "start": 14918285,
-   "end": 14940628
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/light_brown.png",
-   "start": 14940628,
-   "end": 14999373
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/dark_white.png",
-   "start": 14999373,
-   "end": 15063044
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/dark_green.png",
-   "start": 15063044,
-   "end": 15135145
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/light_green.png",
-   "start": 15135145,
-   "end": 15161903
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/very_dark_brown.png",
-   "start": 15161903,
-   "end": 15220518
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/brown.png",
-   "start": 15220518,
-   "end": 15243232
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/very_dark_green.png",
-   "start": 15243232,
-   "end": 15321563
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/sea.png",
-   "start": 15321563,
-   "end": 15384686
-  }, {
-   "filename": "/assets/wfc_src_white/dst.2/very_deep_sea.png",
-   "start": 15384686,
-   "end": 15440333
+   "start": 19104936,
+   "end": 19108868
+  }, {
+   "filename": "/assets/npc.tl",
+   "start": 19108868,
+   "end": 19121963
+  }, {
+   "filename": "/assets/npc_tank.lua",
+   "start": 19121963,
+   "end": 19123229
+  }, {
+   "filename": "/assets/npc_tank.tl",
+   "start": 19123229,
+   "end": 19126136
+  }, {
+   "filename": "/assets/projects/2023-01-15 20-53.sunvox",
+   "start": 19126136,
+   "end": 19171217
+  }, {
+   "filename": "/assets/projects/bonus_speedup.aseprite",
+   "start": 19171217,
+   "end": 19172184
+  }, {
+   "filename": "/assets/projects/energy_generator.aseprite",
+   "start": 19172184,
+   "end": 19173380
+  }, {
+   "filename": "/assets/projects/sfx_speech.aup3",
+   "start": 19173380,
+   "end": 31469572
   }, {
    "filename": "/assets/sfx/ally_aviation.wav",
-   "start": 15440333,
-   "end": 15873913,
-   "audio": 1
-  }, {
-   "filename": "/assets/sfx/enemy_aviation.wav",
-   "start": 15873913,
-   "end": 16344485,
-   "audio": 1
-  }, {
-   "filename": "/assets/sfx/laser_01.wav",
-   "start": 16344485,
-   "end": 16767889,
-   "audio": 1
-  }, {
-   "filename": "/assets/sfx/load_01.wav",
-   "start": 16767889,
-   "end": 17076797,
-   "audio": 1
-  }, {
-   "filename": "/assets/sfx/need_pvo_01.wav",
-   "start": 17076797,
-   "end": 17527145,
-   "audio": 1
-  }, {
-   "filename": "/assets/sfx/hit_01.wav",
-   "start": 17527145,
-   "end": 17868053,
-   "audio": 1
-  }, {
-   "filename": "/assets/sfx/load_02.wav",
-   "start": 17868053,
-   "end": 18019649,
-   "audio": 1
-  }, {
-   "filename": "/assets/sfx/no_fuel_01.wav",
-   "start": 18019649,
-   "end": 18241133,
-   "audio": 1
-  }, {
-   "filename": "/assets/sfx/no_fuel_02.wav",
-   "start": 18241133,
-   "end": 18579353,
-   "audio": 1
-  }, {
-   "filename": "/assets/sfx/swamp_01.wav",
-   "start": 18579353,
-   "end": 18902469,
-   "audio": 1
-  }, {
-   "filename": "/assets/sfx/direct_hit_01.wav",
-   "start": 18902469,
-   "end": 19442161,
+   "start": 31469572,
+   "end": 31903152,
    "audio": 1
   }, {
    "filename": "/assets/sfx/cannon.wav",
-   "start": 19442161,
-   "end": 20119581,
+   "start": 31903152,
+   "end": 32580572,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/chassis_destroyed.wav",
+   "start": 32580572,
+   "end": 32959112,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/direct_hit_01.wav",
+   "start": 32959112,
+   "end": 33498804,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/enemy_aviation.wav",
+   "start": 33498804,
+   "end": 33969376,
    "audio": 1
   }, {
    "filename": "/assets/sfx/full_acceleration_01.wav",
-   "start": 20119581,
-   "end": 20286665,
+   "start": 33969376,
+   "end": 34136460,
    "audio": 1
   }, {
-   "filename": "/assets/sfx/phrase_01.wav",
-   "start": 20286665,
-   "end": 20518645,
+   "filename": "/assets/sfx/hit_01.wav",
+   "start": 34136460,
+   "end": 34477368,
    "audio": 1
   }, {
-   "filename": "/assets/sfx/no_fuel_03.wav",
-   "start": 20518645,
-   "end": 20962721,
-   "audio": 1
-  }, {
-   "filename": "/assets/sfx/laser_03.wav",
-   "start": 20962721,
-   "end": 21407293,
+   "filename": "/assets/sfx/laser_01.wav",
+   "start": 34477368,
+   "end": 34900772,
    "audio": 1
   }, {
    "filename": "/assets/sfx/laser_02.wav",
-   "start": 21407293,
-   "end": 21851865,
+   "start": 34900772,
+   "end": 35345344,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/laser_03.wav",
+   "start": 35345344,
+   "end": 35789916,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/load_01.wav",
+   "start": 35789916,
+   "end": 36098824,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/load_02.wav",
+   "start": 36098824,
+   "end": 36250420,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/need_pvo_01.wav",
+   "start": 36250420,
+   "end": 36700768,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/no_fuel_01.wav",
+   "start": 36700768,
+   "end": 36922252,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/no_fuel_02.wav",
+   "start": 36922252,
+   "end": 37260472,
+   "audio": 1
+  }, {
+   "filename": "/assets/sfx/no_fuel_03.wav",
+   "start": 37260472,
+   "end": 37704548,
    "audio": 1
   }, {
    "filename": "/assets/sfx/no_shots_01.wav",
-   "start": 21851865,
-   "end": 22121989,
+   "start": 37704548,
+   "end": 37974672,
    "audio": 1
   }, {
-   "filename": "/assets/decals/body_decal_06.png",
-   "start": 22121989,
-   "end": 22122851
+   "filename": "/assets/sfx/phrase_01.wav",
+   "start": 37974672,
+   "end": 38206652,
+   "audio": 1
   }, {
-   "filename": "/assets/decals/body_decal_02.png",
-   "start": 22122851,
-   "end": 22123714
+   "filename": "/assets/sfx/roast_good.wav",
+   "start": 38206652,
+   "end": 38516456,
+   "audio": 1
   }, {
-   "filename": "/assets/decals/body_decal_05.png",
-   "start": 22123714,
-   "end": 22124577
+   "filename": "/assets/sfx/selecting_rocket.wav",
+   "start": 38516456,
+   "end": 38732180,
+   "audio": 1
   }, {
-   "filename": "/assets/decals/body_decal_08.png",
-   "start": 22124577,
-   "end": 22125433
-  }, {
-   "filename": "/assets/decals/body_decal_03.png",
-   "start": 22125433,
-   "end": 22126296
-  }, {
-   "filename": "/assets/decals/body_decal_04.png",
-   "start": 22126296,
-   "end": 22127162
-  }, {
-   "filename": "/assets/decals/body_decal_01.png",
-   "start": 22127162,
-   "end": 22128116
-  }, {
-   "filename": "/assets/decals/body_decal_07.png",
-   "start": 22128116,
-   "end": 22128968
-  }, {
-   "filename": "/assets/xturret/turret_base_1.png",
-   "start": 22128968,
-   "end": 22130876
-  }, {
-   "filename": "/assets/xturret/turret_turret_2.png",
-   "start": 22130876,
-   "end": 22132305
-  }, {
-   "filename": "/assets/xturret/turret_base_2.png",
-   "start": 22132305,
-   "end": 22134218
-  }, {
-   "filename": "/assets/xturret/turret_turret_1.png",
-   "start": 22134218,
-   "end": 22135648
-  }, {
-   "filename": "/assets/vertex/100_laser.glsl~",
-   "start": 22135648,
-   "end": 22136557
-  }, {
-   "filename": "/assets/vertex/100_fragment_stencil.glsl~",
-   "start": 22136557,
-   "end": 22137040
-  }, {
-   "filename": "/assets/vertex/100_laser.glsl",
-   "start": 22137040,
-   "end": 22137949
-  }, {
-   "filename": "/assets/vertex/330_minimap_stencil.glsl",
-   "start": 22137949,
-   "end": 22138447
-  }, {
-   "filename": "/assets/vertex/sporlight.glsl~",
-   "start": 22138447,
-   "end": 22140503
-  }, {
-   "filename": "/assets/vertex/spotlight.glsl",
-   "start": 22140503,
-   "end": 22142559
-  }, {
-   "filename": "/assets/vertex/100_minimap_stencil.glsl~",
-   "start": 22142559,
-   "end": 22144693
-  }, {
-   "filename": "/assets/vertex/100_minimap_stencil2.glsl~",
-   "start": 22144693,
-   "end": 22146520
-  }, {
-   "filename": "/assets/vertex/100_fragment_stencil.glsl",
-   "start": 22146520,
-   "end": 22147003
-  }, {
-   "filename": "/assets/vertex/100_minimap_stencil2.glsl",
-   "start": 22147003,
-   "end": 22148830
-  }, {
-   "filename": "/assets/vertex/spotlight.glsl~",
-   "start": 22148830,
-   "end": 22150886
-  }, {
-   "filename": "/assets/vertex/100_minimap_stencil.glsl",
-   "start": 22150886,
-   "end": 22153020
-  }, {
-   "filename": "/assets/vertex/100_team_decal.glsl",
-   "start": 22153020,
-   "end": 22155089
-  }, {
-   "filename": "/assets/teleport02/teleport02-out.png",
-   "start": 22155089,
-   "end": 22171877
-  }, {
-   "filename": "/assets/teleport02/teleport02-in.png",
-   "start": 22171877,
-   "end": 22188671
-  }, {
-   "filename": "/assets/teleport02/teleport02-inout.png",
-   "start": 22188671,
-   "end": 22206291
-  }, {
-   "filename": "/assets/forest/forest_2.png",
-   "start": 22206291,
-   "end": 22206844
-  }, {
-   "filename": "/assets/forest/forest_1.png",
-   "start": 22206844,
-   "end": 22209054
-  }, {
-   "filename": "/assets/store/14.lua",
-   "start": 22209054,
-   "end": 22213569
-  }, {
-   "filename": "/assets/store/aaa.lua",
-   "start": 22213569,
-   "end": 22249165
-  }, {
-   "filename": "/assets/store/07.lua~",
-   "start": 22249165,
-   "end": 22249784
+   "filename": "/assets/sfx/swamp_01.wav",
+   "start": 38732180,
+   "end": 39055296,
+   "audio": 1
   }, {
    "filename": "/assets/store/01.lua",
-   "start": 22249784,
-   "end": 22252556
+   "start": 39055296,
+   "end": 39056666
   }, {
-   "filename": "/assets/store/15.lua",
-   "start": 22252556,
-   "end": 22253174
-  }, {
-   "filename": "/assets/store/07.lua",
-   "start": 22253174,
-   "end": 22253198
-  }, {
-   "filename": "/assets/store/16.lua~",
-   "start": 22253198,
-   "end": 22253647
-  }, {
-   "filename": "/assets/store/10.lua",
-   "start": 22253647,
-   "end": 22254591
-  }, {
-   "filename": "/assets/store/08.lua~",
-   "start": 22254591,
-   "end": 22254619
-  }, {
-   "filename": "/assets/store/20.lua~",
-   "start": 22254619,
-   "end": 22254948
-  }, {
-   "filename": "/assets/store/17.lua",
-   "start": 22254948,
-   "end": 22254964
-  }, {
-   "filename": "/assets/store/11.lua~",
-   "start": 22254964,
-   "end": 22256165
-  }, {
-   "filename": "/assets/store/13.lua",
-   "start": 22256165,
-   "end": 22257439
-  }, {
-   "filename": "/assets/store/11.lua",
-   "start": 22257439,
-   "end": 22258640
-  }, {
-   "filename": "/assets/store/03.lua~",
-   "start": 22258640,
-   "end": 22260444
-  }, {
-   "filename": "/assets/store/from_menu.lua",
-   "start": 22260444,
-   "end": 22264359
-  }, {
-   "filename": "/assets/store/05.lua~",
-   "start": 22264359,
-   "end": 22264359
-  }, {
-   "filename": "/assets/store/16.lua",
-   "start": 22264359,
-   "end": 22264808
-  }, {
-   "filename": "/assets/store/hangar.lua",
-   "start": 22264808,
-   "end": 22266167
-  }, {
-   "filename": "/assets/store/15.lua~",
-   "start": 22266167,
-   "end": 22266784
-  }, {
-   "filename": "/assets/store/13.lua~",
-   "start": 22266784,
-   "end": 22266784
-  }, {
-   "filename": "/assets/store/19.lua~",
-   "start": 22266784,
-   "end": 22267073
-  }, {
-   "filename": "/assets/store/20.lua",
-   "start": 22267073,
-   "end": 22267402
-  }, {
-   "filename": "/assets/store/01.lua~",
-   "start": 22267402,
-   "end": 22270174
+   "filename": "/assets/store/01.tl",
+   "start": 39056666,
+   "end": 39058542
   }, {
    "filename": "/assets/store/02.lua",
-   "start": 22270174,
-   "end": 22271844
+   "start": 39058542,
+   "end": 39059910
   }, {
-   "filename": "/assets/store/19.lua",
-   "start": 22271844,
-   "end": 22272172
-  }, {
-   "filename": "/assets/store/04.lua~",
-   "start": 22272172,
-   "end": 22272237
-  }, {
-   "filename": "/assets/store/08.lua",
-   "start": 22272237,
-   "end": 22272265
-  }, {
-   "filename": "/assets/store/04.lua",
-   "start": 22272265,
-   "end": 22272330
-  }, {
-   "filename": "/assets/store/09.lua~",
-   "start": 22272330,
-   "end": 22272608
-  }, {
-   "filename": "/assets/store/1111.lua",
-   "start": 22272608,
-   "end": 22358438
-  }, {
-   "filename": "/assets/store/06.lua",
-   "start": 22358438,
-   "end": 22392973
-  }, {
-   "filename": "/assets/store/02.lua~",
-   "start": 22392973,
-   "end": 22394643
-  }, {
-   "filename": "/assets/store/05.lua",
-   "start": 22394643,
-   "end": 22394667
-  }, {
-   "filename": "/assets/store/14.lua~",
-   "start": 22394667,
-   "end": 22399184
-  }, {
-   "filename": "/assets/store/17.lua~",
-   "start": 22399184,
-   "end": 22399200
+   "filename": "/assets/store/02.tl",
+   "start": 39059910,
+   "end": 39061737
   }, {
    "filename": "/assets/store/03.lua",
-   "start": 22399200,
-   "end": 22401004
+   "start": 39061737,
+   "end": 39063334
   }, {
-   "filename": "/assets/store/hangar.lua~",
-   "start": 22401004,
-   "end": 22402363
+   "filename": "/assets/store/03.tl",
+   "start": 39063334,
+   "end": 39065262
   }, {
-   "filename": "/assets/store/18.lua~",
-   "start": 22402363,
-   "end": 22403334
+   "filename": "/assets/store/04.lua",
+   "start": 39065262,
+   "end": 39065423
   }, {
-   "filename": "/assets/store/06.lua~",
-   "start": 22403334,
-   "end": 22437869
+   "filename": "/assets/store/04.tl",
+   "start": 39065423,
+   "end": 39065582
   }, {
-   "filename": "/assets/store/12.lua",
-   "start": 22437869,
-   "end": 22437869
+   "filename": "/assets/store/05.lua",
+   "start": 39065582,
+   "end": 39065678
   }, {
-   "filename": "/assets/store/18.lua",
-   "start": 22437869,
-   "end": 22438840
+   "filename": "/assets/store/05.tl",
+   "start": 39065678,
+   "end": 39065774
+  }, {
+   "filename": "/assets/store/06.lua",
+   "start": 39065774,
+   "end": 39101272
+  }, {
+   "filename": "/assets/store/06.tl",
+   "start": 39101272,
+   "end": 39138895
+  }, {
+   "filename": "/assets/store/07.lua",
+   "start": 39138895,
+   "end": 39139008
+  }, {
+   "filename": "/assets/store/07.tl",
+   "start": 39139008,
+   "end": 39139120
+  }, {
+   "filename": "/assets/store/08.lua",
+   "start": 39139120,
+   "end": 39139282
+  }, {
+   "filename": "/assets/store/08.tl",
+   "start": 39139282,
+   "end": 39139470
   }, {
    "filename": "/assets/store/09.lua",
-   "start": 22438840,
-   "end": 22439144
+   "start": 39139470,
+   "end": 39139818
   }, {
-   "filename": "/assets/wfc_src/green.png",
-   "start": 22439144,
-   "end": 22439444
+   "filename": "/assets/store/09.tl",
+   "start": 39139818,
+   "end": 39140276
   }, {
-   "filename": "/assets/wfc_src/very_dark_white.png",
-   "start": 22439444,
-   "end": 22439730
+   "filename": "/assets/store/10.lua",
+   "start": 39140276,
+   "end": 39141442
   }, {
-   "filename": "/assets/wfc_src/white.png",
-   "start": 22439730,
-   "end": 22440009
+   "filename": "/assets/store/10.tl",
+   "start": 39141442,
+   "end": 39142550
   }, {
-   "filename": "/assets/wfc_src/light_white.png",
-   "start": 22440009,
-   "end": 22440189
+   "filename": "/assets/store/11.lua",
+   "start": 39142550,
+   "end": 39144082
   }, {
-   "filename": "/assets/wfc_src/deep_sea.png",
-   "start": 22440189,
-   "end": 22440479
+   "filename": "/assets/store/11.tl",
+   "start": 39144082,
+   "end": 39145498
   }, {
-   "filename": "/assets/wfc_src/shallow_sea.png",
-   "start": 22440479,
-   "end": 22440725
+   "filename": "/assets/store/12.lua",
+   "start": 39145498,
+   "end": 39146226
   }, {
-   "filename": "/assets/wfc_src/dark_brown.png",
-   "start": 22440725,
-   "end": 22441027
+   "filename": "/assets/store/12.tl",
+   "start": 39146226,
+   "end": 39146759
   }, {
-   "filename": "/assets/wfc_src/light_brown.png",
-   "start": 22441027,
-   "end": 22441279
+   "filename": "/assets/store/13.lua",
+   "start": 39146759,
+   "end": 39148017
   }, {
-   "filename": "/assets/wfc_src/dark_white.png",
-   "start": 22441279,
-   "end": 22441538
+   "filename": "/assets/store/13.tl",
+   "start": 39148017,
+   "end": 39149559
   }, {
-   "filename": "/assets/wfc_src/dark_green.png",
-   "start": 22441538,
-   "end": 22441812
+   "filename": "/assets/store/14.lua",
+   "start": 39149559,
+   "end": 39151149
   }, {
-   "filename": "/assets/wfc_src/light_green.png",
-   "start": 22441812,
-   "end": 22442172
+   "filename": "/assets/store/14.tl",
+   "start": 39151149,
+   "end": 39154470
   }, {
-   "filename": "/assets/wfc_src/very_dark_brown.png",
-   "start": 22442172,
-   "end": 22442449
+   "filename": "/assets/store/15.lua",
+   "start": 39154470,
+   "end": 39155074
+  }, {
+   "filename": "/assets/store/15.tl",
+   "start": 39155074,
+   "end": 39155826
+  }, {
+   "filename": "/assets/store/16.lua",
+   "start": 39155826,
+   "end": 39156335
+  }, {
+   "filename": "/assets/store/16.tl",
+   "start": 39156335,
+   "end": 39157079
+  }, {
+   "filename": "/assets/store/17.lua",
+   "start": 39157079,
+   "end": 39157185
+  }, {
+   "filename": "/assets/store/17.tl",
+   "start": 39157185,
+   "end": 39157290
+  }, {
+   "filename": "/assets/store/18.lua",
+   "start": 39157290,
+   "end": 39158341
+  }, {
+   "filename": "/assets/store/18.tl",
+   "start": 39158341,
+   "end": 39159505
+  }, {
+   "filename": "/assets/store/19.lua",
+   "start": 39159505,
+   "end": 39159636
+  }, {
+   "filename": "/assets/store/19.tl",
+   "start": 39159636,
+   "end": 39160064
+  }, {
+   "filename": "/assets/store/20.lua",
+   "start": 39160064,
+   "end": 39160770
+  }, {
+   "filename": "/assets/store/20.tl",
+   "start": 39160770,
+   "end": 39161265
+  }, {
+   "filename": "/assets/store/21.lua",
+   "start": 39161265,
+   "end": 39162467
+  }, {
+   "filename": "/assets/store/21.tl",
+   "start": 39162467,
+   "end": 39163938
+  }, {
+   "filename": "/assets/store/22.lua",
+   "start": 39163938,
+   "end": 39164e3
+  }, {
+   "filename": "/assets/store/22.tl",
+   "start": 39164e3,
+   "end": 39164061
+  }, {
+   "filename": "/assets/store/23.lua",
+   "start": 39164061,
+   "end": 39164123
+  }, {
+   "filename": "/assets/store/23.tl",
+   "start": 39164123,
+   "end": 39164200
+  }, {
+   "filename": "/assets/store/24.lua",
+   "start": 39164200,
+   "end": 39165864
+  }, {
+   "filename": "/assets/store/24.tl",
+   "start": 39165864,
+   "end": 39167770
+  }, {
+   "filename": "/assets/store/25.lua",
+   "start": 39167770,
+   "end": 39170518
+  }, {
+   "filename": "/assets/store/25.tl",
+   "start": 39170518,
+   "end": 39174258
+  }, {
+   "filename": "/assets/store/26.lua",
+   "start": 39174258,
+   "end": 39176983
+  }, {
+   "filename": "/assets/store/26.tl",
+   "start": 39176983,
+   "end": 39180677
+  }, {
+   "filename": "/assets/sunvox/AzZzX - Bipoliaro4ka.sunvox",
+   "start": 39180677,
+   "end": 39780982
+  }, {
+   "filename": "/assets/teleport02/teleport02-in.png",
+   "start": 39780982,
+   "end": 39797776
+  }, {
+   "filename": "/assets/teleport02/teleport02-inout.png",
+   "start": 39797776,
+   "end": 39815396
+  }, {
+   "filename": "/assets/teleport02/teleport02-out.png",
+   "start": 39815396,
+   "end": 39832184
+  }, {
+   "filename": "/assets/types.d.tl",
+   "start": 39832184,
+   "end": 39836986
+  }, {
+   "filename": "/assets/vertex/100_arrow.glsl",
+   "start": 39836986,
+   "end": 39839154
+  }, {
+   "filename": "/assets/vertex/100_fragment_stencil.glsl",
+   "start": 39839154,
+   "end": 39839637
+  }, {
+   "filename": "/assets/vertex/100_laser.glsl",
+   "start": 39839637,
+   "end": 39840546
+  }, {
+   "filename": "/assets/vertex/100_minimap_stencil.glsl",
+   "start": 39840546,
+   "end": 39842680
+  }, {
+   "filename": "/assets/vertex/100_minimap_stencil2.glsl",
+   "start": 39842680,
+   "end": 39844507
+  }, {
+   "filename": "/assets/vertex/100_outline.glsl",
+   "start": 39844507,
+   "end": 39845661
+  }, {
+   "filename": "/assets/vertex/100_spotlight.glsl",
+   "start": 39845661,
+   "end": 39847923
+  }, {
+   "filename": "/assets/vertex/100_team_decal.glsl",
+   "start": 39847923,
+   "end": 39849992
+  }, {
+   "filename": "/assets/vertex/330_minimap_stencil.glsl",
+   "start": 39849992,
+   "end": 39850490
   }, {
    "filename": "/assets/wfc_src/brown.png",
-   "start": 22442449,
-   "end": 22442683
+   "start": 39850490,
+   "end": 39850724
   }, {
-   "filename": "/assets/wfc_src/very_dark_green.png",
-   "start": 22442683,
-   "end": 22442983
+   "filename": "/assets/wfc_src/dark_brown.png",
+   "start": 39850724,
+   "end": 39851026
   }, {
-   "filename": "/assets/wfc_src/sea.png",
-   "start": 22442983,
-   "end": 22443183
+   "filename": "/assets/wfc_src/dark_green.png",
+   "start": 39851026,
+   "end": 39851300
   }, {
-   "filename": "/assets/wfc_src/very_deep_sea.png",
-   "start": 22443183,
-   "end": 22443466
+   "filename": "/assets/wfc_src/dark_white.png",
+   "start": 39851300,
+   "end": 39851559
   }, {
-   "filename": "/assets/wfc_src/dst.2/green.png",
-   "start": 22443466,
-   "end": 22510593
-  }, {
-   "filename": "/assets/wfc_src/dst.2/very_dark_white.png",
-   "start": 22510593,
-   "end": 22591964
-  }, {
-   "filename": "/assets/wfc_src/dst.2/white.png",
-   "start": 22591964,
-   "end": 22683878
-  }, {
-   "filename": "/assets/wfc_src/dst.2/light_white.png",
-   "start": 22683878,
-   "end": 22709500
-  }, {
-   "filename": "/assets/wfc_src/dst.2/deep_sea.png",
-   "start": 22709500,
-   "end": 22767982
-  }, {
-   "filename": "/assets/wfc_src/dst.2/shallow_sea.png",
-   "start": 22767982,
-   "end": 22820332
-  }, {
-   "filename": "/assets/wfc_src/dst.2/dark_brown.png",
-   "start": 22820332,
-   "end": 22892031
-  }, {
-   "filename": "/assets/wfc_src/dst.2/light_brown.png",
-   "start": 22892031,
-   "end": 22956055
-  }, {
-   "filename": "/assets/wfc_src/dst.2/dark_white.png",
-   "start": 22956055,
-   "end": 23015611
-  }, {
-   "filename": "/assets/wfc_src/dst.2/dark_green.png",
-   "start": 23015611,
-   "end": 23073750
-  }, {
-   "filename": "/assets/wfc_src/dst.2/light_green.png",
-   "start": 23073750,
-   "end": 23180982
-  }, {
-   "filename": "/assets/wfc_src/dst.2/very_dark_brown.png",
-   "start": 23180982,
-   "end": 23244318
-  }, {
-   "filename": "/assets/wfc_src/dst.2/brown.png",
-   "start": 23244318,
-   "end": 23268602
-  }, {
-   "filename": "/assets/wfc_src/dst.2/very_dark_green.png",
-   "start": 23268602,
-   "end": 23367371
-  }, {
-   "filename": "/assets/wfc_src/dst.2/sea.png",
-   "start": 23367371,
-   "end": 23389409
-  }, {
-   "filename": "/assets/wfc_src/dst.2/very_deep_sea.png",
-   "start": 23389409,
-   "end": 23453402
-  }, {
-   "filename": "/assets/wfc_src/dst.1/green.png",
-   "start": 23453402,
-   "end": 23530272
-  }, {
-   "filename": "/assets/wfc_src/dst.1/very_dark_white.png",
-   "start": 23530272,
-   "end": 23610850
-  }, {
-   "filename": "/assets/wfc_src/dst.1/white.png",
-   "start": 23610850,
-   "end": 23649659
-  }, {
-   "filename": "/assets/wfc_src/dst.1/light_white.png",
-   "start": 23649659,
-   "end": 23697067
-  }, {
-   "filename": "/assets/wfc_src/dst.1/deep_sea.png",
-   "start": 23697067,
-   "end": 23756061
-  }, {
-   "filename": "/assets/wfc_src/dst.1/shallow_sea.png",
-   "start": 23756061,
-   "end": 23808480
-  }, {
-   "filename": "/assets/wfc_src/dst.1/dark_brown.png",
-   "start": 23808480,
-   "end": 23875206
-  }, {
-   "filename": "/assets/wfc_src/dst.1/light_brown.png",
-   "start": 23875206,
-   "end": 23936388
-  }, {
-   "filename": "/assets/wfc_src/dst.1/dark_white.png",
-   "start": 23936388,
-   "end": 23995045
-  }, {
-   "filename": "/assets/wfc_src/dst.1/dark_green.png",
-   "start": 23995045,
-   "end": 24054012
-  }, {
-   "filename": "/assets/wfc_src/dst.1/light_green.png",
-   "start": 24054012,
-   "end": 24114690
-  }, {
-   "filename": "/assets/wfc_src/dst.1/very_dark_brown.png",
-   "start": 24114690,
-   "end": 24176402
+   "filename": "/assets/wfc_src/deep_sea.png",
+   "start": 39851559,
+   "end": 39851849
   }, {
    "filename": "/assets/wfc_src/dst.1/brown.png",
-   "start": 24176402,
-   "end": 24206525
+   "start": 39851849,
+   "end": 39881972
   }, {
-   "filename": "/assets/wfc_src/dst.1/very_dark_green.png",
-   "start": 24206525,
-   "end": 24264023
+   "filename": "/assets/wfc_src/dst.1/dark_brown.png",
+   "start": 39881972,
+   "end": 39948698
+  }, {
+   "filename": "/assets/wfc_src/dst.1/dark_green.png",
+   "start": 39948698,
+   "end": 40007665
+  }, {
+   "filename": "/assets/wfc_src/dst.1/dark_white.png",
+   "start": 40007665,
+   "end": 40066322
+  }, {
+   "filename": "/assets/wfc_src/dst.1/deep_sea.png",
+   "start": 40066322,
+   "end": 40125316
+  }, {
+   "filename": "/assets/wfc_src/dst.1/green.png",
+   "start": 40125316,
+   "end": 40202186
+  }, {
+   "filename": "/assets/wfc_src/dst.1/light_brown.png",
+   "start": 40202186,
+   "end": 40263368
+  }, {
+   "filename": "/assets/wfc_src/dst.1/light_green.png",
+   "start": 40263368,
+   "end": 40324046
+  }, {
+   "filename": "/assets/wfc_src/dst.1/light_white.png",
+   "start": 40324046,
+   "end": 40371454
   }, {
    "filename": "/assets/wfc_src/dst.1/sea.png",
-   "start": 24264023,
-   "end": 24331197
+   "start": 40371454,
+   "end": 40438628
+  }, {
+   "filename": "/assets/wfc_src/dst.1/shallow_sea.png",
+   "start": 40438628,
+   "end": 40491047
+  }, {
+   "filename": "/assets/wfc_src/dst.1/very_dark_brown.png",
+   "start": 40491047,
+   "end": 40552759
+  }, {
+   "filename": "/assets/wfc_src/dst.1/very_dark_green.png",
+   "start": 40552759,
+   "end": 40610257
+  }, {
+   "filename": "/assets/wfc_src/dst.1/very_dark_white.png",
+   "start": 40610257,
+   "end": 40690835
   }, {
    "filename": "/assets/wfc_src/dst.1/very_deep_sea.png",
-   "start": 24331197,
-   "end": 24395599
+   "start": 40690835,
+   "end": 40755237
   }, {
-   "filename": "/assets/wfc_src/dst/green.png",
-   "start": 24395599,
-   "end": 24472469
+   "filename": "/assets/wfc_src/dst.1/white.png",
+   "start": 40755237,
+   "end": 40794046
   }, {
-   "filename": "/assets/wfc_src/dst/very_dark_white.png",
-   "start": 24472469,
-   "end": 24553047
+   "filename": "/assets/wfc_src/dst.2/brown.png",
+   "start": 40794046,
+   "end": 40818330
   }, {
-   "filename": "/assets/wfc_src/dst/white.png",
-   "start": 24553047,
-   "end": 24591856
+   "filename": "/assets/wfc_src/dst.2/dark_brown.png",
+   "start": 40818330,
+   "end": 40890029
   }, {
-   "filename": "/assets/wfc_src/dst/light_white.png",
-   "start": 24591856,
-   "end": 24639264
+   "filename": "/assets/wfc_src/dst.2/dark_green.png",
+   "start": 40890029,
+   "end": 40948168
   }, {
-   "filename": "/assets/wfc_src/dst/deep_sea.png",
-   "start": 24639264,
-   "end": 24698258
+   "filename": "/assets/wfc_src/dst.2/dark_white.png",
+   "start": 40948168,
+   "end": 41007724
   }, {
-   "filename": "/assets/wfc_src/dst/shallow_sea.png",
-   "start": 24698258,
-   "end": 24750677
+   "filename": "/assets/wfc_src/dst.2/deep_sea.png",
+   "start": 41007724,
+   "end": 41066206
   }, {
-   "filename": "/assets/wfc_src/dst/dark_brown.png",
-   "start": 24750677,
-   "end": 24817403
+   "filename": "/assets/wfc_src/dst.2/green.png",
+   "start": 41066206,
+   "end": 41133333
   }, {
-   "filename": "/assets/wfc_src/dst/light_brown.png",
-   "start": 24817403,
-   "end": 24878585
+   "filename": "/assets/wfc_src/dst.2/light_brown.png",
+   "start": 41133333,
+   "end": 41197357
   }, {
-   "filename": "/assets/wfc_src/dst/dark_white.png",
-   "start": 24878585,
-   "end": 24937242
+   "filename": "/assets/wfc_src/dst.2/light_green.png",
+   "start": 41197357,
+   "end": 41304589
   }, {
-   "filename": "/assets/wfc_src/dst/dark_green.png",
-   "start": 24937242,
-   "end": 24996209
+   "filename": "/assets/wfc_src/dst.2/light_white.png",
+   "start": 41304589,
+   "end": 41330211
   }, {
-   "filename": "/assets/wfc_src/dst/light_green.png",
-   "start": 24996209,
-   "end": 25056887
+   "filename": "/assets/wfc_src/dst.2/sea.png",
+   "start": 41330211,
+   "end": 41352249
   }, {
-   "filename": "/assets/wfc_src/dst/very_dark_brown.png",
-   "start": 25056887,
-   "end": 25118599
+   "filename": "/assets/wfc_src/dst.2/shallow_sea.png",
+   "start": 41352249,
+   "end": 41404599
+  }, {
+   "filename": "/assets/wfc_src/dst.2/very_dark_brown.png",
+   "start": 41404599,
+   "end": 41467935
+  }, {
+   "filename": "/assets/wfc_src/dst.2/very_dark_green.png",
+   "start": 41467935,
+   "end": 41566704
+  }, {
+   "filename": "/assets/wfc_src/dst.2/very_dark_white.png",
+   "start": 41566704,
+   "end": 41648075
+  }, {
+   "filename": "/assets/wfc_src/dst.2/very_deep_sea.png",
+   "start": 41648075,
+   "end": 41712068
+  }, {
+   "filename": "/assets/wfc_src/dst.2/white.png",
+   "start": 41712068,
+   "end": 41803982
   }, {
    "filename": "/assets/wfc_src/dst/brown.png",
-   "start": 25118599,
-   "end": 25148722
+   "start": 41803982,
+   "end": 41834105
   }, {
-   "filename": "/assets/wfc_src/dst/very_dark_green.png",
-   "start": 25148722,
-   "end": 25206220
+   "filename": "/assets/wfc_src/dst/dark_brown.png",
+   "start": 41834105,
+   "end": 41900831
+  }, {
+   "filename": "/assets/wfc_src/dst/dark_green.png",
+   "start": 41900831,
+   "end": 41959798
+  }, {
+   "filename": "/assets/wfc_src/dst/dark_white.png",
+   "start": 41959798,
+   "end": 42018455
+  }, {
+   "filename": "/assets/wfc_src/dst/deep_sea.png",
+   "start": 42018455,
+   "end": 42077449
+  }, {
+   "filename": "/assets/wfc_src/dst/green.png",
+   "start": 42077449,
+   "end": 42154319
+  }, {
+   "filename": "/assets/wfc_src/dst/light_brown.png",
+   "start": 42154319,
+   "end": 42215501
+  }, {
+   "filename": "/assets/wfc_src/dst/light_green.png",
+   "start": 42215501,
+   "end": 42276179
+  }, {
+   "filename": "/assets/wfc_src/dst/light_white.png",
+   "start": 42276179,
+   "end": 42323587
   }, {
    "filename": "/assets/wfc_src/dst/sea.png",
-   "start": 25206220,
-   "end": 25273394
+   "start": 42323587,
+   "end": 42390761
+  }, {
+   "filename": "/assets/wfc_src/dst/shallow_sea.png",
+   "start": 42390761,
+   "end": 42443180
+  }, {
+   "filename": "/assets/wfc_src/dst/very_dark_brown.png",
+   "start": 42443180,
+   "end": 42504892
+  }, {
+   "filename": "/assets/wfc_src/dst/very_dark_green.png",
+   "start": 42504892,
+   "end": 42562390
+  }, {
+   "filename": "/assets/wfc_src/dst/very_dark_white.png",
+   "start": 42562390,
+   "end": 42642968
   }, {
    "filename": "/assets/wfc_src/dst/very_deep_sea.png",
-   "start": 25273394,
-   "end": 25337796
+   "start": 42642968,
+   "end": 42707370
+  }, {
+   "filename": "/assets/wfc_src/dst/white.png",
+   "start": 42707370,
+   "end": 42746179
+  }, {
+   "filename": "/assets/wfc_src/green.png",
+   "start": 42746179,
+   "end": 42746479
+  }, {
+   "filename": "/assets/wfc_src/light_brown.png",
+   "start": 42746479,
+   "end": 42746731
+  }, {
+   "filename": "/assets/wfc_src/light_green.png",
+   "start": 42746731,
+   "end": 42747091
+  }, {
+   "filename": "/assets/wfc_src/light_white.png",
+   "start": 42747091,
+   "end": 42747271
+  }, {
+   "filename": "/assets/wfc_src/sea.png",
+   "start": 42747271,
+   "end": 42747471
+  }, {
+   "filename": "/assets/wfc_src/shallow_sea.png",
+   "start": 42747471,
+   "end": 42747717
+  }, {
+   "filename": "/assets/wfc_src/very_dark_brown.png",
+   "start": 42747717,
+   "end": 42747994
+  }, {
+   "filename": "/assets/wfc_src/very_dark_green.png",
+   "start": 42747994,
+   "end": 42748294
+  }, {
+   "filename": "/assets/wfc_src/very_dark_white.png",
+   "start": 42748294,
+   "end": 42748580
+  }, {
+   "filename": "/assets/wfc_src/very_deep_sea.png",
+   "start": 42748580,
+   "end": 42748863
+  }, {
+   "filename": "/assets/wfc_src/white.png",
+   "start": 42748863,
+   "end": 42749142
+  }, {
+   "filename": "/assets/wfc_src_white/brown.png",
+   "start": 42749142,
+   "end": 42749359
+  }, {
+   "filename": "/assets/wfc_src_white/dark_brown.png",
+   "start": 42749359,
+   "end": 42749571
+  }, {
+   "filename": "/assets/wfc_src_white/dark_green.png",
+   "start": 42749571,
+   "end": 42749879
+  }, {
+   "filename": "/assets/wfc_src_white/dark_white.png",
+   "start": 42749879,
+   "end": 42750130
+  }, {
+   "filename": "/assets/wfc_src_white/deep_sea.png",
+   "start": 42750130,
+   "end": 42750385
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/brown.png",
+   "start": 42750385,
+   "end": 42773099
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/dark_brown.png",
+   "start": 42773099,
+   "end": 42795442
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/dark_green.png",
+   "start": 42795442,
+   "end": 42867543
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/dark_white.png",
+   "start": 42867543,
+   "end": 42931214
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/deep_sea.png",
+   "start": 42931214,
+   "end": 42991798
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/light_brown.png",
+   "start": 42991798,
+   "end": 43050543
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/light_green.png",
+   "start": 43050543,
+   "end": 43077301
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/light_white.png",
+   "start": 43077301,
+   "end": 43104804
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/sea.png",
+   "start": 43104804,
+   "end": 43167927
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/shallow_sea.png",
+   "start": 43167927,
+   "end": 43245580
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/very_dark_brown.png",
+   "start": 43245580,
+   "end": 43304195
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/very_dark_green.png",
+   "start": 43304195,
+   "end": 43382526
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/very_dark_white.png",
+   "start": 43382526,
+   "end": 43448875
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/very_deep_sea.png",
+   "start": 43448875,
+   "end": 43504522
+  }, {
+   "filename": "/assets/wfc_src_white/dst.2/white.png",
+   "start": 43504522,
+   "end": 43568161
+  }, {
+   "filename": "/assets/wfc_src_white/green.png",
+   "start": 43568161,
+   "end": 43568397
+  }, {
+   "filename": "/assets/wfc_src_white/light_brown.png",
+   "start": 43568397,
+   "end": 43568643
+  }, {
+   "filename": "/assets/wfc_src_white/light_green.png",
+   "start": 43568643,
+   "end": 43568873
+  }, {
+   "filename": "/assets/wfc_src_white/light_white.png",
+   "start": 43568873,
+   "end": 43569101
+  }, {
+   "filename": "/assets/wfc_src_white/sea.png",
+   "start": 43569101,
+   "end": 43569327
+  }, {
+   "filename": "/assets/wfc_src_white/shallow_sea.png",
+   "start": 43569327,
+   "end": 43569591
+  }, {
+   "filename": "/assets/wfc_src_white/very_dark_brown.png",
+   "start": 43569591,
+   "end": 43569814
+  }, {
+   "filename": "/assets/wfc_src_white/very_dark_green.png",
+   "start": 43569814,
+   "end": 43570093
+  }, {
+   "filename": "/assets/wfc_src_white/very_dark_white.png",
+   "start": 43570093,
+   "end": 43570339
+  }, {
+   "filename": "/assets/wfc_src_white/very_deep_sea.png",
+   "start": 43570339,
+   "end": 43570594
+  }, {
+   "filename": "/assets/wfc_src_white/white.png",
+   "start": 43570594,
+   "end": 43570854
+  }, {
+   "filename": "/assets/xturret.lua",
+   "start": 43570854,
+   "end": 43572276
+  }, {
+   "filename": "/assets/xturret.tl",
+   "start": 43572276,
+   "end": 43574094
+  }, {
+   "filename": "/assets/xturret/turret_base_1.png",
+   "start": 43574094,
+   "end": 43576002
+  }, {
+   "filename": "/assets/xturret/turret_base_2.png",
+   "start": 43576002,
+   "end": 43577915
+  }, {
+   "filename": "/assets/xturret/turret_turret_1.png",
+   "start": 43577915,
+   "end": 43579345
+  }, {
+   "filename": "/assets/xturret/turret_turret_2.png",
+   "start": 43579345,
+   "end": 43580774
   } ],
-  "remote_package_size": 25337796,
-  "package_uuid": "6edd2cea-2976-4e91-ab71-7a62b78f9bb3"
+  "remote_package_size": 43580774
  });
 })();
 
-if (Module["ENVIRONMENT_IS_PTHREAD"]) Module["preRun"] = [];
+if (Module["ENVIRONMENT_IS_PTHREAD"] || Module["$ww"]) Module["preRun"] = [];
 
 var necessaryPreJSTasks = Module["preRun"].slice();
 
@@ -1295,77 +1278,62 @@ function locateFile(path) {
 
 var read_, readAsync, readBinary, setWindowTitle;
 
-function logExceptionOnExit(e) {
- if (e instanceof ExitStatus) return;
- let toLog = e;
- if (e && typeof e == "object" && e.stack) {
-  toLog = [ e, e.stack ];
- }
- err("exiting due to exception: " + toLog);
-}
-
-var fs;
-
-var nodePath;
-
-var requireNodeFS;
-
 if (ENVIRONMENT_IS_NODE) {
- if (!(typeof process == "object" && typeof require == "function")) throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");
+ if (typeof process == "undefined" || !process.release || process.release.name !== "node") throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");
+ var nodeVersion = process.versions.node;
+ var numericVersion = nodeVersion.split(".").slice(0, 3);
+ numericVersion = numericVersion[0] * 1e4 + numericVersion[1] * 100 + numericVersion[2] * 1;
+ var minVersion = 101900;
+ if (numericVersion < 101900) {
+  throw new Error("This emscripten-generated code requires node v10.19.19.0 (detected v" + nodeVersion + ")");
+ }
+ var fs = require("fs");
+ var nodePath = require("path");
  if (ENVIRONMENT_IS_WORKER) {
-  scriptDirectory = require("path").dirname(scriptDirectory) + "/";
+  scriptDirectory = nodePath.dirname(scriptDirectory) + "/";
  } else {
   scriptDirectory = __dirname + "/";
  }
- requireNodeFS = (() => {
-  if (!nodePath) {
-   fs = require("fs");
-   nodePath = require("path");
-  }
- });
- read_ = function shell_read(filename, binary) {
-  requireNodeFS();
-  filename = nodePath["normalize"](filename);
+ read_ = (filename, binary) => {
+  filename = isFileURI(filename) ? new URL(filename) : nodePath.normalize(filename);
   return fs.readFileSync(filename, binary ? undefined : "utf8");
  };
- readBinary = (filename => {
+ readBinary = filename => {
   var ret = read_(filename, true);
   if (!ret.buffer) {
    ret = new Uint8Array(ret);
   }
   assert(ret.buffer);
   return ret;
- });
- readAsync = ((filename, onload, onerror) => {
-  requireNodeFS();
-  filename = nodePath["normalize"](filename);
+ };
+ readAsync = (filename, onload, onerror) => {
+  filename = isFileURI(filename) ? new URL(filename) : nodePath.normalize(filename);
   fs.readFile(filename, function(err, data) {
    if (err) onerror(err); else onload(data.buffer);
   });
- });
- if (process["argv"].length > 1) {
-  thisProgram = process["argv"][1].replace(/\\/g, "/");
+ };
+ if (process.argv.length > 1) {
+  thisProgram = process.argv[1].replace(/\\/g, "/");
  }
- arguments_ = process["argv"].slice(2);
+ arguments_ = process.argv.slice(2);
  if (typeof module != "undefined") {
   module["exports"] = Module;
  }
- process["on"]("uncaughtException", function(ex) {
-  if (!(ex instanceof ExitStatus)) {
+ process.on("uncaughtException", function(ex) {
+  if (ex !== "unwind" && !(ex instanceof ExitStatus) && !(ex.context instanceof ExitStatus)) {
    throw ex;
   }
  });
- process["on"]("unhandledRejection", function(reason) {
-  throw reason;
- });
- quit_ = ((status, toThrow) => {
-  if (keepRuntimeAlive()) {
-   process["exitCode"] = status;
-   throw toThrow;
-  }
-  logExceptionOnExit(toThrow);
-  process["exit"](status);
- });
+ var nodeMajor = process.versions.node.split(".")[0];
+ if (nodeMajor < 15) {
+  process.on("unhandledRejection", function(reason) {
+   throw reason;
+  });
+ }
+ quit_ = (status, toThrow) => {
+  process.exitCode = status;
+  throw toThrow;
+ };
  Module["inspect"] = function() {
   return "[Emscripten Module object]";
  };
@@ -1388,16 +1356,28 @@ if (ENVIRONMENT_IS_NODE) {
  readAsync = function readAsync(f, onload, onerror) {
   setTimeout(() => onload(readBinary(f)), 0);
  };
+ if (typeof clearTimeout == "undefined") {
+  globalThis.clearTimeout = id => {};
+ }
  if (typeof scriptArgs != "undefined") {
   arguments_ = scriptArgs;
  } else if (typeof arguments != "undefined") {
   arguments_ = arguments;
  }
  if (typeof quit == "function") {
-  quit_ = ((status, toThrow) => {
-   logExceptionOnExit(toThrow);
-   quit(status);
-  });
+  quit_ = (status, toThrow) => {
+   setTimeout(() => {
+    if (!(toThrow instanceof ExitStatus)) {
+     let toLog = toThrow;
+     if (toThrow && typeof toThrow == "object" && toThrow.stack) {
+      toLog = [ toThrow, toThrow.stack ];
+     }
+     err("exiting due to exception: " + toLog);
+    }
+    quit(status);
+   });
+   throw toThrow;
+  };
  }
  if (typeof print != "undefined") {
   if (typeof console == "undefined") console = {};
@@ -1417,37 +1397,37 @@ if (ENVIRONMENT_IS_NODE) {
  }
  if (!(typeof window == "object" || typeof importScripts == "function")) throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");
  {
-  read_ = (url => {
+  read_ = url => {
    var xhr = new XMLHttpRequest();
    xhr.open("GET", url, false);
    xhr.send(null);
    return xhr.responseText;
-  });
+  };
   if (ENVIRONMENT_IS_WORKER) {
-   readBinary = (url => {
+   readBinary = url => {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url, false);
     xhr.responseType = "arraybuffer";
     xhr.send(null);
     return new Uint8Array(xhr.response);
-   });
+   };
   }
-  readAsync = ((url, onload, onerror) => {
+  readAsync = (url, onload, onerror) => {
    var xhr = new XMLHttpRequest();
    xhr.open("GET", url, true);
    xhr.responseType = "arraybuffer";
-   xhr.onload = (() => {
+   xhr.onload = () => {
     if (xhr.status == 200 || xhr.status == 0 && xhr.response) {
      onload(xhr.response);
      return;
     }
     onerror();
-   });
+   };
    xhr.onerror = onerror;
    xhr.send(null);
-  });
+  };
  }
- setWindowTitle = (title => document.title = title);
+ setWindowTitle = title => document.title = title;
 } else {
  throw new Error("environment detection error");
 }
@@ -1510,216 +1490,6 @@ var NODEFS = "NODEFS is no longer included by default; build with -lnodefs.js";
 
 assert(!ENVIRONMENT_IS_SHELL, "shell environment detected but not enabled at build time.  Add 'shell' to `-sENVIRONMENT` to enable.");
 
-var STACK_ALIGN = 16;
-
-var POINTER_SIZE = 4;
-
-function getNativeTypeSize(type) {
- switch (type) {
- case "i1":
- case "i8":
-  return 1;
-
- case "i16":
-  return 2;
-
- case "i32":
-  return 4;
-
- case "i64":
-  return 8;
-
- case "float":
-  return 4;
-
- case "double":
-  return 8;
-
- default:
-  {
-   if (type[type.length - 1] === "*") {
-    return POINTER_SIZE;
-   } else if (type[0] === "i") {
-    const bits = Number(type.substr(1));
-    assert(bits % 8 === 0, "getNativeTypeSize invalid bits " + bits + ", type " + type);
-    return bits / 8;
-   } else {
-    return 0;
-   }
-  }
- }
-}
-
-function warnOnce(text) {
- if (!warnOnce.shown) warnOnce.shown = {};
- if (!warnOnce.shown[text]) {
-  warnOnce.shown[text] = 1;
-  err(text);
- }
-}
-
-function uleb128Encode(n) {
- assert(n < 16384);
- if (n < 128) {
-  return [ n ];
- }
- return [ n % 128 | 128, n >> 7 ];
-}
-
-function convertJsFunctionToWasm(func, sig) {
- if (typeof WebAssembly.Function == "function") {
-  var typeNames = {
-   "i": "i32",
-   "j": "i64",
-   "f": "f32",
-   "d": "f64"
-  };
-  var type = {
-   parameters: [],
-   results: sig[0] == "v" ? [] : [ typeNames[sig[0]] ]
-  };
-  for (var i = 1; i < sig.length; ++i) {
-   type.parameters.push(typeNames[sig[i]]);
-  }
-  return new WebAssembly.Function(type, func);
- }
- var typeSection = [ 1, 96 ];
- var sigRet = sig.slice(0, 1);
- var sigParam = sig.slice(1);
- var typeCodes = {
-  "i": 127,
-  "j": 126,
-  "f": 125,
-  "d": 124
- };
- typeSection = typeSection.concat(uleb128Encode(sigParam.length));
- for (var i = 0; i < sigParam.length; ++i) {
-  typeSection.push(typeCodes[sigParam[i]]);
- }
- if (sigRet == "v") {
-  typeSection.push(0);
- } else {
-  typeSection = typeSection.concat([ 1, typeCodes[sigRet] ]);
- }
- typeSection = [ 1 ].concat(uleb128Encode(typeSection.length), typeSection);
- var bytes = new Uint8Array([ 0, 97, 115, 109, 1, 0, 0, 0 ].concat(typeSection, [ 2, 7, 1, 1, 101, 1, 102, 0, 0, 7, 5, 1, 1, 102, 0, 0 ]));
- var module = new WebAssembly.Module(bytes);
- var instance = new WebAssembly.Instance(module, {
-  "e": {
-   "f": func
-  }
- });
- var wrappedFunc = instance.exports["f"];
- return wrappedFunc;
-}
-
-var freeTableIndexes = [];
-
-var functionsInTableMap;
-
-function getEmptyTableSlot() {
- if (freeTableIndexes.length) {
-  return freeTableIndexes.pop();
- }
- try {
-  wasmTable.grow(1);
- } catch (err) {
-  if (!(err instanceof RangeError)) {
-   throw err;
-  }
-  throw "Unable to grow wasm table. Set ALLOW_TABLE_GROWTH.";
- }
- return wasmTable.length - 1;
-}
-
-function updateTableMap(offset, count) {
- for (var i = offset; i < offset + count; i++) {
-  var item = getWasmTableEntry(i);
-  if (item) {
-   functionsInTableMap.set(item, i);
-  }
- }
-}
-
-function addFunction(func, sig) {
- assert(typeof func != "undefined");
- if (!functionsInTableMap) {
-  functionsInTableMap = new WeakMap();
-  updateTableMap(0, wasmTable.length);
- }
- if (functionsInTableMap.has(func)) {
-  return functionsInTableMap.get(func);
- }
- var ret = getEmptyTableSlot();
- try {
-  setWasmTableEntry(ret, func);
- } catch (err) {
-  if (!(err instanceof TypeError)) {
-   throw err;
-  }
-  assert(typeof sig != "undefined", "Missing signature argument to addFunction: " + func);
-  var wrapped = convertJsFunctionToWasm(func, sig);
-  setWasmTableEntry(ret, wrapped);
- }
- functionsInTableMap.set(func, ret);
- return ret;
-}
-
-function removeFunction(index) {
- functionsInTableMap.delete(getWasmTableEntry(index));
- freeTableIndexes.push(index);
-}
-
-function legacyModuleProp(prop, newName) {
- if (!Object.getOwnPropertyDescriptor(Module, prop)) {
-  Object.defineProperty(Module, prop, {
-   configurable: true,
-   get: function() {
-    abort("Module." + prop + " has been replaced with plain " + newName + " (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
-   }
-  });
- }
-}
-
-function ignoredModuleProp(prop) {
- if (Object.getOwnPropertyDescriptor(Module, prop)) {
-  abort("`Module." + prop + "` was supplied but `" + prop + "` not included in INCOMING_MODULE_JS_API");
- }
-}
-
-function unexportedMessage(sym, isFSSybol) {
- var msg = "'" + sym + "' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)";
- if (isFSSybol) {
-  msg += ". Alternatively, forcing filesystem support (-sFORCE_FILESYSTEM) can export this for you";
- }
- return msg;
-}
-
-function unexportedRuntimeSymbol(sym, isFSSybol) {
- if (!Object.getOwnPropertyDescriptor(Module, sym)) {
-  Object.defineProperty(Module, sym, {
-   configurable: true,
-   get: function() {
-    abort(unexportedMessage(sym, isFSSybol));
-   }
-  });
- }
-}
-
-function unexportedRuntimeFunction(sym, isFSSybol) {
- if (!Object.getOwnPropertyDescriptor(Module, sym)) {
-  Module[sym] = (() => abort(unexportedMessage(sym, isFSSybol)));
- }
-}
-
-var tempRet0 = 0;
-
-var setTempRet0 = value => {
- tempRet0 = value;
-};
-
-var getTempRet0 = () => tempRet0;
-
 var wasmBinary;
 
 if (Module["wasmBinary"]) wasmBinary = Module["wasmBinary"];
@@ -1734,73 +1504,6 @@ if (typeof WebAssembly != "object") {
  abort("no native wasm support detected");
 }
 
-function setValue(ptr, value, type = "i8", noSafe) {
- if (type.charAt(type.length - 1) === "*") type = "i32";
- switch (type) {
- case "i1":
-  HEAP8[ptr >>> 0] = value;
-  break;
-
- case "i8":
-  HEAP8[ptr >>> 0] = value;
-  break;
-
- case "i16":
-  HEAP16[ptr >>> 1] = value;
-  break;
-
- case "i32":
-  HEAP32[ptr >>> 2] = value;
-  break;
-
- case "i64":
-  tempI64 = [ value >>> 0, (tempDouble = value, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
-  HEAP32[ptr >>> 2] = tempI64[0], HEAP32[ptr + 4 >>> 2] = tempI64[1];
-  break;
-
- case "float":
-  HEAPF32[ptr >>> 2] = value;
-  break;
-
- case "double":
-  HEAPF64[ptr >>> 3] = value;
-  break;
-
- default:
-  abort("invalid type for setValue: " + type);
- }
-}
-
-function getValue(ptr, type = "i8", noSafe) {
- if (type.charAt(type.length - 1) === "*") type = "i32";
- switch (type) {
- case "i1":
-  return HEAP8[ptr >>> 0];
-
- case "i8":
-  return HEAP8[ptr >>> 0];
-
- case "i16":
-  return HEAP16[ptr >>> 1];
-
- case "i32":
-  return HEAP32[ptr >>> 2];
-
- case "i64":
-  return HEAP32[ptr >>> 2];
-
- case "float":
-  return HEAPF32[ptr >>> 2];
-
- case "double":
-  return Number(HEAPF64[ptr >>> 3]);
-
- default:
-  abort("invalid type for getValue: " + type);
- }
- return null;
-}
-
 var wasmMemory;
 
 var ABORT = false;
@@ -1813,84 +1516,6 @@ function assert(condition, text) {
  }
 }
 
-function getCFunc(ident) {
- var func = Module["_" + ident];
- assert(func, "Cannot call unknown function " + ident + ", make sure it is exported");
- return func;
-}
-
-function ccall(ident, returnType, argTypes, args, opts) {
- var toC = {
-  "string": function(str) {
-   var ret = 0;
-   if (str !== null && str !== undefined && str !== 0) {
-    var len = (str.length << 2) + 1;
-    ret = stackAlloc(len);
-    stringToUTF8(str, ret, len);
-   }
-   return ret;
-  },
-  "array": function(arr) {
-   var ret = stackAlloc(arr.length);
-   writeArrayToMemory(arr, ret);
-   return ret;
-  }
- };
- function convertReturnValue(ret) {
-  if (returnType === "string") return UTF8ToString(ret);
-  if (returnType === "boolean") return Boolean(ret);
-  return ret;
- }
- var func = getCFunc(ident);
- var cArgs = [];
- var stack = 0;
- assert(returnType !== "array", 'Return type should not be "array".');
- if (args) {
-  for (var i = 0; i < args.length; i++) {
-   var converter = toC[argTypes[i]];
-   if (converter) {
-    if (stack === 0) stack = stackSave();
-    cArgs[i] = converter(args[i]);
-   } else {
-    cArgs[i] = args[i];
-   }
-  }
- }
- var ret = func.apply(null, cArgs);
- function onDone(ret) {
-  if (stack !== 0) stackRestore(stack);
-  return convertReturnValue(ret);
- }
- ret = onDone(ret);
- return ret;
-}
-
-function cwrap(ident, returnType, argTypes, opts) {
- return function() {
-  return ccall(ident, returnType, argTypes, arguments, opts);
- };
-}
-
-var ALLOC_NORMAL = 0;
-
-var ALLOC_STACK = 1;
-
-function allocate(slab, allocator) {
- var ret;
- assert(typeof allocator == "number", "allocate no longer takes a type argument");
- assert(typeof slab != "number", "allocate no longer takes a number as arg0");
- if (allocator == ALLOC_STACK) {
-  ret = stackAlloc(slab.length);
- } else {
-  ret = _malloc(slab.length);
- }
- if (!slab.subarray && !slab.slice) {
-  slab = new Uint8Array(slab);
- }
- HEAPU8.set(slab, ret >>> 0);
- return ret;
-}
-
 var UTF8Decoder = typeof TextDecoder != "undefined" ? new TextDecoder("utf8") : undefined;
 
 function UTF8ArrayToString(heapOrArray, idx, maxBytesToRead) {
@@ -1900,38 +1525,38 @@ function UTF8ArrayToString(heapOrArray, idx, maxBytesToRead) {
  while (heapOrArray[endPtr] && !(endPtr >= endIdx)) ++endPtr;
  if (endPtr - idx > 16 && heapOrArray.buffer && UTF8Decoder) {
   return UTF8Decoder.decode(heapOrArray.subarray(idx, endPtr));
- } else {
-  var str = "";
-  while (idx < endPtr) {
-   var u0 = heapOrArray[idx++];
-   if (!(u0 & 128)) {
-    str += String.fromCharCode(u0);
-    continue;
-   }
-   var u1 = heapOrArray[idx++] & 63;
-   if ((u0 & 224) == 192) {
-    str += String.fromCharCode((u0 & 31) << 6 | u1);
-    continue;
-   }
-   var u2 = heapOrArray[idx++] & 63;
-   if ((u0 & 240) == 224) {
-    u0 = (u0 & 15) << 12 | u1 << 6 | u2;
-   } else {
-    if ((u0 & 248) != 240) warnOnce("Invalid UTF-8 leading byte 0x" + u0.toString(16) + " encountered when deserializing a UTF-8 string in wasm memory to a JS string!");
-    u0 = (u0 & 7) << 18 | u1 << 12 | u2 << 6 | heapOrArray[idx++] & 63;
-   }
-   if (u0 < 65536) {
-    str += String.fromCharCode(u0);
-   } else {
-    var ch = u0 - 65536;
-    str += String.fromCharCode(55296 | ch >> 10, 56320 | ch & 1023);
-   }
+ }
+ var str = "";
+ while (idx < endPtr) {
+  var u0 = heapOrArray[idx++];
+  if (!(u0 & 128)) {
+   str += String.fromCharCode(u0);
+   continue;
+  }
+  var u1 = heapOrArray[idx++] & 63;
+  if ((u0 & 224) == 192) {
+   str += String.fromCharCode((u0 & 31) << 6 | u1);
+   continue;
+  }
+  var u2 = heapOrArray[idx++] & 63;
+  if ((u0 & 240) == 224) {
+   u0 = (u0 & 15) << 12 | u1 << 6 | u2;
+  } else {
+   if ((u0 & 248) != 240) warnOnce("Invalid UTF-8 leading byte " + ptrToString(u0) + " encountered when deserializing a UTF-8 string in wasm memory to a JS string!");
+   u0 = (u0 & 7) << 18 | u1 << 12 | u2 << 6 | heapOrArray[idx++] & 63;
+  }
+  if (u0 < 65536) {
+   str += String.fromCharCode(u0);
+  } else {
+   var ch = u0 - 65536;
+   str += String.fromCharCode(55296 | ch >> 10, 56320 | ch & 1023);
   }
  }
  return str;
 }
 
 function UTF8ToString(ptr, maxBytesToRead) {
+ assert(typeof ptr == "number");
  ptr >>>= 0;
  return ptr ? UTF8ArrayToString(HEAPU8, ptr, maxBytesToRead) : "";
 }
@@ -1961,7 +1586,7 @@ function stringToUTF8Array(str, heap, outIdx, maxBytesToWrite) {
    heap[outIdx++ >>> 0] = 128 | u & 63;
   } else {
    if (outIdx + 3 >= endIdx) break;
-   if (u > 1114111) warnOnce("Invalid Unicode code point 0x" + u.toString(16) + " encountered when serializing a JS string to a UTF-8 string in wasm memory! (Valid unicode code points should be in range 0-0x10FFFF).");
+   if (u > 1114111) warnOnce("Invalid Unicode code point " + ptrToString(u) + " encountered when serializing a JS string to a UTF-8 string in wasm memory! (Valid unicode code points should be in range 0-0x10FFFF).");
    heap[outIdx++ >>> 0] = 240 | u >> 18;
    heap[outIdx++ >>> 0] = 128 | u >> 12 & 63;
    heap[outIdx++ >>> 0] = 128 | u >> 6 & 63;
@@ -1980,211 +1605,70 @@ function stringToUTF8(str, outPtr, maxBytesToWrite) {
 function lengthBytesUTF8(str) {
  var len = 0;
  for (var i = 0; i < str.length; ++i) {
-  var u = str.charCodeAt(i);
-  if (u >= 55296 && u <= 57343) u = 65536 + ((u & 1023) << 10) | str.charCodeAt(++i) & 1023;
-  if (u <= 127) ++len; else if (u <= 2047) len += 2; else if (u <= 65535) len += 3; else len += 4;
- }
- return len;
-}
-
-function AsciiToString(ptr) {
- ptr >>>= 0;
- var str = "";
- while (1) {
-  var ch = HEAPU8[ptr++ >>> 0];
-  if (!ch) return str;
-  str += String.fromCharCode(ch);
- }
-}
-
-function stringToAscii(str, outPtr) {
- return writeAsciiToMemory(str, outPtr, false);
-}
-
-var UTF16Decoder = typeof TextDecoder != "undefined" ? new TextDecoder("utf-16le") : undefined;
-
-function UTF16ToString(ptr, maxBytesToRead) {
- assert(ptr % 2 == 0, "Pointer passed to UTF16ToString must be aligned to two bytes!");
- var endPtr = ptr;
- var idx = endPtr >> 1;
- var maxIdx = idx + maxBytesToRead / 2;
- while (!(idx >= maxIdx) && HEAPU16[idx >>> 0]) ++idx;
- endPtr = idx << 1;
- if (endPtr - ptr > 32 && UTF16Decoder) {
-  return UTF16Decoder.decode(HEAPU8.subarray(ptr >>> 0, endPtr >>> 0));
- } else {
-  var str = "";
-  for (var i = 0; !(i >= maxBytesToRead / 2); ++i) {
-   var codeUnit = HEAP16[ptr + i * 2 >>> 1];
-   if (codeUnit == 0) break;
-   str += String.fromCharCode(codeUnit);
-  }
-  return str;
- }
-}
-
-function stringToUTF16(str, outPtr, maxBytesToWrite) {
- assert(outPtr % 2 == 0, "Pointer passed to stringToUTF16 must be aligned to two bytes!");
- assert(typeof maxBytesToWrite == "number", "stringToUTF16(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!");
- if (maxBytesToWrite === undefined) {
-  maxBytesToWrite = 2147483647;
- }
- if (maxBytesToWrite < 2) return 0;
- maxBytesToWrite -= 2;
- var startPtr = outPtr;
- var numCharsToWrite = maxBytesToWrite < str.length * 2 ? maxBytesToWrite / 2 : str.length;
- for (var i = 0; i < numCharsToWrite; ++i) {
-  var codeUnit = str.charCodeAt(i);
-  HEAP16[outPtr >>> 1] = codeUnit;
-  outPtr += 2;
- }
- HEAP16[outPtr >>> 1] = 0;
- return outPtr - startPtr;
-}
-
-function lengthBytesUTF16(str) {
- return str.length * 2;
-}
-
-function UTF32ToString(ptr, maxBytesToRead) {
- assert(ptr % 4 == 0, "Pointer passed to UTF32ToString must be aligned to four bytes!");
- var i = 0;
- var str = "";
- while (!(i >= maxBytesToRead / 4)) {
-  var utf32 = HEAP32[ptr + i * 4 >>> 2];
-  if (utf32 == 0) break;
-  ++i;
-  if (utf32 >= 65536) {
-   var ch = utf32 - 65536;
-   str += String.fromCharCode(55296 | ch >> 10, 56320 | ch & 1023);
+  var c = str.charCodeAt(i);
+  if (c <= 127) {
+   len++;
+  } else if (c <= 2047) {
+   len += 2;
+  } else if (c >= 55296 && c <= 57343) {
+   len += 4;
+   ++i;
   } else {
-   str += String.fromCharCode(utf32);
+   len += 3;
   }
- }
- return str;
-}
-
-function stringToUTF32(str, outPtr, maxBytesToWrite) {
- outPtr >>>= 0;
- assert(outPtr % 4 == 0, "Pointer passed to stringToUTF32 must be aligned to four bytes!");
- assert(typeof maxBytesToWrite == "number", "stringToUTF32(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!");
- if (maxBytesToWrite === undefined) {
-  maxBytesToWrite = 2147483647;
- }
- if (maxBytesToWrite < 4) return 0;
- var startPtr = outPtr;
- var endPtr = startPtr + maxBytesToWrite - 4;
- for (var i = 0; i < str.length; ++i) {
-  var codeUnit = str.charCodeAt(i);
-  if (codeUnit >= 55296 && codeUnit <= 57343) {
-   var trailSurrogate = str.charCodeAt(++i);
-   codeUnit = 65536 + ((codeUnit & 1023) << 10) | trailSurrogate & 1023;
-  }
-  HEAP32[outPtr >>> 2] = codeUnit;
-  outPtr += 4;
-  if (outPtr + 4 > endPtr) break;
- }
- HEAP32[outPtr >>> 2] = 0;
- return outPtr - startPtr;
-}
-
-function lengthBytesUTF32(str) {
- var len = 0;
- for (var i = 0; i < str.length; ++i) {
-  var codeUnit = str.charCodeAt(i);
-  if (codeUnit >= 55296 && codeUnit <= 57343) ++i;
-  len += 4;
  }
  return len;
 }
 
-function allocateUTF8(str) {
- var size = lengthBytesUTF8(str) + 1;
- var ret = _malloc(size);
- if (ret) stringToUTF8Array(str, HEAP8, ret, size);
- return ret;
+var HEAP, HEAP8, HEAPU8, HEAP16, HEAPU16, HEAP32, HEAPU32, HEAPF32, HEAPF64;
+
+function updateMemoryViews() {
+ var b = wasmMemory.buffer;
+ Module["HEAP8"] = HEAP8 = new Int8Array(b);
+ Module["HEAP16"] = HEAP16 = new Int16Array(b);
+ Module["HEAP32"] = HEAP32 = new Int32Array(b);
+ Module["HEAPU8"] = HEAPU8 = new Uint8Array(b);
+ Module["HEAPU16"] = HEAPU16 = new Uint16Array(b);
+ Module["HEAPU32"] = HEAPU32 = new Uint32Array(b);
+ Module["HEAPF32"] = HEAPF32 = new Float32Array(b);
+ Module["HEAPF64"] = HEAPF64 = new Float64Array(b);
 }
 
-function allocateUTF8OnStack(str) {
- var size = lengthBytesUTF8(str) + 1;
- var ret = stackAlloc(size);
- stringToUTF8Array(str, HEAP8, ret, size);
- return ret;
-}
-
-function writeStringToMemory(string, buffer, dontAddNull) {
- warnOnce("writeStringToMemory is deprecated and should not be called! Use stringToUTF8() instead!");
- var lastChar, end;
- if (dontAddNull) {
-  end = buffer + lengthBytesUTF8(string);
-  lastChar = HEAP8[end >>> 0];
- }
- stringToUTF8(string, buffer, Infinity);
- if (dontAddNull) HEAP8[end >>> 0] = lastChar;
-}
-
-function writeArrayToMemory(array, buffer) {
- assert(array.length >= 0, "writeArrayToMemory array must have a length (should be an array or typed array)");
- HEAP8.set(array, buffer >>> 0);
-}
-
-function writeAsciiToMemory(str, buffer, dontAddNull) {
- for (var i = 0; i < str.length; ++i) {
-  assert(str.charCodeAt(i) === (str.charCodeAt(i) & 255));
-  HEAP8[buffer++ >>> 0] = str.charCodeAt(i);
- }
- if (!dontAddNull) HEAP8[buffer >>> 0] = 0;
-}
-
-var HEAP, buffer, HEAP8, HEAPU8, HEAP16, HEAPU16, HEAP32, HEAPU32, HEAPF32, HEAPF64;
-
-function updateGlobalBufferAndViews(buf) {
- buffer = buf;
- Module["HEAP8"] = HEAP8 = new Int8Array(buf);
- Module["HEAP16"] = HEAP16 = new Int16Array(buf);
- Module["HEAP32"] = HEAP32 = new Int32Array(buf);
- Module["HEAPU8"] = HEAPU8 = new Uint8Array(buf);
- Module["HEAPU16"] = HEAPU16 = new Uint16Array(buf);
- Module["HEAPU32"] = HEAPU32 = new Uint32Array(buf);
- Module["HEAPF32"] = HEAPF32 = new Float32Array(buf);
- Module["HEAPF64"] = HEAPF64 = new Float64Array(buf);
-}
-
-var TOTAL_STACK = 5242880;
-
-if (Module["TOTAL_STACK"]) assert(TOTAL_STACK === Module["TOTAL_STACK"], "the stack size can no longer be determined at runtime");
-
-var INITIAL_MEMORY = Module["INITIAL_MEMORY"] || 16777216;
-
-legacyModuleProp("INITIAL_MEMORY", "INITIAL_MEMORY");
-
-assert(INITIAL_MEMORY >= TOTAL_STACK, "INITIAL_MEMORY should be larger than TOTAL_STACK, was " + INITIAL_MEMORY + "! (TOTAL_STACK=" + TOTAL_STACK + ")");
+assert(!Module["STACK_SIZE"], "STACK_SIZE can no longer be set at runtime.  Use -sSTACK_SIZE at link time");
 
 assert(typeof Int32Array != "undefined" && typeof Float64Array !== "undefined" && Int32Array.prototype.subarray != undefined && Int32Array.prototype.set != undefined, "JS engine does not provide full typed array support");
 
 assert(!Module["wasmMemory"], "Use of `wasmMemory` detected.  Use -sIMPORTED_MEMORY to define wasmMemory externally");
 
-assert(INITIAL_MEMORY == 16777216, "Detected runtime INITIAL_MEMORY setting.  Use -sIMPORTED_MEMORY to define wasmMemory dynamically");
+assert(!Module["INITIAL_MEMORY"], "Detected runtime INITIAL_MEMORY setting.  Use -sIMPORTED_MEMORY to define wasmMemory dynamically");
 
 var wasmTable;
 
 function writeStackCookie() {
  var max = _emscripten_stack_get_end();
  assert((max & 3) == 0);
- HEAP32[max >>> 2] = 34821223;
- HEAP32[max + 4 >>> 2] = 2310721022;
- HEAP32[0 >>> 0] = 1668509029;
+ if (max == 0) {
+  max += 4;
+ }
+ HEAPU32[max >>> 2] = 34821223;
+ HEAPU32[max + 4 >>> 2] = 2310721022;
+ HEAPU32[0 >>> 0] = 1668509029;
 }
 
 function checkStackCookie() {
  if (ABORT) return;
  var max = _emscripten_stack_get_end();
+ if (max == 0) {
+  max += 4;
+ }
  var cookie1 = HEAPU32[max >>> 2];
  var cookie2 = HEAPU32[max + 4 >>> 2];
  if (cookie1 != 34821223 || cookie2 != 2310721022) {
-  abort("Stack overflow! Stack cookie has been overwritten, expected hex dwords 0x89BACDFE and 0x2135467, but received 0x" + cookie2.toString(16) + " 0x" + cookie1.toString(16));
+  abort("Stack overflow! Stack cookie has been overwritten at " + ptrToString(max) + ", expected hex dwords 0x89BACDFE and 0x2135467, but received " + ptrToString(cookie2) + " " + ptrToString(cookie1));
  }
- if (HEAP32[0 >>> 0] !== 1668509029) abort("Runtime error: The application has corrupted its heap memory area (address zero)!");
+ if (HEAPU32[0 >>> 0] !== 1668509029) {
+  abort("Runtime error: The application has corrupted its heap memory area (address zero)!");
+ }
 }
 
 (function() {
@@ -2206,8 +1690,10 @@ var __ATPOSTRUN__ = [];
 
 var runtimeInitialized = false;
 
+var runtimeKeepaliveCounter = 0;
+
 function keepRuntimeAlive() {
- return noExitRuntime;
+ return noExitRuntime || runtimeKeepaliveCounter > 0;
 }
 
 function preRun() {
@@ -2221,9 +1707,9 @@ function preRun() {
 }
 
 function initRuntime() {
- checkStackCookie();
  assert(!runtimeInitialized);
  runtimeInitialized = true;
+ checkStackCookie();
  if (!Module["noFSInit"] && !FS.init.initialized) FS.init();
  FS.ignorePermissions = false;
  TTY.init();
@@ -2347,10 +1833,8 @@ function removeRunDependency(id) {
 }
 
 function abort(what) {
- {
-  if (Module["onAbort"]) {
-   Module["onAbort"](what);
-  }
+ if (Module["onAbort"]) {
+  Module["onAbort"](what);
  }
  what = "Aborted(" + what + ")";
  err(what);
@@ -2400,31 +1884,30 @@ function getBinary(file) {
   }
   if (readBinary) {
    return readBinary(file);
-  } else {
-   throw "both async and sync fetching of the wasm failed";
   }
+  throw "both async and sync fetching of the wasm failed";
  } catch (err) {
   abort(err);
  }
 }
 
-function getBinaryPromise() {
+function getBinaryPromise(binaryFile) {
  if (!wasmBinary && (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER)) {
-  if (typeof fetch == "function" && !isFileURI(wasmBinaryFile)) {
-   return fetch(wasmBinaryFile, {
+  if (typeof fetch == "function" && !isFileURI(binaryFile)) {
+   return fetch(binaryFile, {
     credentials: "same-origin"
    }).then(function(response) {
     if (!response["ok"]) {
-     throw "failed to load wasm binary file at '" + wasmBinaryFile + "'";
+     throw "failed to load wasm binary file at '" + binaryFile + "'";
     }
     return response["arrayBuffer"]();
    }).catch(function() {
-    return getBinary(wasmBinaryFile);
+    return getBinary(binaryFile);
    });
   } else {
    if (readAsync) {
     return new Promise(function(resolve, reject) {
-     readAsync(wasmBinaryFile, function(response) {
+     readAsync(binaryFile, function(response) {
       resolve(new Uint8Array(response));
      }, reject);
     });
@@ -2432,25 +1915,57 @@ function getBinaryPromise() {
   }
  }
  return Promise.resolve().then(function() {
-  return getBinary(wasmBinaryFile);
+  return getBinary(binaryFile);
  });
+}
+
+function instantiateArrayBuffer(binaryFile, imports, receiver) {
+ return getBinaryPromise(binaryFile).then(function(binary) {
+  return WebAssembly.instantiate(binary, imports);
+ }).then(function(instance) {
+  return instance;
+ }).then(receiver, function(reason) {
+  err("failed to asynchronously prepare wasm: " + reason);
+  if (isFileURI(wasmBinaryFile)) {
+   err("warning: Loading from a file URI (" + wasmBinaryFile + ") is not supported in most browsers. See https://emscripten.org/docs/getting_started/FAQ.html#how-do-i-run-a-local-webserver-for-testing-why-does-my-program-stall-in-downloading-or-preparing");
+  }
+  abort(reason);
+ });
+}
+
+function instantiateAsync(binary, binaryFile, imports, callback) {
+ if (!binary && typeof WebAssembly.instantiateStreaming == "function" && !isDataURI(binaryFile) && !isFileURI(binaryFile) && !ENVIRONMENT_IS_NODE && typeof fetch == "function") {
+  return fetch(binaryFile, {
+   credentials: "same-origin"
+  }).then(function(response) {
+   var result = WebAssembly.instantiateStreaming(response, imports);
+   return result.then(callback, function(reason) {
+    err("wasm streaming compile failed: " + reason);
+    err("falling back to ArrayBuffer instantiation");
+    return instantiateArrayBuffer(binaryFile, imports, callback);
+   });
+  });
+ } else {
+  return instantiateArrayBuffer(binaryFile, imports, callback);
+ }
 }
 
 function createWasm() {
  var info = {
-  "env": asmLibraryArg,
-  "wasi_snapshot_preview1": asmLibraryArg
+  "env": wasmImports,
+  "wasi_snapshot_preview1": wasmImports
  };
  function receiveInstance(instance, module) {
   var exports = instance.exports;
   Module["asm"] = exports;
   wasmMemory = Module["asm"]["memory"];
   assert(wasmMemory, "memory not found in wasm exports");
-  updateGlobalBufferAndViews(wasmMemory.buffer);
+  updateMemoryViews();
   wasmTable = Module["asm"]["__indirect_function_table"];
   assert(wasmTable, "table not found in wasm exports");
   addOnInit(Module["asm"]["__wasm_call_ctors"]);
   removeRunDependency("wasm-instantiate");
+  return exports;
  }
  addRunDependency("wasm-instantiate");
  var trueModule = Module;
@@ -2459,45 +1974,15 @@ function createWasm() {
   trueModule = null;
   receiveInstance(result["instance"]);
  }
- function instantiateArrayBuffer(receiver) {
-  return getBinaryPromise().then(function(binary) {
-   return WebAssembly.instantiate(binary, info);
-  }).then(function(instance) {
-   return instance;
-  }).then(receiver, function(reason) {
-   err("failed to asynchronously prepare wasm: " + reason);
-   if (isFileURI(wasmBinaryFile)) {
-    err("warning: Loading from a file URI (" + wasmBinaryFile + ") is not supported in most browsers. See https://emscripten.org/docs/getting_started/FAQ.html#how-do-i-run-a-local-webserver-for-testing-why-does-my-program-stall-in-downloading-or-preparing");
-   }
-   abort(reason);
-  });
- }
- function instantiateAsync() {
-  if (!wasmBinary && typeof WebAssembly.instantiateStreaming == "function" && !isDataURI(wasmBinaryFile) && !isFileURI(wasmBinaryFile) && typeof fetch == "function") {
-   return fetch(wasmBinaryFile, {
-    credentials: "same-origin"
-   }).then(function(response) {
-    var result = WebAssembly.instantiateStreaming(response, info);
-    return result.then(receiveInstantiationResult, function(reason) {
-     err("wasm streaming compile failed: " + reason);
-     err("falling back to ArrayBuffer instantiation");
-     return instantiateArrayBuffer(receiveInstantiationResult);
-    });
-   });
-  } else {
-   return instantiateArrayBuffer(receiveInstantiationResult);
-  }
- }
  if (Module["instantiateWasm"]) {
   try {
-   var exports = Module["instantiateWasm"](info, receiveInstance);
-   return exports;
+   return Module["instantiateWasm"](info, receiveInstance);
   } catch (e) {
    err("Module.instantiateWasm callback failed with error: " + e);
    return false;
   }
  }
- instantiateAsync();
+ instantiateAsync(wasmBinary, wasmBinaryFile, info, receiveInstantiationResult);
  return {};
 }
 
@@ -2505,8 +1990,84 @@ var tempDouble;
 
 var tempI64;
 
+function legacyModuleProp(prop, newName) {
+ if (!Object.getOwnPropertyDescriptor(Module, prop)) {
+  Object.defineProperty(Module, prop, {
+   configurable: true,
+   get: function() {
+    abort("Module." + prop + " has been replaced with plain " + newName + " (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
+   }
+  });
+ }
+}
+
+function ignoredModuleProp(prop) {
+ if (Object.getOwnPropertyDescriptor(Module, prop)) {
+  abort("`Module." + prop + "` was supplied but `" + prop + "` not included in INCOMING_MODULE_JS_API");
+ }
+}
+
+function isExportedByForceFilesystem(name) {
+ return name === "FS_createPath" || name === "FS_createDataFile" || name === "FS_createPreloadedFile" || name === "FS_unlink" || name === "addRunDependency" || name === "FS_createLazyFile" || name === "FS_createDevice" || name === "removeRunDependency";
+}
+
+function missingGlobal(sym, msg) {
+ if (typeof globalThis !== "undefined") {
+  Object.defineProperty(globalThis, sym, {
+   configurable: true,
+   get: function() {
+    warnOnce("`" + sym + "` is not longer defined by emscripten. " + msg);
+    return undefined;
+   }
+  });
+ }
+}
+
+missingGlobal("buffer", "Please use HEAP8.buffer or wasmMemory.buffer");
+
+function missingLibrarySymbol(sym) {
+ if (typeof globalThis !== "undefined" && !Object.getOwnPropertyDescriptor(globalThis, sym)) {
+  Object.defineProperty(globalThis, sym, {
+   configurable: true,
+   get: function() {
+    var msg = "`" + sym + "` is a library symbol and not included by default; add it to your library.js __deps or to DEFAULT_LIBRARY_FUNCS_TO_INCLUDE on the command line";
+    var librarySymbol = sym;
+    if (!librarySymbol.startsWith("_")) {
+     librarySymbol = "$" + sym;
+    }
+    msg += " (e.g. -sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE=" + librarySymbol + ")";
+    if (isExportedByForceFilesystem(sym)) {
+     msg += ". Alternatively, forcing filesystem support (-sFORCE_FILESYSTEM) can export this for you";
+    }
+    warnOnce(msg);
+    return undefined;
+   }
+  });
+ }
+ unexportedRuntimeSymbol(sym);
+}
+
+function unexportedRuntimeSymbol(sym) {
+ if (!Object.getOwnPropertyDescriptor(Module, sym)) {
+  Object.defineProperty(Module, sym, {
+   configurable: true,
+   get: function() {
+    var msg = "'" + sym + "' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)";
+    if (isExportedByForceFilesystem(sym)) {
+     msg += ". Alternatively, forcing filesystem support (-sFORCE_FILESYSTEM) can export this for you";
+    }
+    abort(msg);
+   }
+  });
+ }
+}
+
+function dbg(text) {
+ console.error(text);
+}
+
 var ASM_CONSTS = {
- 115471: function() {
+ 184315: () => {
   if (typeof window === "undefined" || (window.AudioContext || window.webkitAudioContext) === undefined) {
    return 0;
   }
@@ -2566,7 +2127,7 @@ var ASM_CONSTS = {
   window.miniaudio.referenceCount++;
   return 1;
  },
- 117170: function() {
+ 186014: () => {
   if (typeof window.miniaudio !== "undefined") {
    window.miniaudio.referenceCount--;
    if (window.miniaudio.referenceCount === 0) {
@@ -2574,10 +2135,10 @@ var ASM_CONSTS = {
    }
   }
  },
- 117331: function() {
+ 186175: () => {
   return navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia !== undefined;
  },
- 117435: function() {
+ 186279: () => {
   try {
    var temp = new (window.AudioContext || window.webkitAudioContext)();
    var sampleRate = temp.sampleRate;
@@ -2587,12 +2148,13 @@ var ASM_CONSTS = {
    return 0;
   }
  },
- 117606: function($0, $1, $2, $3, $4) {
+ 186450: ($0, $1, $2, $3, $4, $5) => {
   var channels = $0;
   var sampleRate = $1;
   var bufferSize = $2;
   var isCapture = $3;
   var pDevice = $4;
+  var pAllocationCallbacks = $5;
   if (typeof window.miniaudio === "undefined") {
    return -1;
   }
@@ -2603,7 +2165,7 @@ var ASM_CONSTS = {
   device.webaudio.suspend();
   device.state = 1;
   device.intermediaryBufferSizeInBytes = channels * bufferSize * 4;
-  device.intermediaryBuffer = Module._malloc(device.intermediaryBufferSizeInBytes);
+  device.intermediaryBuffer = _ma_malloc_emscripten(device.intermediaryBufferSizeInBytes, pAllocationCallbacks);
   device.intermediaryBufferView = new Float32Array(Module.HEAPF32.buffer, device.intermediaryBuffer, device.intermediaryBufferSizeInBytes);
   device.scriptNode = device.webaudio.createScriptProcessor(bufferSize, isCapture ? channels : 0, isCapture ? 0 : channels);
   if (isCapture) {
@@ -2697,11 +2259,12 @@ var ASM_CONSTS = {
   }
   return miniaudio.track_device(device);
  },
- 121896: function($0) {
+ 190800: $0 => {
   return miniaudio.get_device_by_index($0).webaudio.sampleRate;
  },
- 121962: function($0) {
+ 190866: ($0, $1, $2, $3) => {
   var device = miniaudio.get_device_by_index($0);
+  var pAllocationCallbacks = $3;
   if (device.scriptNode !== undefined) {
    device.scriptNode.onaudioprocess = function(e) {};
    device.scriptNode.disconnect();
@@ -2714,130 +2277,140 @@ var ASM_CONSTS = {
   device.webaudio.close();
   device.webaudio = undefined;
   if (device.intermediaryBuffer !== undefined) {
-   Module._free(device.intermediaryBuffer);
+   _ma_free_emscripten(device.intermediaryBuffer, pAllocationCallbacks);
    device.intermediaryBuffer = undefined;
    device.intermediaryBufferView = undefined;
    device.intermediaryBufferSizeInBytes = undefined;
   }
   miniaudio.untrack_device_by_index($0);
  },
- 122588: function($0) {
+ 191552: $0 => {
   var device = miniaudio.get_device_by_index($0);
   device.webaudio.resume();
   device.state = 2;
  },
- 122684: function($0) {
+ 191648: $0 => {
   var device = miniaudio.get_device_by_index($0);
   device.webaudio.resume();
   device.state = 2;
  },
- 122780: function($0) {
+ 191744: $0 => {
   var device = miniaudio.get_device_by_index($0);
   device.webaudio.suspend();
   device.state = 1;
  },
- 122877: function($0) {
+ 191841: $0 => {
   var device = miniaudio.get_device_by_index($0);
   device.webaudio.suspend();
   device.state = 1;
  }
 };
 
-function GetCanvasHeight() {
- return canvas.clientHeight;
-}
-
 function GetCanvasWidth() {
  return canvas.clientWidth;
 }
 
+function GetCanvasHeight() {
+ return canvas.clientHeight;
+}
+
+function ExitStatus(status) {
+ this.name = "ExitStatus";
+ this.message = "Program terminated with exit(" + status + ")";
+ this.status = status;
+}
+
 function callRuntimeCallbacks(callbacks) {
  while (callbacks.length > 0) {
-  var callback = callbacks.shift();
-  if (typeof callback == "function") {
-   callback(Module);
-   continue;
-  }
-  var func = callback.func;
-  if (typeof func == "number") {
-   if (callback.arg === undefined) {
-    (function() {
-     dynCall_v.call(null, func);
-    })();
-   } else {
-    (function(a1) {
-     dynCall_vi.apply(null, [ func, a1 ]);
-    })(callback.arg);
-   }
-  } else {
-   func(callback.arg === undefined ? null : callback.arg);
-  }
+  callbacks.shift()(Module);
  }
 }
 
-function withStackSave(f) {
- var stack = stackSave();
- var ret = f();
- stackRestore(stack);
- return ret;
-}
+function getValue(ptr, type = "i8") {
+ if (type.endsWith("*")) type = "*";
+ switch (type) {
+ case "i1":
+  return HEAP8[ptr >>> 0];
 
-function demangle(func) {
- warnOnce("warning: build with -sDEMANGLE_SUPPORT to link in libcxxabi demangling");
- return func;
-}
+ case "i8":
+  return HEAP8[ptr >>> 0];
 
-function demangleAll(text) {
- var regex = /\b_Z[\w\d_]+/g;
- return text.replace(regex, function(x) {
-  var y = demangle(x);
-  return x === y ? x : y + " [" + x + "]";
- });
-}
+ case "i16":
+  return HEAP16[ptr >>> 1];
 
-var wasmTableMirror = [];
+ case "i32":
+  return HEAP32[ptr >>> 2];
 
-function getWasmTableEntry(funcPtr) {
- var func = wasmTableMirror[funcPtr];
- if (!func) {
-  if (funcPtr >= wasmTableMirror.length) wasmTableMirror.length = funcPtr + 1;
-  wasmTableMirror[funcPtr] = func = wasmTable.get(funcPtr);
+ case "i64":
+  return HEAP32[ptr >>> 2];
+
+ case "float":
+  return HEAPF32[ptr >>> 2];
+
+ case "double":
+  return HEAPF64[ptr >>> 3];
+
+ case "*":
+  return HEAPU32[ptr >>> 2];
+
+ default:
+  abort("invalid type for getValue: " + type);
  }
- assert(wasmTable.get(funcPtr) == func, "JavaScript-side Wasm function table mirror is out of date!");
- return func;
 }
 
-function handleException(e) {
- if (e instanceof ExitStatus || e == "unwind") {
-  return EXITSTATUS;
+function ptrToString(ptr) {
+ assert(typeof ptr === "number");
+ return "0x" + ptr.toString(16).padStart(8, "0");
+}
+
+function setValue(ptr, value, type = "i8") {
+ if (type.endsWith("*")) type = "*";
+ switch (type) {
+ case "i1":
+  HEAP8[ptr >>> 0] = value;
+  break;
+
+ case "i8":
+  HEAP8[ptr >>> 0] = value;
+  break;
+
+ case "i16":
+  HEAP16[ptr >>> 1] = value;
+  break;
+
+ case "i32":
+  HEAP32[ptr >>> 2] = value;
+  break;
+
+ case "i64":
+  tempI64 = [ value >>> 0, (tempDouble = value, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
+  HEAP32[ptr >>> 2] = tempI64[0], HEAP32[ptr + 4 >>> 2] = tempI64[1];
+  break;
+
+ case "float":
+  HEAPF32[ptr >>> 2] = value;
+  break;
+
+ case "double":
+  HEAPF64[ptr >>> 3] = value;
+  break;
+
+ case "*":
+  HEAPU32[ptr >>> 2] = value;
+  break;
+
+ default:
+  abort("invalid type for setValue: " + type);
  }
- quit_(1, e);
 }
 
-function jsStackTrace() {
- var error = new Error();
- if (!error.stack) {
-  try {
-   throw new Error();
-  } catch (e) {
-   error = e;
-  }
-  if (!error.stack) {
-   return "(no stack trace available)";
-  }
+function warnOnce(text) {
+ if (!warnOnce.shown) warnOnce.shown = {};
+ if (!warnOnce.shown[text]) {
+  warnOnce.shown[text] = 1;
+  if (ENVIRONMENT_IS_NODE) text = "warning: " + text;
+  err(text);
  }
- return error.stack.toString();
-}
-
-function setWasmTableEntry(idx, func) {
- wasmTable.set(idx, func);
- wasmTableMirror[idx] = wasmTable.get(idx);
-}
-
-function stackTrace() {
- var js = jsStackTrace();
- if (Module["extraStackTrace"]) js += "\n" + Module["extraStackTrace"]();
- return demangleAll(js);
 }
 
 function ___assert_fail(condition, filename, line, func) {
@@ -2901,7 +2474,7 @@ var PATH = {
   return path.substr(lastSlash + 1);
  },
  join: function() {
-  var paths = Array.prototype.slice.call(arguments, 0);
+  var paths = Array.prototype.slice.call(arguments);
   return PATH.normalize(paths.join("/"));
  },
  join2: (l, r) => {
@@ -2912,21 +2485,17 @@ var PATH = {
 function getRandomDevice() {
  if (typeof crypto == "object" && typeof crypto["getRandomValues"] == "function") {
   var randomBuffer = new Uint8Array(1);
-  return function() {
+  return () => {
    crypto.getRandomValues(randomBuffer);
    return randomBuffer[0];
   };
  } else if (ENVIRONMENT_IS_NODE) {
   try {
    var crypto_module = require("crypto");
-   return function() {
-    return crypto_module["randomBytes"](1)[0];
-   };
+   return () => crypto_module["randomBytes"](1)[0];
   } catch (e) {}
  }
- return function() {
-  abort("no cryptographic support found for randomDevice. consider polyfilling it if you want to use something insecure like Math.random(), e.g. put this in a --pre-js: var crypto = { getRandomValues: function(array) { for (var i = 0; i < array.length; i++) array[i] = (Math.random()*256)|0 } };");
- };
+ return () => abort("no cryptographic support found for randomDevice. consider polyfilling it if you want to use something insecure like Math.random(), e.g. put this in a --pre-js: var crypto = { getRandomValues: function(array) { for (var i = 0; i < array.length; i++) array[i] = (Math.random()*256)|0 } };");
 }
 
 var PATH_FS = {
@@ -2979,6 +2548,14 @@ var PATH_FS = {
  }
 };
 
+function intArrayFromString(stringy, dontAddNull, length) {
+ var len = length > 0 ? length : lengthBytesUTF8(stringy) + 1;
+ var u8array = new Array(len);
+ var numBytesWritten = stringToUTF8Array(stringy, u8array, 0, u8array.length);
+ if (dontAddNull) u8array.length = numBytesWritten;
+ return u8array;
+}
+
 var TTY = {
  ttys: [],
  init: function() {},
@@ -3001,10 +2578,10 @@ var TTY = {
    stream.seekable = false;
   },
   close: function(stream) {
-   stream.tty.ops.flush(stream.tty);
+   stream.tty.ops.fsync(stream.tty);
   },
-  flush: function(stream) {
-   stream.tty.ops.flush(stream.tty);
+  fsync: function(stream) {
+   stream.tty.ops.fsync(stream.tty);
   },
   read: function(stream, buffer, offset, length, pos) {
    if (!stream.tty || !stream.tty.ops.get_char) {
@@ -3091,7 +2668,7 @@ var TTY = {
     if (val != 0) tty.output.push(val);
    }
   },
-  flush: function(tty) {
+  fsync: function(tty) {
    if (tty.output && tty.output.length > 0) {
     out(UTF8ArrayToString(tty.output, 0));
     tty.output = [];
@@ -3107,7 +2684,7 @@ var TTY = {
     if (val != 0) tty.output.push(val);
    }
   },
-  flush: function(tty) {
+  fsync: function(tty) {
    if (tty.output && tty.output.length > 0) {
     err(UTF8ArrayToString(tty.output, 0));
     tty.output = [];
@@ -3118,6 +2695,7 @@ var TTY = {
 
 function zeroMemory(address, size) {
  HEAPU8.fill(0, address, address + size);
+ return address;
 }
 
 function alignMemory(size, alignment) {
@@ -3403,17 +2981,14 @@ var MEMFS = {
    MEMFS.expandFileStorage(stream.node, offset + length);
    stream.node.usedBytes = Math.max(stream.node.usedBytes, offset + length);
   },
-  mmap: function(stream, address, length, position, prot, flags) {
-   if (address !== 0) {
-    throw new FS.ErrnoError(28);
-   }
+  mmap: function(stream, length, position, prot, flags) {
    if (!FS.isFile(stream.node.mode)) {
     throw new FS.ErrnoError(43);
    }
    var ptr;
    var allocated;
    var contents = stream.node.contents;
-   if (!(flags & 2) && contents.buffer === buffer) {
+   if (!(flags & 2) && contents.buffer === HEAP8.buffer) {
     allocated = false;
     ptr = contents.byteOffset;
    } else {
@@ -3438,13 +3013,7 @@ var MEMFS = {
    };
   },
   msync: function(stream, buffer, offset, length, mmapFlags) {
-   if (!FS.isFile(stream.node.mode)) {
-    throw new FS.ErrnoError(43);
-   }
-   if (mmapFlags & 2) {
-    return 0;
-   }
-   var bytesWritten = MEMFS.stream_ops.write(stream, buffer, 0, length, offset, false);
+   MEMFS.stream_ops.write(stream, buffer, 0, length, offset, false);
    return 0;
   }
  }
@@ -3452,11 +3021,11 @@ var MEMFS = {
 
 function asyncLoad(url, onload, onerror, noRunDep) {
  var dep = !noRunDep ? getUniqueRunDependency("al " + url) : "";
- readAsync(url, function(arrayBuffer) {
+ readAsync(url, arrayBuffer => {
   assert(arrayBuffer, 'Loading data file "' + url + '" failed (no arrayBuffer).');
   onload(new Uint8Array(arrayBuffer));
   if (dep) removeRunDependency(dep);
- }, function(event) {
+ }, event => {
   if (onerror) {
    onerror();
   } else {
@@ -3590,6 +3159,19 @@ var ERRNO_MESSAGES = {
 
 var ERRNO_CODES = {};
 
+function demangle(func) {
+ warnOnce("warning: build with -sDEMANGLE_SUPPORT to link in libcxxabi demangling");
+ return func;
+}
+
+function demangleAll(text) {
+ var regex = /\b_Z[\w\d_]+/g;
+ return text.replace(regex, function(x) {
+  var y = demangle(x);
+  return x === y ? x : y + " [" + x + "]";
+ });
+}
+
 var FS = {
  root: null,
  mounts: [],
@@ -3605,7 +3187,7 @@ var FS = {
  filesystems: null,
  syncFSRequests: 0,
  lookupPath: (path, opts = {}) => {
-  path = PATH_FS.resolve(FS.cwd(), path);
+  path = PATH_FS.resolve(path);
   if (!path) return {
    path: "",
    node: null
@@ -3618,7 +3200,7 @@ var FS = {
   if (opts.recurse_count > 8) {
    throw new FS.ErrnoError(32);
   }
-  var parts = PATH.normalizeArray(path.split("/").filter(p => !!p), false);
+  var parts = path.split("/").filter(p => !!p);
   var current = FS.root;
   var current_path = "/";
   for (var i = 0; i < parts.length; i++) {
@@ -3843,7 +3425,8 @@ var FS = {
    FS.FSStream = function() {
     this.shared = {};
    };
-   FS.FSStream.prototype = {
+   FS.FSStream.prototype = {};
+   Object.defineProperties(FS.FSStream.prototype, {
     object: {
      get: function() {
       return this.node;
@@ -3876,14 +3459,14 @@ var FS = {
      }
     },
     position: {
-     get function() {
+     get: function() {
       return this.shared.position;
      },
      set: function(val) {
       this.shared.position = val;
      }
     }
-   };
+   });
   }
   stream = Object.assign(new FS.FSStream(), stream);
   var fd = FS.nextfd(fd_start, fd_end);
@@ -4350,7 +3933,7 @@ var FS = {
    timestamp: Math.max(atime, mtime)
   });
  },
- open: (path, flags, mode, fd_start, fd_end) => {
+ open: (path, flags, mode) => {
   if (path === "") {
    throw new FS.ErrnoError(44);
   }
@@ -4399,7 +3982,7 @@ var FS = {
     throw new FS.ErrnoError(errCode);
    }
   }
-  if (flags & 512) {
+  if (flags & 512 && !created) {
    FS.truncate(node, 0);
   }
   flags &= ~(128 | 512 | 131072);
@@ -4412,7 +3995,7 @@ var FS = {
    stream_ops: node.stream_ops,
    ungotten: [],
    error: false
-  }, fd_start, fd_end);
+  });
   if (stream.stream_ops.open) {
    stream.stream_ops.open(stream);
   }
@@ -4532,8 +4115,7 @@ var FS = {
   }
   stream.stream_ops.allocate(stream, offset, length);
  },
- mmap: (stream, address, length, position, prot, flags) => {
-  address >>>= 0;
+ mmap: (stream, length, position, prot, flags) => {
   if ((prot & 2) !== 0 && (flags & 2) === 0 && (stream.flags & 2097155) !== 2) {
    throw new FS.ErrnoError(2);
   }
@@ -4543,11 +4125,11 @@ var FS = {
   if (!stream.stream_ops.mmap) {
    throw new FS.ErrnoError(43);
   }
-  return stream.stream_ops.mmap(stream, address, length, position, prot, flags);
+  return stream.stream_ops.mmap(stream, length, position, prot, flags);
  },
  msync: (stream, buffer, offset, length, mmapFlags) => {
   offset >>>= 0;
-  if (!stream || !stream.stream_ops.msync) {
+  if (!stream.stream_ops.msync) {
    return 0;
   }
   return stream.stream_ops.msync(stream, buffer, offset, length, mmapFlags);
@@ -4687,6 +4269,7 @@ var FS = {
  ensureErrnoError: () => {
   if (FS.ErrnoError) return;
   FS.ErrnoError = function ErrnoError(errno, node) {
+   this.name = "ErrnoError";
    this.node = node;
    this.setErrno = function(errno) {
     this.errno = errno;
@@ -4736,7 +4319,7 @@ var FS = {
  },
  quit: () => {
   FS.init.initialized = false;
-  ___stdio_exit();
+  _fflush(0);
   for (var i = 0; i < FS.streams.length; i++) {
    var stream = FS.streams[i];
    if (!stream) {
@@ -4753,11 +4336,10 @@ var FS = {
  },
  findObject: (path, dontResolveLastLink) => {
   var ret = FS.analyzePath(path, dontResolveLastLink);
-  if (ret.exists) {
-   return ret.object;
-  } else {
+  if (!ret.exists) {
    return null;
   }
+  return ret.object;
  },
  analyzePath: (path, dontResolveLastLink) => {
   try {
@@ -4946,9 +4528,8 @@ var FS = {
     if (!(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304)) throw new Error("Couldn't load " + url + ". Status: " + xhr.status);
     if (xhr.response !== undefined) {
      return new Uint8Array(xhr.response || []);
-    } else {
-     return intArrayFromString(xhr.responseText || "", true);
     }
+    return intArrayFromString(xhr.responseText || "", true);
    };
    var lazyArray = this;
    lazyArray.setDataGetter(chunkNum => {
@@ -5025,8 +4606,7 @@ var FS = {
     return fn.apply(null, arguments);
    };
   });
-  stream_ops.read = ((stream, buffer, offset, length, position) => {
-   FS.forceLoadFile(node);
+  function writeChunks(stream, buffer, offset, length, position) {
    var contents = stream.node.contents;
    if (position >= contents.length) return 0;
    var size = Math.min(contents.length - position, length);
@@ -5041,7 +4621,23 @@ var FS = {
     }
    }
    return size;
-  });
+  }
+  stream_ops.read = (stream, buffer, offset, length, position) => {
+   FS.forceLoadFile(node);
+   return writeChunks(stream, buffer, offset, length, position);
+  };
+  stream_ops.mmap = (stream, length, position, prot, flags) => {
+   FS.forceLoadFile(node);
+   var ptr = mmapAlloc(length);
+   if (!ptr) {
+    throw new FS.ErrnoError(48);
+   }
+   writeChunks(stream, HEAP8, ptr, length, position);
+   return {
+    ptr: ptr,
+    allocated: true
+   };
+  };
   node.stream_ops = stream_ops;
   return node;
  },
@@ -5080,21 +4676,19 @@ var FS = {
  },
  DB_VERSION: 20,
  DB_STORE_NAME: "FILE_DATA",
- saveFilesToDB: (paths, onload, onerror) => {
-  onload = onload || (() => {});
-  onerror = onerror || (() => {});
+ saveFilesToDB: (paths, onload = (() => {}), onerror = (() => {})) => {
   var indexedDB = FS.indexedDB();
   try {
    var openRequest = indexedDB.open(FS.DB_NAME(), FS.DB_VERSION);
   } catch (e) {
    return onerror(e);
   }
-  openRequest.onupgradeneeded = (() => {
+  openRequest.onupgradeneeded = () => {
    out("creating db");
    var db = openRequest.result;
    db.createObjectStore(FS.DB_STORE_NAME);
-  });
-  openRequest.onsuccess = (() => {
+  };
+  openRequest.onsuccess = () => {
    var db = openRequest.result;
    var transaction = db.transaction([ FS.DB_STORE_NAME ], "readwrite");
    var files = transaction.objectStore(FS.DB_STORE_NAME);
@@ -5104,22 +4698,20 @@ var FS = {
    }
    paths.forEach(path => {
     var putRequest = files.put(FS.analyzePath(path).object.contents, path);
-    putRequest.onsuccess = (() => {
+    putRequest.onsuccess = () => {
      ok++;
      if (ok + fail == total) finish();
-    });
-    putRequest.onerror = (() => {
+    };
+    putRequest.onerror = () => {
      fail++;
      if (ok + fail == total) finish();
-    });
+    };
    });
    transaction.onerror = onerror;
-  });
+  };
   openRequest.onerror = onerror;
  },
- loadFilesFromDB: (paths, onload, onerror) => {
-  onload = onload || (() => {});
-  onerror = onerror || (() => {});
+ loadFilesFromDB: (paths, onload = (() => {}), onerror = (() => {})) => {
   var indexedDB = FS.indexedDB();
   try {
    var openRequest = indexedDB.open(FS.DB_NAME(), FS.DB_VERSION);
@@ -5127,7 +4719,7 @@ var FS = {
    return onerror(e);
   }
   openRequest.onupgradeneeded = onerror;
-  openRequest.onsuccess = (() => {
+  openRequest.onsuccess = () => {
    var db = openRequest.result;
    try {
     var transaction = db.transaction([ FS.DB_STORE_NAME ], "readonly");
@@ -5142,21 +4734,21 @@ var FS = {
    }
    paths.forEach(path => {
     var getRequest = files.get(path);
-    getRequest.onsuccess = (() => {
+    getRequest.onsuccess = () => {
      if (FS.analyzePath(path).exists) {
       FS.unlink(path);
      }
      FS.createDataFile(PATH.dirname(path), PATH.basename(path), getRequest.result, true, true, true);
      ok++;
      if (ok + fail == total) finish();
-    });
-    getRequest.onerror = (() => {
+    };
+    getRequest.onerror = () => {
      fail++;
      if (ok + fail == total) finish();
-    });
+    };
    });
    transaction.onerror = onerror;
-  });
+  };
   openRequest.onerror = onerror;
  },
  absolutePath: () => {
@@ -5189,8 +4781,7 @@ var SYSCALLS = {
   if (dirfd === -100) {
    dir = FS.cwd();
   } else {
-   var dirstream = FS.getStream(dirfd);
-   if (!dirstream) throw new FS.ErrnoError(8);
+   var dirstream = SYSCALLS.getStreamFromFD(dirfd);
    dir = dirstream.path;
   }
   if (path.length == 0) {
@@ -5211,100 +4802,45 @@ var SYSCALLS = {
    throw e;
   }
   HEAP32[buf >>> 2] = stat.dev;
-  HEAP32[buf + 4 >>> 2] = 0;
   HEAP32[buf + 8 >>> 2] = stat.ino;
   HEAP32[buf + 12 >>> 2] = stat.mode;
-  HEAP32[buf + 16 >>> 2] = stat.nlink;
+  HEAPU32[buf + 16 >>> 2] = stat.nlink;
   HEAP32[buf + 20 >>> 2] = stat.uid;
   HEAP32[buf + 24 >>> 2] = stat.gid;
   HEAP32[buf + 28 >>> 2] = stat.rdev;
-  HEAP32[buf + 32 >>> 2] = 0;
   tempI64 = [ stat.size >>> 0, (tempDouble = stat.size, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
   HEAP32[buf + 40 >>> 2] = tempI64[0], HEAP32[buf + 44 >>> 2] = tempI64[1];
   HEAP32[buf + 48 >>> 2] = 4096;
   HEAP32[buf + 52 >>> 2] = stat.blocks;
-  HEAP32[buf + 56 >>> 2] = stat.atime.getTime() / 1e3 | 0;
-  HEAP32[buf + 60 >>> 2] = 0;
-  HEAP32[buf + 64 >>> 2] = stat.mtime.getTime() / 1e3 | 0;
-  HEAP32[buf + 68 >>> 2] = 0;
-  HEAP32[buf + 72 >>> 2] = stat.ctime.getTime() / 1e3 | 0;
-  HEAP32[buf + 76 >>> 2] = 0;
+  var atime = stat.atime.getTime();
+  var mtime = stat.mtime.getTime();
+  var ctime = stat.ctime.getTime();
+  tempI64 = [ Math.floor(atime / 1e3) >>> 0, (tempDouble = Math.floor(atime / 1e3), 
+  +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
+  HEAP32[buf + 56 >>> 2] = tempI64[0], HEAP32[buf + 60 >>> 2] = tempI64[1];
+  HEAPU32[buf + 64 >>> 2] = atime % 1e3 * 1e3;
+  tempI64 = [ Math.floor(mtime / 1e3) >>> 0, (tempDouble = Math.floor(mtime / 1e3), 
+  +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
+  HEAP32[buf + 72 >>> 2] = tempI64[0], HEAP32[buf + 76 >>> 2] = tempI64[1];
+  HEAPU32[buf + 80 >>> 2] = mtime % 1e3 * 1e3;
+  tempI64 = [ Math.floor(ctime / 1e3) >>> 0, (tempDouble = Math.floor(ctime / 1e3), 
+  +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
+  HEAP32[buf + 88 >>> 2] = tempI64[0], HEAP32[buf + 92 >>> 2] = tempI64[1];
+  HEAPU32[buf + 96 >>> 2] = ctime % 1e3 * 1e3;
   tempI64 = [ stat.ino >>> 0, (tempDouble = stat.ino, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
-  HEAP32[buf + 80 >>> 2] = tempI64[0], HEAP32[buf + 84 >>> 2] = tempI64[1];
+  HEAP32[buf + 104 >>> 2] = tempI64[0], HEAP32[buf + 108 >>> 2] = tempI64[1];
   return 0;
  },
  doMsync: function(addr, stream, len, flags, offset) {
+  if (!FS.isFile(stream.node.mode)) {
+   throw new FS.ErrnoError(43);
+  }
+  if (flags & 2) {
+   return 0;
+  }
+  addr >>>= 0;
   var buffer = HEAPU8.slice(addr, addr + len);
   FS.msync(stream, buffer, offset, len, flags);
- },
- doMknod: function(path, mode, dev) {
-  switch (mode & 61440) {
-  case 32768:
-  case 8192:
-  case 24576:
-  case 4096:
-  case 49152:
-   break;
-
-  default:
-   return -28;
-  }
-  FS.mknod(path, mode, dev);
-  return 0;
- },
- doReadlink: function(path, buf, bufsize) {
-  if (bufsize <= 0) return -28;
-  var ret = FS.readlink(path);
-  var len = Math.min(bufsize, lengthBytesUTF8(ret));
-  var endChar = HEAP8[buf + len >>> 0];
-  stringToUTF8(ret, buf, bufsize + 1);
-  HEAP8[buf + len >>> 0] = endChar;
-  return len;
- },
- doAccess: function(path, amode) {
-  if (amode & ~7) {
-   return -28;
-  }
-  var lookup = FS.lookupPath(path, {
-   follow: true
-  });
-  var node = lookup.node;
-  if (!node) {
-   return -44;
-  }
-  var perms = "";
-  if (amode & 4) perms += "r";
-  if (amode & 2) perms += "w";
-  if (amode & 1) perms += "x";
-  if (perms && FS.nodePermissions(node, perms)) {
-   return -2;
-  }
-  return 0;
- },
- doReadv: function(stream, iov, iovcnt, offset) {
-  var ret = 0;
-  for (var i = 0; i < iovcnt; i++) {
-   var ptr = HEAP32[iov >>> 2];
-   var len = HEAP32[iov + 4 >>> 2];
-   iov += 8;
-   var curr = FS.read(stream, HEAP8, ptr, len, offset);
-   if (curr < 0) return -1;
-   ret += curr;
-   if (curr < len) break;
-  }
-  return ret;
- },
- doWritev: function(stream, iov, iovcnt, offset) {
-  var ret = 0;
-  for (var i = 0; i < iovcnt; i++) {
-   var ptr = HEAP32[iov >>> 2];
-   var len = HEAP32[iov + 4 >>> 2];
-   iov += 8;
-   var curr = FS.write(stream, HEAP8, ptr, len, offset);
-   if (curr < 0) return -1;
-   ret += curr;
-  }
-  return ret;
  },
  varargs: undefined,
  get: function() {
@@ -5345,8 +4881,7 @@ function ___syscall__newselect(nfds, readfds, writefds, exceptfds, timeout) {
    if (!check(fd, allLow, allHigh, mask)) {
     continue;
    }
-   var stream = FS.getStream(fd);
-   if (!stream) throw new FS.ErrnoError(8);
+   var stream = SYSCALLS.getStreamFromFD(fd);
    var flags = SYSCALLS.DEFAULT_POLLMASK;
    if (stream.stream_ops.poll) {
     flags = stream.stream_ops.poll(stream);
@@ -5378,7 +4913,7 @@ function ___syscall__newselect(nfds, readfds, writefds, exceptfds, timeout) {
   }
   return total;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -5512,9 +5047,7 @@ var SOCKFS = {
      var opts = undefined;
      if (subProtocols !== "null") {
       subProtocols = subProtocols.replace(/^ +| +$/g, "").split(/ *, */);
-      opts = ENVIRONMENT_IS_NODE ? {
-       "protocol": subProtocols.toString()
-      } : subProtocols;
+      opts = subProtocols;
      }
      if (runtimeConfig && null === Module["websocket"]["subprotocol"]) {
       subProtocols = "null";
@@ -5576,9 +5109,8 @@ var SOCKFS = {
      assert(data.byteLength !== undefined);
      if (data.byteLength == 0) {
       return;
-     } else {
-      data = new Uint8Array(data);
      }
+     data = new Uint8Array(data);
     }
     var wasfirst = first;
     first = false;
@@ -5598,8 +5130,8 @@ var SOCKFS = {
    }
    if (ENVIRONMENT_IS_NODE) {
     peer.socket.on("open", handleOpen);
-    peer.socket.on("message", function(data, flags) {
-     if (!flags.binary) {
+    peer.socket.on("message", function(data, isBinary) {
+     if (!isBinary) {
       return;
      }
      handleMessage(new Uint8Array(data).buffer);
@@ -5687,7 +5219,7 @@ var SOCKFS = {
     try {
      sock.sock_ops.listen(sock, 0);
     } catch (e) {
-     if (!(e instanceof FS.ErrnoError)) throw e;
+     if (!(e.name === "ErrnoError")) throw e;
      if (e.errno !== 138) throw e;
     }
    }
@@ -5738,7 +5270,7 @@ var SOCKFS = {
      Module["websocket"].emit("connection", sock.stream.fd);
     }
    });
-   sock.server.on("closed", function() {
+   sock.server.on("close", function() {
     Module["websocket"].emit("close", sock.stream.fd);
     sock.server = null;
    });
@@ -5825,14 +5357,13 @@ var SOCKFS = {
      var dest = SOCKFS.websocket_sock_ops.getPeer(sock, sock.daddr, sock.dport);
      if (!dest) {
       throw new FS.ErrnoError(53);
-     } else if (dest.socket.readyState === dest.socket.CLOSING || dest.socket.readyState === dest.socket.CLOSED) {
-      return null;
-     } else {
-      throw new FS.ErrnoError(6);
      }
-    } else {
+     if (dest.socket.readyState === dest.socket.CLOSING || dest.socket.readyState === dest.socket.CLOSED) {
+      return null;
+     }
      throw new FS.ErrnoError(6);
     }
+    throw new FS.ErrnoError(6);
    }
    var queuedLength = queued.data.byteLength || queued.data.length;
    var queuedOffset = queued.data.byteOffset || 0;
@@ -6014,7 +5545,7 @@ function ___syscall_accept4(fd, addr, addrlen, flags) {
   }
   return newsock.stream.fd;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6136,7 +5667,7 @@ function ___syscall_bind(fd, addr, addrlen) {
   sock.sock_ops.bind(sock, info.addr, info.port);
   return 0;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6148,7 +5679,7 @@ function ___syscall_connect(fd, addr, addrlen) {
   sock.sock_ops.connect(sock, info.addr, info.port);
   return 0;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6162,7 +5693,7 @@ function ___syscall_dup3(fd, suggestFD, flags) {
   if (suggest) FS.close(suggest);
   return FS.createStream(old, suggestFD, suggestFD + 1).fd;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6223,7 +5754,17 @@ function ___syscall_fcntl64(fd, cmd, varargs) {
    }
   }
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
+  return -e.errno;
+ }
+}
+
+function ___syscall_fstat64(fd, buf) {
+ try {
+  var stream = SYSCALLS.getStreamFromFD(fd);
+  return SYSCALLS.doStat(FS.stat, stream.path, buf);
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6237,7 +5778,7 @@ function ___syscall_getcwd(buf, size) {
   stringToUTF8(cwd, buf, size);
   return cwdLengthInBytes;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6285,7 +5826,7 @@ function ___syscall_getdents64(fd, dirp, count) {
   FS.llseek(stream, idx * struct_size, 0);
   return pos;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6346,10 +5887,10 @@ function ___syscall_ioctl(fd, op, varargs) {
    }
 
   default:
-   abort("bad ioctl syscall " + op);
+   return -28;
   }
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6360,7 +5901,7 @@ function ___syscall_listen(fd, backlog) {
   sock.sock_ops.listen(sock, backlog);
   return 0;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6370,7 +5911,36 @@ function ___syscall_lstat64(path, buf) {
   path = SYSCALLS.getStr(path);
   return SYSCALLS.doStat(FS.lstat, path, buf);
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
+  return -e.errno;
+ }
+}
+
+function ___syscall_mkdirat(dirfd, path, mode) {
+ try {
+  path = SYSCALLS.getStr(path);
+  path = SYSCALLS.calculateAt(dirfd, path);
+  path = PATH.normalize(path);
+  if (path[path.length - 1] === "/") path = path.substr(0, path.length - 1);
+  FS.mkdir(path, mode, 0);
+  return 0;
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
+  return -e.errno;
+ }
+}
+
+function ___syscall_newfstatat(dirfd, path, buf, flags) {
+ try {
+  path = SYSCALLS.getStr(path);
+  var nofollow = flags & 256;
+  var allowEmpty = flags & 4096;
+  flags = flags & ~6400;
+  assert(!flags, "unknown flags in __syscall_newfstatat: " + flags);
+  path = SYSCALLS.calculateAt(dirfd, path, allowEmpty);
+  return SYSCALLS.doStat(nofollow ? FS.lstat : FS.stat, path, buf);
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6383,7 +5953,7 @@ function ___syscall_openat(dirfd, path, flags, varargs) {
   var mode = varargs ? SYSCALLS.get() : 0;
   return FS.open(path, flags, mode).fd;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6397,7 +5967,7 @@ function ___syscall_renameat(olddirfd, oldpath, newdirfd, newpath) {
   FS.rename(oldpath, newpath);
   return 0;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6408,7 +5978,7 @@ function ___syscall_rmdir(path) {
   FS.rmdir(path);
   return 0;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6419,7 +5989,17 @@ function ___syscall_socket(domain, type, protocol) {
   assert(sock.stream.fd < 64);
   return sock.stream.fd;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
+  return -e.errno;
+ }
+}
+
+function ___syscall_stat64(path, buf) {
+ try {
+  path = SYSCALLS.getStr(path);
+  return SYSCALLS.doStat(FS.stat, path, buf);
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
 }
@@ -6437,13 +6017,9 @@ function ___syscall_unlinkat(dirfd, path, flags) {
   }
   return 0;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return -e.errno;
  }
-}
-
-function __emscripten_date_now() {
- return Date.now();
 }
 
 var nowIsMonotonic = true;
@@ -6456,8 +6032,12 @@ function __emscripten_throw_longjmp() {
  throw Infinity;
 }
 
+function readI53FromI64(ptr) {
+ return HEAPU32[ptr >>> 2] + HEAP32[ptr + 4 >>> 2] * 4294967296;
+}
+
 function __gmtime_js(time, tmPtr) {
- var date = new Date(HEAP32[time >>> 2] * 1e3);
+ var date = new Date(readI53FromI64(time) * 1e3);
  HEAP32[tmPtr >>> 2] = date.getUTCSeconds();
  HEAP32[tmPtr + 4 >>> 2] = date.getUTCMinutes();
  HEAP32[tmPtr + 8 >>> 2] = date.getUTCHours();
@@ -6470,8 +6050,23 @@ function __gmtime_js(time, tmPtr) {
  HEAP32[tmPtr + 28 >>> 2] = yday;
 }
 
+function __isLeapYear(year) {
+ return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+}
+
+var __MONTH_DAYS_LEAP_CUMULATIVE = [ 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335 ];
+
+var __MONTH_DAYS_REGULAR_CUMULATIVE = [ 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 ];
+
+function __yday_from_date(date) {
+ var isLeapYear = __isLeapYear(date.getFullYear());
+ var monthDaysCumulative = isLeapYear ? __MONTH_DAYS_LEAP_CUMULATIVE : __MONTH_DAYS_REGULAR_CUMULATIVE;
+ var yday = monthDaysCumulative[date.getMonth()] + date.getDate() - 1;
+ return yday;
+}
+
 function __localtime_js(time, tmPtr) {
- var date = new Date(HEAP32[time >>> 2] * 1e3);
+ var date = new Date(readI53FromI64(time) * 1e3);
  HEAP32[tmPtr >>> 2] = date.getSeconds();
  HEAP32[tmPtr + 4 >>> 2] = date.getMinutes();
  HEAP32[tmPtr + 8 >>> 2] = date.getHours();
@@ -6479,10 +6074,10 @@ function __localtime_js(time, tmPtr) {
  HEAP32[tmPtr + 16 >>> 2] = date.getMonth();
  HEAP32[tmPtr + 20 >>> 2] = date.getFullYear() - 1900;
  HEAP32[tmPtr + 24 >>> 2] = date.getDay();
- var start = new Date(date.getFullYear(), 0, 1);
- var yday = (date.getTime() - start.getTime()) / (1e3 * 60 * 60 * 24) | 0;
+ var yday = __yday_from_date(date) | 0;
  HEAP32[tmPtr + 28 >>> 2] = yday;
  HEAP32[tmPtr + 36 >>> 2] = -(date.getTimezoneOffset() * 60);
+ var start = new Date(date.getFullYear(), 0, 1);
  var summerOffset = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
  var winterOffset = start.getTimezoneOffset();
  var dst = (summerOffset != winterOffset && date.getTimezoneOffset() == Math.min(winterOffset, summerOffset)) | 0;
@@ -6505,24 +6100,32 @@ function __mktime_js(tmPtr) {
   date.setTime(date.getTime() + (trueOffset - guessedOffset) * 6e4);
  }
  HEAP32[tmPtr + 24 >>> 2] = date.getDay();
- var yday = (date.getTime() - start.getTime()) / (1e3 * 60 * 60 * 24) | 0;
+ var yday = __yday_from_date(date) | 0;
  HEAP32[tmPtr + 28 >>> 2] = yday;
  HEAP32[tmPtr >>> 2] = date.getSeconds();
  HEAP32[tmPtr + 4 >>> 2] = date.getMinutes();
  HEAP32[tmPtr + 8 >>> 2] = date.getHours();
  HEAP32[tmPtr + 12 >>> 2] = date.getDate();
  HEAP32[tmPtr + 16 >>> 2] = date.getMonth();
+ HEAP32[tmPtr + 20 >>> 2] = date.getYear();
  return date.getTime() / 1e3 | 0;
 }
 
-function _tzset_impl(timezone, daylight, tzname) {
+function allocateUTF8(str) {
+ var size = lengthBytesUTF8(str) + 1;
+ var ret = _malloc(size);
+ if (ret) stringToUTF8Array(str, HEAP8, ret, size);
+ return ret;
+}
+
+function __tzset_js(timezone, daylight, tzname) {
  var currentYear = new Date().getFullYear();
  var winter = new Date(currentYear, 0, 1);
  var summer = new Date(currentYear, 6, 1);
  var winterOffset = winter.getTimezoneOffset();
  var summerOffset = summer.getTimezoneOffset();
  var stdTimezoneOffset = Math.max(winterOffset, summerOffset);
- HEAP32[timezone >>> 2] = stdTimezoneOffset * 60;
+ HEAPU32[timezone >>> 2] = stdTimezoneOffset * 60;
  HEAP32[daylight >>> 2] = Number(winterOffset != summerOffset);
  function extractZone(date) {
   var match = date.toTimeString().match(/\(([A-Za-z ]+)\)$/);
@@ -6533,51 +6136,61 @@ function _tzset_impl(timezone, daylight, tzname) {
  var winterNamePtr = allocateUTF8(winterName);
  var summerNamePtr = allocateUTF8(summerName);
  if (summerOffset < winterOffset) {
-  HEAP32[tzname >>> 2] = winterNamePtr;
-  HEAP32[tzname + 4 >>> 2] = summerNamePtr;
+  HEAPU32[tzname >>> 2] = winterNamePtr;
+  HEAPU32[tzname + 4 >>> 2] = summerNamePtr;
  } else {
-  HEAP32[tzname >>> 2] = summerNamePtr;
-  HEAP32[tzname + 4 >>> 2] = winterNamePtr;
+  HEAPU32[tzname >>> 2] = summerNamePtr;
+  HEAPU32[tzname + 4 >>> 2] = winterNamePtr;
  }
-}
-
-function __tzset_js(timezone, daylight, tzname) {
- if (__tzset_js.called) return;
- __tzset_js.called = true;
- _tzset_impl(timezone, daylight, tzname);
 }
 
 function _abort() {
  abort("native code called abort()");
 }
 
-var readAsmConstArgsArray = [];
+var readEmAsmArgsArray = [];
 
-function readAsmConstArgs(sigPtr, buf) {
- assert(Array.isArray(readAsmConstArgsArray));
+function readEmAsmArgs(sigPtr, buf) {
+ assert(Array.isArray(readEmAsmArgsArray));
  assert(buf % 16 == 0);
- readAsmConstArgsArray.length = 0;
+ readEmAsmArgsArray.length = 0;
  var ch;
  buf >>= 2;
  while (ch = HEAPU8[sigPtr++ >>> 0]) {
-  assert(ch === 100 || ch === 102 || ch === 105, "Invalid character " + ch + '("' + String.fromCharCode(ch) + '") in readAsmConstArgs! Use only "d", "f" or "i", and do not specify "v" for void return argument.');
-  var readAsmConstArgsDouble = ch < 105;
-  if (readAsmConstArgsDouble && buf & 1) buf++;
-  readAsmConstArgsArray.push(readAsmConstArgsDouble ? HEAPF64[buf++ >>> 1] : HEAP32[buf >>> 0]);
+  var chr = String.fromCharCode(ch);
+  var validChars = [ "d", "f", "i" ];
+  assert(validChars.includes(chr), "Invalid character " + ch + '("' + chr + '") in readEmAsmArgs! Use only [' + validChars + '], and do not specify "v" for void return argument.');
+  buf += ch != 105 & buf;
+  readEmAsmArgsArray.push(ch == 105 ? HEAP32[buf >>> 0] : HEAPF64[buf++ >>> 1]);
   ++buf;
  }
- return readAsmConstArgsArray;
+ return readEmAsmArgsArray;
+}
+
+function runEmAsmFunction(code, sigPtr, argbuf) {
+ var args = readEmAsmArgs(sigPtr, argbuf);
+ if (!ASM_CONSTS.hasOwnProperty(code)) abort("No EM_ASM constant found at address " + code);
+ return ASM_CONSTS[code].apply(null, args);
 }
 
 function _emscripten_asm_const_int(code, sigPtr, argbuf) {
- var args = readAsmConstArgs(sigPtr, argbuf);
- if (!ASM_CONSTS.hasOwnProperty(code)) abort("No EM_ASM constant found at address " + code);
- return ASM_CONSTS[code].apply(null, args);
+ return runEmAsmFunction(code, sigPtr, argbuf);
 }
 
 function _emscripten_console_error(str) {
  assert(typeof str == "number");
  console.error(UTF8ToString(str));
+}
+
+function _emscripten_date_now() {
+ return Date.now();
+}
+
+function withStackSave(f) {
+ var stack = stackSave();
+ var ret = f();
+ stackRestore(stack);
+ return ret;
 }
 
 var JSEvents = {
@@ -6753,11 +6366,11 @@ function _emscripten_get_gamepad_status(index, gamepadState) {
 var _emscripten_get_now;
 
 if (ENVIRONMENT_IS_NODE) {
- _emscripten_get_now = (() => {
-  var t = process["hrtime"]();
+ _emscripten_get_now = () => {
+  var t = process.hrtime();
   return t[0] * 1e3 + t[1] / 1e6;
- });
-} else _emscripten_get_now = (() => performance.now());
+ };
+} else _emscripten_get_now = () => performance.now();
 
 function _emscripten_get_num_gamepads() {
  if (!JSEvents.lastGamepadState) throw "emscripten_get_num_gamepads() can only be called after having first called emscripten_sample_gamepad_data() and that function has returned EMSCRIPTEN_RESULT_SUCCESS!";
@@ -7295,10 +6908,6 @@ function _emscripten_glGetAttribLocation(program, name) {
  return GLctx.getAttribLocation(GL.programs[program], UTF8ToString(name));
 }
 
-function readI53FromI64(ptr) {
- return HEAPU32[ptr >>> 2] + HEAP32[ptr + 4 >>> 2] * 4294967296;
-}
-
 function readI53FromU64(ptr) {
  return HEAPU32[ptr >>> 2] + HEAPU32[ptr + 4 >>> 2] * 4294967296;
 }
@@ -7307,7 +6916,7 @@ function writeI53ToI64(ptr, num) {
  HEAPU32[ptr >>> 2] = num;
  HEAPU32[ptr + 4 >>> 2] = (num - HEAPU32[ptr >>> 2]) / 4294967296;
  var deserialized = num >= 0 ? readI53FromU64(ptr) : readI53FromI64(ptr);
- if (deserialized != num) warnOnce("writeI53ToI64() out of range: serialized JS Number " + num + " to Wasm heap as bytes lo=0x" + HEAPU32[ptr >>> 2].toString(16) + ", hi=0x" + HEAPU32[ptr + 4 >>> 2].toString(16) + ", which deserializes back to " + deserialized + " instead!");
+ if (deserialized != num) warnOnce("writeI53ToI64() out of range: serialized JS Number " + num + " to Wasm heap as bytes lo=" + ptrToString(HEAPU32[ptr >>> 2]) + ", hi=" + ptrToString(HEAPU32[ptr + 4 >>> 2]) + ", which deserializes back to " + deserialized + " instead!");
 }
 
 function emscriptenWebGLGet(name_, p, type) {
@@ -8346,17 +7955,18 @@ function _emscripten_memcpy_big(dest, src, num) {
  HEAPU8.copyWithin(dest >>> 0, src >>> 0, src + num >>> 0);
 }
 
-function _emscripten_get_heap_max() {
+function getHeapMax() {
  return 4294901760;
 }
 
 function emscripten_realloc_buffer(size) {
+ var b = wasmMemory.buffer;
  try {
-  wasmMemory.grow(size - buffer.byteLength + 65535 >>> 16);
-  updateGlobalBufferAndViews(wasmMemory.buffer);
+  wasmMemory.grow(size - b.byteLength + 65535 >>> 16);
+  updateMemoryViews();
   return 1;
  } catch (e) {
-  err("emscripten_realloc_buffer: Attempted to grow heap from " + buffer.byteLength + " bytes to " + size + " bytes, but got error: " + e);
+  err("emscripten_realloc_buffer: Attempted to grow heap from " + b.byteLength + " bytes to " + size + " bytes, but got error: " + e);
  }
 }
 
@@ -8364,7 +7974,7 @@ function _emscripten_resize_heap(requestedSize) {
  var oldSize = HEAPU8.length;
  requestedSize = requestedSize >>> 0;
  assert(requestedSize > oldSize);
- var maxHeapSize = _emscripten_get_heap_max();
+ var maxHeapSize = getHeapMax();
  if (requestedSize > maxHeapSize) {
   err("Cannot enlarge memory, asked to go up to " + requestedSize + " bytes, but the limit is " + maxHeapSize + " bytes!");
   return false;
@@ -8396,9 +8006,9 @@ function _emscripten_run_script_string(ptr) {
  var me = _emscripten_run_script_string;
  var len = lengthBytesUTF8(s);
  if (!me.bufferSize || me.bufferSize < len + 1) {
-  if (me.bufferSize) _emscripten_builtin_free(me.buffer);
+  if (me.bufferSize) _free(me.buffer);
   me.bufferSize = len + 1;
-  me.buffer = _emscripten_builtin_malloc(me.bufferSize);
+  me.buffer = _malloc(me.bufferSize);
  }
  stringToUTF8(s, me.buffer, me.bufferSize);
  return me.buffer;
@@ -8432,12 +8042,9 @@ function fillMouseEventData(eventStruct, e, target) {
 function registerMouseEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
  if (!JSEvents.mouseEvent) JSEvents.mouseEvent = _malloc(72);
  target = findEventTarget(target);
- var mouseEventHandlerFunc = function(ev) {
-  var e = ev || event;
+ var mouseEventHandlerFunc = function(e = event) {
   fillMouseEventData(JSEvents.mouseEvent, e, target);
-  if (function(a1, a2, a3) {
-   return dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]);
-  }(eventTypeId, JSEvents.mouseEvent, userData)) e.preventDefault();
+  if (((a1, a2, a3) => dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]))(eventTypeId, JSEvents.mouseEvent, userData)) e.preventDefault();
  };
  var eventHandler = {
   target: target,
@@ -8476,13 +8083,10 @@ function fillFullscreenChangeEventData(eventStruct) {
 
 function registerFullscreenChangeEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
  if (!JSEvents.fullscreenChangeEvent) JSEvents.fullscreenChangeEvent = _malloc(280);
- var fullscreenChangeEventhandlerFunc = function(ev) {
-  var e = ev || event;
+ var fullscreenChangeEventhandlerFunc = function(e = event) {
   var fullscreenChangeEvent = JSEvents.fullscreenChangeEvent;
   fillFullscreenChangeEventData(fullscreenChangeEvent);
-  if (function(a1, a2, a3) {
-   return dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]);
-  }(eventTypeId, fullscreenChangeEvent, userData)) e.preventDefault();
+  if (((a1, a2, a3) => dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]))(eventTypeId, fullscreenChangeEvent, userData)) e.preventDefault();
  };
  var eventHandler = {
   target: target,
@@ -8505,13 +8109,10 @@ function _emscripten_set_fullscreenchange_callback_on_thread(target, userData, u
 
 function registerGamepadEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
  if (!JSEvents.gamepadEvent) JSEvents.gamepadEvent = _malloc(1432);
- var gamepadEventHandlerFunc = function(ev) {
-  var e = ev || event;
+ var gamepadEventHandlerFunc = function(e = event) {
   var gamepadEvent = JSEvents.gamepadEvent;
   fillGamepadEventData(gamepadEvent, e["gamepad"]);
-  if (function(a1, a2, a3) {
-   return dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]);
-  }(eventTypeId, gamepadEvent, userData)) e.preventDefault();
+  if (((a1, a2, a3) => dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]))(eventTypeId, gamepadEvent, userData)) e.preventDefault();
  };
  var eventHandler = {
   target: findEventTarget(target),
@@ -8536,25 +8137,62 @@ function _emscripten_set_gamepaddisconnected_callback_on_thread(userData, useCap
  return 0;
 }
 
-function callUserCallback(func, synchronous) {
+function handleException(e) {
+ if (e instanceof ExitStatus || e == "unwind") {
+  return EXITSTATUS;
+ }
+ checkStackCookie();
+ if (e instanceof WebAssembly.RuntimeError) {
+  if (_emscripten_stack_get_current() <= 0) {
+   err("Stack overflow detected.  You can try increasing -sSTACK_SIZE (currently set to " + 65536 + ")");
+  }
+ }
+ quit_(1, e);
+}
+
+function _proc_exit(code) {
+ EXITSTATUS = code;
+ if (!keepRuntimeAlive()) {
+  if (Module["onExit"]) Module["onExit"](code);
+  ABORT = true;
+ }
+ quit_(code, new ExitStatus(code));
+}
+
+function exitJS(status, implicit) {
+ EXITSTATUS = status;
+ checkUnflushedContent();
+ if (keepRuntimeAlive() && !implicit) {
+  var msg = "program exited (with status: " + status + "), but keepRuntimeAlive() is set (counter=" + runtimeKeepaliveCounter + ") due to an async operation, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)";
+  err(msg);
+ }
+ _proc_exit(status);
+}
+
+var _exit = exitJS;
+
+function maybeExit() {
+ if (!keepRuntimeAlive()) {
+  try {
+   _exit(EXITSTATUS);
+  } catch (e) {
+   handleException(e);
+  }
+ }
+}
+
+function callUserCallback(func) {
  if (ABORT) {
   err("user callback triggered after runtime exited or application aborted.  Ignoring.");
   return;
  }
- if (synchronous) {
-  func();
-  return;
- }
  try {
   func();
+  maybeExit();
  } catch (e) {
   handleException(e);
  }
 }
-
-function runtimeKeepalivePush() {}
-
-function runtimeKeepalivePop() {}
 
 function safeSetTimeout(func, timeout) {
  return setTimeout(function() {
@@ -8629,12 +8267,12 @@ var Browser = {
    Browser.hasBlobConstructor = true;
   } catch (e) {
    Browser.hasBlobConstructor = false;
-   out("warning: no blob constructor, cannot create blobs with mimetypes");
+   err("warning: no blob constructor, cannot create blobs with mimetypes");
   }
-  Browser.BlobBuilder = typeof MozBlobBuilder != "undefined" ? MozBlobBuilder : typeof WebKitBlobBuilder != "undefined" ? WebKitBlobBuilder : !Browser.hasBlobConstructor ? out("warning: no BlobBuilder") : null;
+  Browser.BlobBuilder = typeof MozBlobBuilder != "undefined" ? MozBlobBuilder : typeof WebKitBlobBuilder != "undefined" ? WebKitBlobBuilder : !Browser.hasBlobConstructor ? err("warning: no BlobBuilder") : null;
   Browser.URLObject = typeof window != "undefined" ? window.URL ? window.URL : window.webkitURL : undefined;
   if (!Module.noImageDecoding && typeof Browser.URLObject == "undefined") {
-   out("warning: Browser does not support creating object URLs. Built-in browser image decoding will not be available.");
+   err("warning: Browser does not support creating object URLs. Built-in browser image decoding will not be available.");
    Module.noImageDecoding = true;
   }
   var imagePlugin = {};
@@ -8665,7 +8303,7 @@ var Browser = {
    var url = Browser.URLObject.createObjectURL(b);
    assert(typeof url == "string", "createObjectURL must return a url as a string");
    var img = new Image();
-   img.onload = (() => {
+   img.onload = () => {
     assert(img.complete, "Image " + name + " could not be decoded");
     var canvas = document.createElement("canvas");
     canvas.width = img.width;
@@ -8675,11 +8313,11 @@ var Browser = {
     preloadedImages[name] = canvas;
     Browser.URLObject.revokeObjectURL(url);
     if (onload) onload(byteArray);
-   });
-   img.onerror = (event => {
+   };
+   img.onerror = event => {
     out("Image " + url + " could not be decoded");
     if (onerror) onerror();
-   });
+   };
    img.src = url;
   };
   Module["preloadPlugins"].push(imagePlugin);
@@ -8716,12 +8354,10 @@ var Browser = {
     var url = Browser.URLObject.createObjectURL(b);
     assert(typeof url == "string", "createObjectURL must return a url as a string");
     var audio = new Audio();
-    audio.addEventListener("canplaythrough", function() {
-     finish(audio);
-    }, false);
+    audio.addEventListener("canplaythrough", () => finish(audio), false);
     audio.onerror = function audio_onerror(event) {
      if (done) return;
-     out("warning: browser could not fully decode audio " + name + ", trying slower base64 approach");
+     err("warning: browser could not fully decode audio " + name + ", trying slower base64 approach");
      function encode64(data) {
       var BASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
       var PAD = "=";
@@ -8763,15 +8399,15 @@ var Browser = {
   }
   var canvas = Module["canvas"];
   if (canvas) {
-   canvas.requestPointerLock = canvas["requestPointerLock"] || canvas["mozRequestPointerLock"] || canvas["webkitRequestPointerLock"] || canvas["msRequestPointerLock"] || function() {};
-   canvas.exitPointerLock = document["exitPointerLock"] || document["mozExitPointerLock"] || document["webkitExitPointerLock"] || document["msExitPointerLock"] || function() {};
+   canvas.requestPointerLock = canvas["requestPointerLock"] || canvas["mozRequestPointerLock"] || canvas["webkitRequestPointerLock"] || canvas["msRequestPointerLock"] || (() => {});
+   canvas.exitPointerLock = document["exitPointerLock"] || document["mozExitPointerLock"] || document["webkitExitPointerLock"] || document["msExitPointerLock"] || (() => {});
    canvas.exitPointerLock = canvas.exitPointerLock.bind(document);
    document.addEventListener("pointerlockchange", pointerLockChange, false);
    document.addEventListener("mozpointerlockchange", pointerLockChange, false);
    document.addEventListener("webkitpointerlockchange", pointerLockChange, false);
    document.addEventListener("mspointerlockchange", pointerLockChange, false);
    if (Module["elementPointerLock"]) {
-    canvas.addEventListener("click", function(ev) {
+    canvas.addEventListener("click", ev => {
      if (!Browser.pointerLock && Module["canvas"].requestPointerLock) {
       Module["canvas"].requestPointerLock();
       ev.preventDefault();
@@ -8873,11 +8509,7 @@ var Browser = {
   var canvasContainer = document.createElement("div");
   canvas.parentNode.insertBefore(canvasContainer, canvas);
   canvasContainer.appendChild(canvas);
-  canvasContainer.requestFullscreen = canvasContainer["requestFullscreen"] || canvasContainer["mozRequestFullScreen"] || canvasContainer["msRequestFullscreen"] || (canvasContainer["webkitRequestFullscreen"] ? function() {
-   canvasContainer["webkitRequestFullscreen"](Element["ALLOW_KEYBOARD_INPUT"]);
-  } : null) || (canvasContainer["webkitRequestFullScreen"] ? function() {
-   canvasContainer["webkitRequestFullScreen"](Element["ALLOW_KEYBOARD_INPUT"]);
-  } : null);
+  canvasContainer.requestFullscreen = canvasContainer["requestFullscreen"] || canvasContainer["mozRequestFullScreen"] || canvasContainer["msRequestFullscreen"] || (canvasContainer["webkitRequestFullscreen"] ? () => canvasContainer["webkitRequestFullscreen"](Element["ALLOW_KEYBOARD_INPUT"]) : null) || (canvasContainer["webkitRequestFullScreen"] ? () => canvasContainer["webkitRequestFullScreen"](Element["ALLOW_KEYBOARD_INPUT"]) : null);
   canvasContainer.requestFullscreen();
  },
  requestFullScreen: function() {
@@ -8912,8 +8544,8 @@ var Browser = {
   var RAF = Browser.fakeRequestAnimationFrame;
   RAF(func);
  },
- safeSetTimeout: function(func) {
-  return safeSetTimeout(func);
+ safeSetTimeout: function(func, timeout) {
+  return safeSetTimeout(func, timeout);
  },
  safeRequestAnimationFrame: function(func) {
   return Browser.requestAnimationFrame(function() {
@@ -9143,7 +8775,7 @@ function _emscripten_set_main_loop_timing(mode, value) {
   if (typeof setImmediate == "undefined") {
    var setImmediates = [];
    var emscriptenMainLoopMessageId = "setimmediate";
-   var Browser_setImmediate_messageHandler = function(event) {
+   var Browser_setImmediate_messageHandler = event => {
     if (event.data === emscriptenMainLoopMessageId || event.data.target === emscriptenMainLoopMessageId) {
      event.stopPropagation();
      setImmediates.shift()();
@@ -9169,12 +8801,6 @@ function _emscripten_set_main_loop_timing(mode, value) {
  return 0;
 }
 
-function _exit(status) {
- exit(status);
-}
-
-function maybeExit() {}
-
 function setMainLoop(browserIterationFunc, fps, simulateInfiniteLoop, arg, noSetTiming) {
  assert(!Browser.mainLoop.func, "emscripten_set_main_loop: there can only be one main loop function at once: call emscripten_cancel_main_loop to cancel the previous one before setting a new one with different parameters.");
  Browser.mainLoop.func = browserIterationFunc;
@@ -9182,7 +8808,6 @@ function setMainLoop(browserIterationFunc, fps, simulateInfiniteLoop, arg, noSet
  var thisMainLoopId = Browser.mainLoop.currentlyRunningMainloop;
  function checkIsRunning() {
   if (thisMainLoopId < Browser.mainLoop.currentlyRunningMainloop) {
-   maybeExit();
    return false;
   }
   return true;
@@ -9238,9 +8863,7 @@ function setMainLoop(browserIterationFunc, fps, simulateInfiniteLoop, arg, noSet
 }
 
 function _emscripten_set_main_loop(func, fps, simulateInfiniteLoop) {
- var browserIterationFunc = function() {
-  dynCall_v.call(null, func);
- };
+ var browserIterationFunc = () => dynCall_v.call(null, func);
  setMainLoop(browserIterationFunc, fps, simulateInfiniteLoop);
 }
 
@@ -9292,9 +8915,7 @@ function registerTouchEventCallback(target, userData, useCapture, callbackfunc, 
    }
   }
   HEAP32[touchEvent + 8 >>> 2] = numTouches;
-  if (function(a1, a2, a3) {
-   return dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]);
-  }(eventTypeId, touchEvent, userData)) e.preventDefault();
+  if (((a1, a2, a3) => dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]))(eventTypeId, touchEvent, userData)) e.preventDefault();
  };
  var eventHandler = {
   target: target,
@@ -9357,11 +8978,19 @@ function getEnvStrings() {
  return getEnvStrings.strings;
 }
 
+function writeAsciiToMemory(str, buffer, dontAddNull) {
+ for (var i = 0; i < str.length; ++i) {
+  assert(str.charCodeAt(i) === (str.charCodeAt(i) & 255));
+  HEAP8[buffer++ >>> 0] = str.charCodeAt(i);
+ }
+ if (!dontAddNull) HEAP8[buffer >>> 0] = 0;
+}
+
 function _environ_get(__environ, environ_buf) {
  var bufSize = 0;
  getEnvStrings().forEach(function(string, i) {
   var ptr = environ_buf + bufSize;
-  HEAP32[__environ + i * 4 >>> 2] = ptr;
+  HEAPU32[__environ + i * 4 >>> 2] = ptr;
   writeAsciiToMemory(string, ptr);
   bufSize += string.length + 1;
  });
@@ -9370,12 +8999,12 @@ function _environ_get(__environ, environ_buf) {
 
 function _environ_sizes_get(penviron_count, penviron_buf_size) {
  var strings = getEnvStrings();
- HEAP32[penviron_count >>> 2] = strings.length;
+ HEAPU32[penviron_count >>> 2] = strings.length;
  var bufSize = 0;
  strings.forEach(function(string) {
   bufSize += string.length + 1;
  });
- HEAP32[penviron_buf_size >>> 2] = bufSize;
+ HEAPU32[penviron_buf_size >>> 2] = bufSize;
  return 0;
 }
 
@@ -9385,57 +9014,88 @@ function _fd_close(fd) {
   FS.close(stream);
   return 0;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return e.errno;
  }
+}
+
+function doReadv(stream, iov, iovcnt, offset) {
+ var ret = 0;
+ for (var i = 0; i < iovcnt; i++) {
+  var ptr = HEAPU32[iov >>> 2];
+  var len = HEAPU32[iov + 4 >>> 2];
+  iov += 8;
+  var curr = FS.read(stream, HEAP8, ptr, len, offset);
+  if (curr < 0) return -1;
+  ret += curr;
+  if (curr < len) break;
+  if (typeof offset !== "undefined") {
+   offset += curr;
+  }
+ }
+ return ret;
 }
 
 function _fd_read(fd, iov, iovcnt, pnum) {
  try {
   var stream = SYSCALLS.getStreamFromFD(fd);
-  var num = SYSCALLS.doReadv(stream, iov, iovcnt);
-  HEAP32[pnum >>> 2] = num;
+  var num = doReadv(stream, iov, iovcnt);
+  HEAPU32[pnum >>> 2] = num;
   return 0;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return e.errno;
  }
 }
 
+function convertI32PairToI53Checked(lo, hi) {
+ assert(lo == lo >>> 0 || lo == (lo | 0));
+ assert(hi === (hi | 0));
+ return hi + 2097152 >>> 0 < 4194305 - !!lo ? (lo >>> 0) + hi * 4294967296 : NaN;
+}
+
 function _fd_seek(fd, offset_low, offset_high, whence, newOffset) {
  try {
+  var offset = convertI32PairToI53Checked(offset_low, offset_high);
+  if (isNaN(offset)) return 61;
   var stream = SYSCALLS.getStreamFromFD(fd);
-  var HIGH_OFFSET = 4294967296;
-  var offset = offset_high * HIGH_OFFSET + (offset_low >>> 0);
-  var DOUBLE_LIMIT = 9007199254740992;
-  if (offset <= -DOUBLE_LIMIT || offset >= DOUBLE_LIMIT) {
-   return -61;
-  }
   FS.llseek(stream, offset, whence);
   tempI64 = [ stream.position >>> 0, (tempDouble = stream.position, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
   HEAP32[newOffset >>> 2] = tempI64[0], HEAP32[newOffset + 4 >>> 2] = tempI64[1];
   if (stream.getdents && offset === 0 && whence === 0) stream.getdents = null;
   return 0;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return e.errno;
  }
+}
+
+function doWritev(stream, iov, iovcnt, offset) {
+ var ret = 0;
+ for (var i = 0; i < iovcnt; i++) {
+  var ptr = HEAPU32[iov >>> 2];
+  var len = HEAPU32[iov + 4 >>> 2];
+  iov += 8;
+  var curr = FS.write(stream, HEAP8, ptr, len, offset);
+  if (curr < 0) return -1;
+  ret += curr;
+  if (typeof offset !== "undefined") {
+   offset += curr;
+  }
+ }
+ return ret;
 }
 
 function _fd_write(fd, iov, iovcnt, pnum) {
  try {
   var stream = SYSCALLS.getStreamFromFD(fd);
-  var num = SYSCALLS.doWritev(stream, iov, iovcnt);
-  HEAP32[pnum >>> 2] = num;
+  var num = doWritev(stream, iov, iovcnt);
+  HEAPU32[pnum >>> 2] = num;
   return 0;
  } catch (e) {
-  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  if (typeof FS == "undefined" || !(e.name === "ErrnoError")) throw e;
   return e.errno;
  }
-}
-
-function _getTempRet0() {
- return getTempRet0();
 }
 
 function _glActiveTexture(x0) {
@@ -10051,7 +9711,9 @@ function GLFW_Window(id, width, height, title, monitor, share) {
  this.windowRefreshFunc = null;
  this.windowFocusFunc = null;
  this.windowIconifyFunc = null;
+ this.windowMaximizeFunc = null;
  this.framebufferSizeFunc = null;
+ this.windowContentScaleFunc = null;
  this.mouseButtonFunc = null;
  this.cursorPosFunc = null;
  this.cursorEnterFunc = null;
@@ -10071,6 +9733,7 @@ var GLFW = {
  errorFunc: null,
  monitorFunc: null,
  active: null,
+ scale: null,
  windows: null,
  monitors: null,
  monitorString: null,
@@ -10084,6 +9747,7 @@ var GLFW = {
   131075: 1,
   131076: 1,
   131077: 1,
+  131082: 0,
   135169: 8,
   135170: 8,
   135171: 8,
@@ -10106,7 +9770,8 @@ var GLFW = {
   139269: 0,
   139270: 0,
   139271: 0,
-  139272: 0
+  139272: 0,
+  139276: 0
  },
  DOMToGLFWKeyCode: function(keycode) {
   switch (keycode) {
@@ -10469,9 +10134,7 @@ var GLFW = {
   if (event.ctrlKey || event.metaKey) return;
   var charCode = event.charCode;
   if (charCode == 0 || charCode >= 0 && charCode <= 31) return;
-  (function(a1, a2) {
-   dynCall_vii.apply(null, [ GLFW.active.charFunc, a1, a2 ]);
-  })(GLFW.active.id, charCode);
+  ((a1, a2) => dynCall_vii.apply(null, [ GLFW.active.charFunc, a1, a2 ]))(GLFW.active.id, charCode);
  },
  onKeyChanged: function(keyCode, status) {
   if (!GLFW.active) return;
@@ -10482,9 +10145,7 @@ var GLFW = {
   GLFW.active.domKeys[keyCode] = status;
   if (!GLFW.active.keyFunc) return;
   if (repeat) status = 2;
-  (function(a1, a2, a3, a4, a5) {
-   dynCall_viiiii.apply(null, [ GLFW.active.keyFunc, a1, a2, a3, a4, a5 ]);
-  })(GLFW.active.id, key, keyCode, status, GLFW.getModBits(GLFW.active));
+  ((a1, a2, a3, a4, a5) => dynCall_viiiii.apply(null, [ GLFW.active.keyFunc, a1, a2, a3, a4, a5 ]))(GLFW.active.id, key, keyCode, status, GLFW.getModBits(GLFW.active));
  },
  onGamepadConnected: function(event) {
   GLFW.refreshJoysticks();
@@ -10513,9 +10174,7 @@ var GLFW = {
   if (!GLFW.active) return;
   Browser.calculateMouseEvent(event);
   if (event.target != Module["canvas"] || !GLFW.active.cursorPosFunc) return;
-  (function(a1, a2, a3) {
-   dynCall_vidd.apply(null, [ GLFW.active.cursorPosFunc, a1, a2, a3 ]);
-  })(GLFW.active.id, Browser.mouseX, Browser.mouseY);
+  ((a1, a2, a3) => dynCall_vidd.apply(null, [ GLFW.active.cursorPosFunc, a1, a2, a3 ]))(GLFW.active.id, Browser.mouseX, Browser.mouseY);
  },
  DOMToGLFWMouseButton: function(event) {
   var eventButton = event["button"];
@@ -10531,16 +10190,12 @@ var GLFW = {
  onMouseenter: function(event) {
   if (!GLFW.active) return;
   if (event.target != Module["canvas"] || !GLFW.active.cursorEnterFunc) return;
-  (function(a1, a2) {
-   dynCall_vii.apply(null, [ GLFW.active.cursorEnterFunc, a1, a2 ]);
-  })(GLFW.active.id, 1);
+  ((a1, a2) => dynCall_vii.apply(null, [ GLFW.active.cursorEnterFunc, a1, a2 ]))(GLFW.active.id, 1);
  },
  onMouseleave: function(event) {
   if (!GLFW.active) return;
   if (event.target != Module["canvas"] || !GLFW.active.cursorEnterFunc) return;
-  (function(a1, a2) {
-   dynCall_vii.apply(null, [ GLFW.active.cursorEnterFunc, a1, a2 ]);
-  })(GLFW.active.id, 0);
+  ((a1, a2) => dynCall_vii.apply(null, [ GLFW.active.cursorEnterFunc, a1, a2 ]))(GLFW.active.id, 0);
  },
  onMouseButtonChanged: function(event, status) {
   if (!GLFW.active) return;
@@ -10556,9 +10211,7 @@ var GLFW = {
    GLFW.active.buttons &= ~(1 << eventButton);
   }
   if (!GLFW.active.mouseButtonFunc) return;
-  (function(a1, a2, a3, a4) {
-   dynCall_viiii.apply(null, [ GLFW.active.mouseButtonFunc, a1, a2, a3, a4 ]);
-  })(GLFW.active.id, eventButton, status, GLFW.getModBits(GLFW.active));
+  ((a1, a2, a3, a4) => dynCall_viiii.apply(null, [ GLFW.active.mouseButtonFunc, a1, a2, a3, a4 ]))(GLFW.active.id, eventButton, status, GLFW.getModBits(GLFW.active));
  },
  onMouseButtonDown: function(event) {
   if (!GLFW.active) return;
@@ -10580,9 +10233,7 @@ var GLFW = {
   } else {
    sx = event.deltaX;
   }
-  (function(a1, a2, a3) {
-   dynCall_vidd.apply(null, [ GLFW.active.scrollFunc, a1, a2, a3 ]);
-  })(GLFW.active.id, sx, sy);
+  ((a1, a2, a3) => dynCall_vidd.apply(null, [ GLFW.active.scrollFunc, a1, a2, a3 ]))(GLFW.active.id, sx, sy);
   event.preventDefault();
  },
  onCanvasResize: function(width, height) {
@@ -10618,20 +10269,17 @@ var GLFW = {
  onWindowSizeChanged: function() {
   if (!GLFW.active) return;
   if (!GLFW.active.windowSizeFunc) return;
-  callUserCallback(function() {
-   (function(a1, a2, a3) {
-    dynCall_viii.apply(null, [ GLFW.active.windowSizeFunc, a1, a2, a3 ]);
-   })(GLFW.active.id, GLFW.active.width, GLFW.active.height);
-  });
+  ((a1, a2, a3) => dynCall_viii.apply(null, [ GLFW.active.windowSizeFunc, a1, a2, a3 ]))(GLFW.active.id, GLFW.active.width, GLFW.active.height);
  },
  onFramebufferSizeChanged: function() {
   if (!GLFW.active) return;
   if (!GLFW.active.framebufferSizeFunc) return;
-  callUserCallback(function() {
-   (function(a1, a2, a3) {
-    dynCall_viii.apply(null, [ GLFW.active.framebufferSizeFunc, a1, a2, a3 ]);
-   })(GLFW.active.id, GLFW.active.width, GLFW.active.height);
-  });
+  ((a1, a2, a3) => dynCall_viii.apply(null, [ GLFW.active.framebufferSizeFunc, a1, a2, a3 ]))(GLFW.active.id, GLFW.active.width, GLFW.active.height);
+ },
+ onWindowContentScaleChanged: function(scale) {
+  GLFW.scale = scale;
+  if (!GLFW.active) return;
+  ((a1, a2, a3) => dynCall_viff.apply(null, [ GLFW.active.windowContentScaleFunc, a1, a2, a3 ]))(GLFW.active.id, GLFW.scale, GLFW.scale);
  },
  getTime: function() {
   return _emscripten_get_now() / 1e3;
@@ -10668,25 +10316,21 @@ var GLFW = {
        axes: _malloc(gamepad.axes.length * 4)
       };
       if (GLFW.joystickFunc) {
-       (function(a1, a2) {
-        dynCall_vii.apply(null, [ GLFW.joystickFunc, a1, a2 ]);
-       })(joy, 262145);
+       ((a1, a2) => dynCall_vii.apply(null, [ GLFW.joystickFunc, a1, a2 ]))(joy, 262145);
       }
      }
      var data = GLFW.joys[joy];
      for (var i = 0; i < gamepad.buttons.length; ++i) {
-      setValue(data.buttons + i, gamepad.buttons[i].pressed, "i8");
+      HEAP8[data.buttons + i >>> 0] = gamepad.buttons[i].pressed;
      }
      for (var i = 0; i < gamepad.axes.length; ++i) {
-      setValue(data.axes + i * 4, gamepad.axes[i], "float");
+      HEAPF32[data.axes + i * 4 >>> 2] = gamepad.axes[i];
      }
     } else {
      if (GLFW.joys[joy]) {
       out("glfw joystick disconnected", joy);
       if (GLFW.joystickFunc) {
-       (function(a1, a2) {
-        dynCall_vii.apply(null, [ GLFW.joystickFunc, a1, a2 ]);
-       })(joy, 262146);
+       ((a1, a2) => dynCall_vii.apply(null, [ GLFW.joystickFunc, a1, a2 ]))(joy, 262146);
       }
       _free(GLFW.joys[joy].id);
       _free(GLFW.joys[joy].buttons);
@@ -10752,7 +10396,7 @@ var GLFW = {
   function save(file) {
    var path = "/" + drop_dir + "/" + file.name.replace(/\//g, "_");
    var reader = new FileReader();
-   reader.onloadend = (e => {
+   reader.onloadend = e => {
     if (reader.readyState != 2) {
      ++written;
      out("failed to read dropped file: " + file.name + ": " + reader.error);
@@ -10761,19 +10405,17 @@ var GLFW = {
     var data = e.target.result;
     FS.writeFile(path, new Uint8Array(data));
     if (++written === count) {
-     (function(a1, a2, a3) {
-      dynCall_viii.apply(null, [ GLFW.active.dropFunc, a1, a2, a3 ]);
-     })(GLFW.active.id, count, filenames);
+     ((a1, a2, a3) => dynCall_viii.apply(null, [ GLFW.active.dropFunc, a1, a2, a3 ]))(GLFW.active.id, count, filenames);
      for (var i = 0; i < filenamesArray.length; ++i) {
       _free(filenamesArray[i]);
      }
      _free(filenames);
     }
-   });
+   };
    reader.readAsArrayBuffer(file);
    var filename = allocateUTF8(path);
    filenamesArray.push(filename);
-   setValue(filenames + i * 4, filename, "i8*");
+   HEAPU32[filenames + i * 4 >>> 2] = filename;
   }
   for (var i = 0; i < count; ++i) {
    save(event.dataTransfer.files[i]);
@@ -10862,6 +10504,18 @@ var GLFW = {
     break;
    }
 
+  case 208900:
+   {
+    out("glfwSetInputMode called with GLFW_LOCK_KEY_MODS mode not implemented.");
+    break;
+   }
+
+  case 3342341:
+   {
+    out("glfwSetInputMode called with GLFW_RAW_MOUSE_MOTION mode not implemented.");
+    break;
+   }
+
   default:
    {
     out("glfwSetInputMode called with unknown mode parameter value: " + mode + ".");
@@ -10880,12 +10534,12 @@ var GLFW = {
   return (win.buttons & 1 << button) > 0;
  },
  getCursorPos: function(winid, x, y) {
-  setValue(x, Browser.mouseX, "double");
-  setValue(y, Browser.mouseY, "double");
+  HEAPF64[x >>> 3] = Browser.mouseX;
+  HEAPF64[y >>> 3] = Browser.mouseY;
  },
  getMousePos: function(winid, x, y) {
-  setValue(x, Browser.mouseX, "i32");
-  setValue(y, Browser.mouseY, "i32");
+  HEAP32[x >>> 2] = Browser.mouseX;
+  HEAP32[y >>> 2] = Browser.mouseY;
  },
  setCursorPos: function(winid, x, y) {},
  getWindowPos: function(winid, x, y) {
@@ -10897,10 +10551,10 @@ var GLFW = {
    wy = win.y;
   }
   if (x) {
-   setValue(x, wx, "i32");
+   HEAP32[x >>> 2] = wx;
   }
   if (y) {
-   setValue(y, wy, "i32");
+   HEAP32[y >>> 2] = wy;
   }
  },
  setWindowPos: function(winid, x, y) {
@@ -10918,10 +10572,10 @@ var GLFW = {
    wh = win.height;
   }
   if (width) {
-   setValue(width, ww, "i32");
+   HEAP32[width >>> 2] = ww;
   }
   if (height) {
-   setValue(height, wh, "i32");
+   HEAP32[height >>> 2] = wh;
   }
  },
  setWindowSize: function(winid, width, height) {
@@ -10938,9 +10592,7 @@ var GLFW = {
    }
   }
   if (!win.windowSizeFunc) return;
-  (function(a1, a2, a3) {
-   dynCall_viii.apply(null, [ win.windowSizeFunc, a1, a2, a3 ]);
-  })(win.id, width, height);
+  ((a1, a2, a3) => dynCall_viii.apply(null, [ win.windowSizeFunc, a1, a2, a3 ]))(win.id, width, height);
  },
  createWindow: function(width, height, title, monitor, share) {
   var i, id;
@@ -10981,9 +10633,7 @@ var GLFW = {
  destroyWindow: function(winid) {
   var win = GLFW.WindowFromId(winid);
   if (!win) return;
-  if (win.windowCloseFunc) (function(a1) {
-   dynCall_vi.apply(null, [ win.windowCloseFunc, a1 ]);
-  })(win.id);
+  if (win.windowCloseFunc) (a1 => dynCall_vi.apply(null, [ win.windowCloseFunc, a1 ]))(win.id);
   GLFW.windows[win.id - 1] = null;
   if (GLFW.active.id == win.id) GLFW.active = null;
   for (var i = 0; i < GLFW.windows.length; i++) if (GLFW.windows[i] !== null) return;
@@ -11048,8 +10698,12 @@ function _glfwGetTime() {
 }
 
 function _glfwGetVideoModes(monitor, count) {
- setValue(count, 0, "i32");
+ HEAP32[count >>> 2] = 0;
  return 0;
+}
+
+function _emscripten_get_device_pixel_ratio() {
+ return typeof devicePixelRatio == "number" && devicePixelRatio || 1;
 }
 
 function _glfwInit() {
@@ -11058,12 +10712,19 @@ function _glfwInit() {
  GLFW.hints = GLFW.defaultHints;
  GLFW.windows = new Array();
  GLFW.active = null;
+ GLFW.scale = _emscripten_get_device_pixel_ratio();
  window.addEventListener("gamepadconnected", GLFW.onGamepadConnected, true);
  window.addEventListener("gamepaddisconnected", GLFW.onGamepadDisconnected, true);
  window.addEventListener("keydown", GLFW.onKeydown, true);
  window.addEventListener("keypress", GLFW.onKeyPress, true);
  window.addEventListener("keyup", GLFW.onKeyup, true);
  window.addEventListener("blur", GLFW.onBlur, true);
+ (function updatePixelRatio() {
+  window.matchMedia("(resolution: " + window.devicePixelRatio + "dppx)").addEventListener("change", updatePixelRatio, {
+   once: true
+  });
+  GLFW.onWindowContentScaleChanged(_emscripten_get_device_pixel_ratio());
+ })();
  Module["canvas"].addEventListener("touchmove", GLFW.onMousemove, true);
  Module["canvas"].addEventListener("touchstart", GLFW.onMouseButtonDown, true);
  Module["canvas"].addEventListener("touchcancel", GLFW.onMouseButtonUp, true);
@@ -11077,7 +10738,7 @@ function _glfwInit() {
  Module["canvas"].addEventListener("mouseleave", GLFW.onMouseleave, true);
  Module["canvas"].addEventListener("drop", GLFW.onDrop, true);
  Module["canvas"].addEventListener("dragover", GLFW.onDragover, true);
- Browser.resizeListeners.push(function(width, height) {
+ Browser.resizeListeners.push((width, height) => {
   GLFW.onCanvasResize(width, height);
  });
  return 1;
@@ -11187,14 +10848,6 @@ function _glfwWindowHint(target, hint) {
  GLFW.hints[target] = hint;
 }
 
-function _setTempRet0(val) {
- setTempRet0(val);
-}
-
-function __isLeapYear(year) {
- return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
-}
-
 function __arraySum(array, index) {
  var sum = 0;
  for (var i = 0; i <= index; sum += array[i++]) {}
@@ -11226,6 +10879,11 @@ function __addDays(date, days) {
   }
  }
  return newDate;
+}
+
+function writeArrayToMemory(array, buffer) {
+ assert(array.length >= 0, "writeArrayToMemory array must have a length (should be an array or typed array)");
+ HEAP8.set(array, buffer >>> 0);
 }
 
 function _strftime(s, maxsize, format, tm) {
@@ -11334,12 +10992,10 @@ function _strftime(s, maxsize, format, tm) {
   if (compareByDay(firstWeekStartThisYear, thisDate) <= 0) {
    if (compareByDay(firstWeekStartNextYear, thisDate) <= 0) {
     return thisDate.getFullYear() + 1;
-   } else {
-    return thisDate.getFullYear();
    }
-  } else {
-   return thisDate.getFullYear() - 1;
+   return thisDate.getFullYear();
   }
+  return thisDate.getFullYear() - 1;
  }
  var EXPANSION_RULES_2 = {
   "%a": function(date) {
@@ -11393,9 +11049,8 @@ function _strftime(s, maxsize, format, tm) {
   "%p": function(date) {
    if (date.tm_hour >= 0 && date.tm_hour < 12) {
     return "AM";
-   } else {
-    return "PM";
    }
+   return "PM";
   },
   "%S": function(date) {
    return leadingNulls(date.tm_sec, 2);
@@ -11513,6 +11168,25 @@ function _system(command) {
  if (!command) return 0;
  setErrNo(52);
  return -1;
+}
+
+function allocateUTF8OnStack(str) {
+ var size = lengthBytesUTF8(str) + 1;
+ var ret = stackAlloc(size);
+ stringToUTF8Array(str, HEAP8, ret, size);
+ return ret;
+}
+
+var wasmTableMirror = [];
+
+function getWasmTableEntry(funcPtr) {
+ var func = wasmTableMirror[funcPtr];
+ if (!func) {
+  if (funcPtr >= wasmTableMirror.length) wasmTableMirror.length = funcPtr + 1;
+  wasmTableMirror[funcPtr] = func = wasmTable.get(funcPtr);
+ }
+ assert(wasmTable.get(funcPtr) == func, "JavaScript-side Wasm function table mirror is out of date!");
+ return func;
 }
 
 var FSNode = function(parent, name, mode, rdev) {
@@ -11755,31 +11429,6 @@ var preloadedImages = {};
 
 var preloadedAudios = {};
 
-var ASSERTIONS = true;
-
-function intArrayFromString(stringy, dontAddNull, length) {
- var len = length > 0 ? length : lengthBytesUTF8(stringy) + 1;
- var u8array = new Array(len);
- var numBytesWritten = stringToUTF8Array(stringy, u8array, 0, u8array.length);
- if (dontAddNull) u8array.length = numBytesWritten;
- return u8array;
-}
-
-function intArrayToString(array) {
- var ret = [];
- for (var i = 0; i < array.length; i++) {
-  var chr = array[i];
-  if (chr > 255) {
-   if (ASSERTIONS) {
-    assert(false, "Character code " + chr + " (" + String.fromCharCode(chr) + ")  at offset " + i + " not in 0x00-0xFF.");
-   }
-   chr &= 255;
-  }
-  ret.push(String.fromCharCode(chr));
- }
- return ret.join("");
-}
-
 var decodeBase64 = typeof atob == "function" ? atob : function(input) {
  var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
  var output = "";
@@ -11834,9 +11483,7 @@ function checkIncomingModuleAPI() {
  ignoredModuleProp("fetchSettings");
 }
 
-var asmLibraryArg = {
- "GetCanvasHeight": GetCanvasHeight,
- "GetCanvasWidth": GetCanvasWidth,
+var wasmImports = {
  "__assert_fail": ___assert_fail,
  "__syscall__newselect": ___syscall__newselect,
  "__syscall_accept4": ___syscall_accept4,
@@ -11844,17 +11491,20 @@ var asmLibraryArg = {
  "__syscall_connect": ___syscall_connect,
  "__syscall_dup3": ___syscall_dup3,
  "__syscall_fcntl64": ___syscall_fcntl64,
+ "__syscall_fstat64": ___syscall_fstat64,
  "__syscall_getcwd": ___syscall_getcwd,
  "__syscall_getdents64": ___syscall_getdents64,
  "__syscall_ioctl": ___syscall_ioctl,
  "__syscall_listen": ___syscall_listen,
  "__syscall_lstat64": ___syscall_lstat64,
+ "__syscall_mkdirat": ___syscall_mkdirat,
+ "__syscall_newfstatat": ___syscall_newfstatat,
  "__syscall_openat": ___syscall_openat,
  "__syscall_renameat": ___syscall_renameat,
  "__syscall_rmdir": ___syscall_rmdir,
  "__syscall_socket": ___syscall_socket,
+ "__syscall_stat64": ___syscall_stat64,
  "__syscall_unlinkat": ___syscall_unlinkat,
- "_emscripten_date_now": __emscripten_date_now,
  "_emscripten_get_now_is_monotonic": __emscripten_get_now_is_monotonic,
  "_emscripten_throw_longjmp": __emscripten_throw_longjmp,
  "_gmtime_js": __gmtime_js,
@@ -11864,6 +11514,7 @@ var asmLibraryArg = {
  "abort": _abort,
  "emscripten_asm_const_int": _emscripten_asm_const_int,
  "emscripten_console_error": _emscripten_console_error,
+ "emscripten_date_now": _emscripten_date_now,
  "emscripten_get_element_css_size": _emscripten_get_element_css_size,
  "emscripten_get_gamepad_status": _emscripten_get_gamepad_status,
  "emscripten_get_now": _emscripten_get_now,
@@ -12050,7 +11701,6 @@ var asmLibraryArg = {
  "fd_read": _fd_read,
  "fd_seek": _fd_seek,
  "fd_write": _fd_write,
- "getTempRet0": _getTempRet0,
  "glActiveTexture": _glActiveTexture,
  "glAttachShader": _glAttachShader,
  "glBindAttribLocation": _glBindAttribLocation,
@@ -12147,70 +11797,75 @@ var asmLibraryArg = {
  "glfwTerminate": _glfwTerminate,
  "glfwWindowHint": _glfwWindowHint,
  "invoke_vii": invoke_vii,
- "setTempRet0": _setTempRet0,
  "strftime": _strftime,
  "system": _system
 };
 
 var asm = createWasm();
 
-var ___wasm_call_ctors = Module["___wasm_call_ctors"] = createExportWrapper("__wasm_call_ctors");
+var ___wasm_call_ctors = createExportWrapper("__wasm_call_ctors");
+
+var _ma_malloc_emscripten = Module["_ma_malloc_emscripten"] = createExportWrapper("ma_malloc_emscripten");
+
+var _ma_free_emscripten = Module["_ma_free_emscripten"] = createExportWrapper("ma_free_emscripten");
 
 var _ma_device_process_pcm_frames_capture__webaudio = Module["_ma_device_process_pcm_frames_capture__webaudio"] = createExportWrapper("ma_device_process_pcm_frames_capture__webaudio");
 
 var _ma_device_process_pcm_frames_playback__webaudio = Module["_ma_device_process_pcm_frames_playback__webaudio"] = createExportWrapper("ma_device_process_pcm_frames_playback__webaudio");
 
-var _main = Module["_main"] = createExportWrapper("main");
+var _main = Module["_main"] = createExportWrapper("__main_argc_argv");
 
-var _free = Module["_free"] = createExportWrapper("free");
+var _malloc = createExportWrapper("malloc");
 
-var _malloc = Module["_malloc"] = createExportWrapper("malloc");
+var _saveSetjmp = createExportWrapper("saveSetjmp");
 
-var _saveSetjmp = Module["_saveSetjmp"] = createExportWrapper("saveSetjmp");
+var _free = createExportWrapper("free");
 
-var ___errno_location = Module["___errno_location"] = createExportWrapper("__errno_location");
+var ___errno_location = createExportWrapper("__errno_location");
 
-var _htons = Module["_htons"] = createExportWrapper("htons");
+var _fflush = Module["_fflush"] = createExportWrapper("fflush");
 
-var ___stdio_exit = Module["___stdio_exit"] = createExportWrapper("__stdio_exit");
+var _htons = createExportWrapper("htons");
 
-var ___dl_seterr = Module["___dl_seterr"] = createExportWrapper("__dl_seterr");
+var _ntohs = createExportWrapper("ntohs");
 
-var _emscripten_builtin_malloc = Module["_emscripten_builtin_malloc"] = createExportWrapper("emscripten_builtin_malloc");
+var _setThrew = createExportWrapper("setThrew");
 
-var _ntohs = Module["_ntohs"] = createExportWrapper("ntohs");
-
-var _emscripten_builtin_free = Module["_emscripten_builtin_free"] = createExportWrapper("emscripten_builtin_free");
-
-var _setThrew = Module["_setThrew"] = createExportWrapper("setThrew");
-
-var _emscripten_stack_init = Module["_emscripten_stack_init"] = function() {
- return (_emscripten_stack_init = Module["_emscripten_stack_init"] = Module["asm"]["emscripten_stack_init"]).apply(null, arguments);
+var _emscripten_stack_init = function() {
+ return (_emscripten_stack_init = Module["asm"]["emscripten_stack_init"]).apply(null, arguments);
 };
 
-var _emscripten_stack_get_free = Module["_emscripten_stack_get_free"] = function() {
- return (_emscripten_stack_get_free = Module["_emscripten_stack_get_free"] = Module["asm"]["emscripten_stack_get_free"]).apply(null, arguments);
+var _emscripten_stack_get_free = function() {
+ return (_emscripten_stack_get_free = Module["asm"]["emscripten_stack_get_free"]).apply(null, arguments);
 };
 
-var _emscripten_stack_get_base = Module["_emscripten_stack_get_base"] = function() {
- return (_emscripten_stack_get_base = Module["_emscripten_stack_get_base"] = Module["asm"]["emscripten_stack_get_base"]).apply(null, arguments);
+var _emscripten_stack_get_base = function() {
+ return (_emscripten_stack_get_base = Module["asm"]["emscripten_stack_get_base"]).apply(null, arguments);
 };
 
-var _emscripten_stack_get_end = Module["_emscripten_stack_get_end"] = function() {
- return (_emscripten_stack_get_end = Module["_emscripten_stack_get_end"] = Module["asm"]["emscripten_stack_get_end"]).apply(null, arguments);
+var _emscripten_stack_get_end = function() {
+ return (_emscripten_stack_get_end = Module["asm"]["emscripten_stack_get_end"]).apply(null, arguments);
 };
 
-var stackSave = Module["stackSave"] = createExportWrapper("stackSave");
+var stackSave = createExportWrapper("stackSave");
 
-var stackRestore = Module["stackRestore"] = createExportWrapper("stackRestore");
+var stackRestore = createExportWrapper("stackRestore");
 
-var stackAlloc = Module["stackAlloc"] = createExportWrapper("stackAlloc");
+var stackAlloc = createExportWrapper("stackAlloc");
+
+var _emscripten_stack_get_current = function() {
+ return (_emscripten_stack_get_current = Module["asm"]["emscripten_stack_get_current"]).apply(null, arguments);
+};
 
 var dynCall_iii = Module["dynCall_iii"] = createExportWrapper("dynCall_iii");
 
+var dynCall_vii = Module["dynCall_vii"] = createExportWrapper("dynCall_vii");
+
 var dynCall_iiii = Module["dynCall_iiii"] = createExportWrapper("dynCall_iiii");
 
-var dynCall_vii = Module["dynCall_vii"] = createExportWrapper("dynCall_vii");
+var dynCall_iiiii = Module["dynCall_iiiii"] = createExportWrapper("dynCall_iiiii");
+
+var dynCall_ii = Module["dynCall_ii"] = createExportWrapper("dynCall_ii");
 
 var dynCall_viii = Module["dynCall_viii"] = createExportWrapper("dynCall_viii");
 
@@ -12220,15 +11875,13 @@ var dynCall_viiii = Module["dynCall_viiii"] = createExportWrapper("dynCall_viiii
 
 var dynCall_vidd = Module["dynCall_vidd"] = createExportWrapper("dynCall_vidd");
 
-var dynCall_ii = Module["dynCall_ii"] = createExportWrapper("dynCall_ii");
-
-var dynCall_iiiii = Module["dynCall_iiiii"] = createExportWrapper("dynCall_iiiii");
+var dynCall_vi = Module["dynCall_vi"] = createExportWrapper("dynCall_vi");
 
 var dynCall_vid = Module["dynCall_vid"] = createExportWrapper("dynCall_vid");
 
 var dynCall_viidd = Module["dynCall_viidd"] = createExportWrapper("dynCall_viidd");
 
-var dynCall_vi = Module["dynCall_vi"] = createExportWrapper("dynCall_vi");
+var dynCall_diii = Module["dynCall_diii"] = createExportWrapper("dynCall_diii");
 
 var dynCall_viiidi = Module["dynCall_viiidi"] = createExportWrapper("dynCall_viiidi");
 
@@ -12236,25 +11889,29 @@ var dynCall_viiiidii = Module["dynCall_viiiidii"] = createExportWrapper("dynCall
 
 var dynCall_di = Module["dynCall_di"] = createExportWrapper("dynCall_di");
 
+var dynCall_viddiii = Module["dynCall_viddiii"] = createExportWrapper("dynCall_viddiii");
+
+var dynCall_viidiii = Module["dynCall_viidiii"] = createExportWrapper("dynCall_viidiii");
+
+var dynCall_vdiii = Module["dynCall_vdiii"] = createExportWrapper("dynCall_vdiii");
+
+var dynCall_i = Module["dynCall_i"] = createExportWrapper("dynCall_i");
+
+var dynCall_f = Module["dynCall_f"] = createExportWrapper("dynCall_f");
+
 var dynCall_iiiiiii = Module["dynCall_iiiiiii"] = createExportWrapper("dynCall_iiiiiii");
 
 var dynCall_jii = Module["dynCall_jii"] = createExportWrapper("dynCall_jii");
 
 var dynCall_iiiji = Module["dynCall_iiiji"] = createExportWrapper("dynCall_iiiji");
 
-var dynCall_diii = Module["dynCall_diii"] = createExportWrapper("dynCall_diii");
-
-var dynCall_i = Module["dynCall_i"] = createExportWrapper("dynCall_i");
-
-var dynCall_f = Module["dynCall_f"] = createExportWrapper("dynCall_f");
-
 var dynCall_iiiiii = Module["dynCall_iiiiii"] = createExportWrapper("dynCall_iiiiii");
+
+var dynCall_viidii = Module["dynCall_viidii"] = createExportWrapper("dynCall_viidii");
 
 var dynCall_viiid = Module["dynCall_viiid"] = createExportWrapper("dynCall_viiid");
 
 var dynCall_iid = Module["dynCall_iid"] = createExportWrapper("dynCall_iid");
-
-var dynCall_viidii = Module["dynCall_viidii"] = createExportWrapper("dynCall_viidii");
 
 var dynCall_v = Module["dynCall_v"] = createExportWrapper("dynCall_v");
 
@@ -12288,11 +11945,9 @@ var dynCall_jiji = Module["dynCall_jiji"] = createExportWrapper("dynCall_jiji");
 
 var dynCall_iidiiii = Module["dynCall_iidiiii"] = createExportWrapper("dynCall_iidiiii");
 
-var dynCall_viddiii = Module["dynCall_viddiii"] = createExportWrapper("dynCall_viddiii");
+var ___start_em_js = Module["___start_em_js"] = 184240;
 
-var dynCall_viidiii = Module["dynCall_viidiii"] = createExportWrapper("dynCall_viidiii");
-
-var dynCall_vdiii = Module["dynCall_vdiii"] = createExportWrapper("dynCall_vdiii");
+var ___stop_em_js = Module["___stop_em_js"] = 184315;
 
 function invoke_vii(index, a1, a2) {
  var sp = stackSave();
@@ -12305,53 +11960,9 @@ function invoke_vii(index, a1, a2) {
  }
 }
 
-unexportedRuntimeFunction("intArrayFromString", false);
-
-unexportedRuntimeFunction("intArrayToString", false);
-
-unexportedRuntimeFunction("ccall", false);
-
-unexportedRuntimeFunction("cwrap", false);
-
-unexportedRuntimeFunction("setValue", false);
-
-unexportedRuntimeFunction("getValue", false);
-
-unexportedRuntimeFunction("allocate", false);
-
-unexportedRuntimeFunction("UTF8ArrayToString", false);
-
-unexportedRuntimeFunction("UTF8ToString", false);
-
-unexportedRuntimeFunction("stringToUTF8Array", false);
-
-unexportedRuntimeFunction("stringToUTF8", false);
-
-unexportedRuntimeFunction("lengthBytesUTF8", false);
-
-unexportedRuntimeFunction("stackTrace", false);
-
-unexportedRuntimeFunction("addOnPreRun", false);
-
-unexportedRuntimeFunction("addOnInit", false);
-
-unexportedRuntimeFunction("addOnPreMain", false);
-
-unexportedRuntimeFunction("addOnExit", false);
-
-unexportedRuntimeFunction("addOnPostRun", false);
-
-unexportedRuntimeFunction("writeStringToMemory", false);
-
-unexportedRuntimeFunction("writeArrayToMemory", false);
-
-unexportedRuntimeFunction("writeAsciiToMemory", false);
-
 Module["addRunDependency"] = addRunDependency;
 
 Module["removeRunDependency"] = removeRunDependency;
-
-unexportedRuntimeFunction("FS_createFolder", false);
 
 Module["FS_createPath"] = FS.createPath;
 
@@ -12361,429 +11972,43 @@ Module["FS_createPreloadedFile"] = FS.createPreloadedFile;
 
 Module["FS_createLazyFile"] = FS.createLazyFile;
 
-unexportedRuntimeFunction("FS_createLink", false);
-
 Module["FS_createDevice"] = FS.createDevice;
 
 Module["FS_unlink"] = FS.unlink;
 
-unexportedRuntimeFunction("getLEB", false);
+var missingLibrarySymbols = [ "getHostByName", "traverseStack", "convertPCtoSourceLocation", "runMainThreadEmAsm", "jstoi_s", "listenOnce", "autoResumeAudioContext", "dynCallLegacy", "getDynCaller", "dynCall", "runtimeKeepalivePush", "runtimeKeepalivePop", "asmjsMangle", "HandleAllocator", "getNativeTypeSize", "STACK_SIZE", "STACK_ALIGN", "POINTER_SIZE", "ASSERTIONS", "writeI53ToI64Clamped", "writeI53ToI64Signaling", "writeI53ToU64Clamped", "writeI53ToU64Signaling", "convertI32PairToI53", "convertU32PairToI53", "getCFunc", "ccall", "cwrap", "uleb128Encode", "sigToWasmTypes", "generateFuncType", "convertJsFunctionToWasm", "getEmptyTableSlot", "updateTableMap", "getFunctionAddress", "addFunction", "removeFunction", "reallyNegative", "unSign", "strLen", "reSign", "formatString", "intArrayToString", "AsciiToString", "stringToAscii", "UTF16ToString", "stringToUTF16", "lengthBytesUTF16", "UTF32ToString", "stringToUTF32", "lengthBytesUTF32", "writeStringToMemory", "registerKeyEventCallback", "findCanvasEventTarget", "registerWheelEventCallback", "registerUiEventCallback", "registerFocusEventCallback", "fillDeviceOrientationEventData", "registerDeviceOrientationEventCallback", "fillDeviceMotionEventData", "registerDeviceMotionEventCallback", "screenOrientation", "fillOrientationChangeEventData", "registerOrientationChangeEventCallback", "JSEvents_requestFullscreen", "JSEvents_resizeCanvasForFullscreen", "registerRestoreOldStyle", "hideEverythingExceptGivenElement", "restoreHiddenElements", "setLetterbox", "softFullscreenResizeWebGLRenderTarget", "doRequestFullscreen", "fillPointerlockChangeEventData", "registerPointerlockChangeEventCallback", "registerPointerlockErrorEventCallback", "requestPointerLock", "fillVisibilityChangeEventData", "registerVisibilityChangeEventCallback", "registerBeforeUnloadEventCallback", "fillBatteryEventData", "battery", "registerBatteryEventCallback", "setCanvasElementSize", "getCanvasElementSize", "jsStackTrace", "stackTrace", "checkWasiClock", "createDyncallWrapper", "setImmediateWrapped", "clearImmediateWrapped", "polyfillSetImmediate", "getPromise", "makePromise", "makePromiseCallback", "ExceptionInfo", "exception_addRef", "exception_decRef", "_setNetworkCallback", "writeGLArray", "SDL_unicode", "SDL_ttfContext", "SDL_audio", "runAndAbortIfError", "ALLOC_NORMAL", "ALLOC_STACK", "allocate" ];
 
-unexportedRuntimeFunction("getFunctionTables", false);
+missingLibrarySymbols.forEach(missingLibrarySymbol);
 
-unexportedRuntimeFunction("alignFunctionTables", false);
+var unexportedSymbols = [ "run", "UTF8ArrayToString", "UTF8ToString", "stringToUTF8Array", "stringToUTF8", "lengthBytesUTF8", "addOnPreRun", "addOnInit", "addOnPreMain", "addOnExit", "addOnPostRun", "FS_createFolder", "FS_createLink", "out", "err", "callMain", "abort", "keepRuntimeAlive", "wasmMemory", "stackAlloc", "stackSave", "stackRestore", "getTempRet0", "setTempRet0", "writeStackCookie", "checkStackCookie", "ptrToString", "zeroMemory", "stringToNewUTF8", "exitJS", "getHeapMax", "emscripten_realloc_buffer", "ENV", "ERRNO_CODES", "ERRNO_MESSAGES", "setErrNo", "inetPton4", "inetNtop4", "inetPton6", "inetNtop6", "readSockaddr", "writeSockaddr", "DNS", "Protocols", "Sockets", "getRandomDevice", "timers", "warnOnce", "UNWIND_CACHE", "readEmAsmArgsArray", "readEmAsmArgs", "runEmAsmFunction", "jstoi_q", "getExecutableName", "handleException", "callUserCallback", "maybeExit", "safeSetTimeout", "asyncLoad", "alignMemory", "mmapAlloc", "writeI53ToI64", "readI53FromI64", "readI53FromU64", "convertI32PairToI53Checked", "freeTableIndexes", "functionsInTableMap", "setValue", "getValue", "PATH", "PATH_FS", "intArrayFromString", "UTF16Decoder", "allocateUTF8", "allocateUTF8OnStack", "writeArrayToMemory", "writeAsciiToMemory", "SYSCALLS", "getSocketFromFD", "getSocketAddress", "JSEvents", "specialHTMLTargets", "maybeCStringToJsString", "findEventTarget", "getBoundingClientRect", "fillMouseEventData", "registerMouseEventCallback", "fillFullscreenChangeEventData", "registerFullscreenChangeEventCallback", "currentFullscreenStrategy", "restoreOldWindowedStyle", "registerTouchEventCallback", "fillGamepadEventData", "registerGamepadEventCallback", "demangle", "demangleAll", "ExitStatus", "getEnvStrings", "doReadv", "doWritev", "dlopenMissingError", "promiseMap", "uncaughtExceptionCount", "exceptionLast", "exceptionCaught", "Browser", "setMainLoop", "wget", "FS", "MEMFS", "TTY", "PIPEFS", "SOCKFS", "tempFixedLengthArray", "miniTempWebGLFloatBuffers", "heapObjectForWebGLType", "heapAccessShiftForWebGLHeap", "GL", "emscriptenWebGLGet", "computeUnpackAlignedImageSize", "emscriptenWebGLGetTexPixelData", "emscriptenWebGLGetUniform", "webglGetUniformLocation", "webglPrepareUniformLocationsBeforeFirstUse", "webglGetLeftBracePos", "emscriptenWebGLGetVertexAttrib", "AL", "SDL", "SDL_gfx", "GLUT", "EGL", "GLFW_Window", "GLFW", "GLEW", "IDBStore" ];
 
-unexportedRuntimeFunction("registerFunctions", false);
-
-unexportedRuntimeFunction("addFunction", false);
-
-unexportedRuntimeFunction("removeFunction", false);
-
-unexportedRuntimeFunction("prettyPrint", false);
-
-unexportedRuntimeFunction("dynCall", false);
-
-unexportedRuntimeFunction("getCompilerSetting", false);
-
-unexportedRuntimeFunction("print", false);
-
-unexportedRuntimeFunction("printErr", false);
-
-unexportedRuntimeFunction("getTempRet0", false);
-
-unexportedRuntimeFunction("setTempRet0", false);
-
-unexportedRuntimeFunction("callMain", false);
-
-unexportedRuntimeFunction("abort", false);
-
-unexportedRuntimeFunction("keepRuntimeAlive", false);
-
-unexportedRuntimeFunction("ptrToString", false);
-
-unexportedRuntimeFunction("zeroMemory", false);
-
-unexportedRuntimeFunction("stringToNewUTF8", false);
-
-unexportedRuntimeFunction("emscripten_realloc_buffer", false);
-
-unexportedRuntimeFunction("ENV", false);
-
-unexportedRuntimeFunction("ERRNO_CODES", false);
-
-unexportedRuntimeFunction("ERRNO_MESSAGES", false);
-
-unexportedRuntimeFunction("setErrNo", false);
-
-unexportedRuntimeFunction("inetPton4", false);
-
-unexportedRuntimeFunction("inetNtop4", false);
-
-unexportedRuntimeFunction("inetPton6", false);
-
-unexportedRuntimeFunction("inetNtop6", false);
-
-unexportedRuntimeFunction("readSockaddr", false);
-
-unexportedRuntimeFunction("writeSockaddr", false);
-
-unexportedRuntimeFunction("DNS", false);
-
-unexportedRuntimeFunction("getHostByName", false);
-
-unexportedRuntimeFunction("Protocols", false);
-
-unexportedRuntimeFunction("Sockets", false);
-
-unexportedRuntimeFunction("getRandomDevice", false);
-
-unexportedRuntimeFunction("traverseStack", false);
-
-unexportedRuntimeFunction("UNWIND_CACHE", false);
-
-unexportedRuntimeFunction("convertPCtoSourceLocation", false);
-
-unexportedRuntimeFunction("readAsmConstArgsArray", false);
-
-unexportedRuntimeFunction("readAsmConstArgs", false);
-
-unexportedRuntimeFunction("mainThreadEM_ASM", false);
-
-unexportedRuntimeFunction("jstoi_q", false);
-
-unexportedRuntimeFunction("jstoi_s", false);
-
-unexportedRuntimeFunction("getExecutableName", false);
-
-unexportedRuntimeFunction("listenOnce", false);
-
-unexportedRuntimeFunction("autoResumeAudioContext", false);
-
-unexportedRuntimeFunction("dynCallLegacy", false);
-
-unexportedRuntimeFunction("getDynCaller", false);
-
-unexportedRuntimeFunction("dynCall", false);
-
-unexportedRuntimeFunction("handleException", false);
-
-unexportedRuntimeFunction("runtimeKeepalivePush", false);
-
-unexportedRuntimeFunction("runtimeKeepalivePop", false);
-
-unexportedRuntimeFunction("callUserCallback", false);
-
-unexportedRuntimeFunction("maybeExit", false);
-
-unexportedRuntimeFunction("safeSetTimeout", false);
-
-unexportedRuntimeFunction("asmjsMangle", false);
-
-unexportedRuntimeFunction("asyncLoad", false);
-
-unexportedRuntimeFunction("alignMemory", false);
-
-unexportedRuntimeFunction("mmapAlloc", false);
-
-unexportedRuntimeFunction("reallyNegative", false);
-
-unexportedRuntimeFunction("unSign", false);
-
-unexportedRuntimeFunction("reSign", false);
-
-unexportedRuntimeFunction("formatString", false);
-
-unexportedRuntimeFunction("PATH", false);
-
-unexportedRuntimeFunction("PATH_FS", false);
-
-unexportedRuntimeFunction("SYSCALLS", false);
-
-unexportedRuntimeFunction("getSocketFromFD", false);
-
-unexportedRuntimeFunction("getSocketAddress", false);
-
-unexportedRuntimeFunction("JSEvents", false);
-
-unexportedRuntimeFunction("registerKeyEventCallback", false);
-
-unexportedRuntimeFunction("specialHTMLTargets", false);
-
-unexportedRuntimeFunction("maybeCStringToJsString", false);
-
-unexportedRuntimeFunction("findEventTarget", false);
-
-unexportedRuntimeFunction("findCanvasEventTarget", false);
-
-unexportedRuntimeFunction("getBoundingClientRect", false);
-
-unexportedRuntimeFunction("fillMouseEventData", false);
-
-unexportedRuntimeFunction("registerMouseEventCallback", false);
-
-unexportedRuntimeFunction("registerWheelEventCallback", false);
-
-unexportedRuntimeFunction("registerUiEventCallback", false);
-
-unexportedRuntimeFunction("registerFocusEventCallback", false);
-
-unexportedRuntimeFunction("fillDeviceOrientationEventData", false);
-
-unexportedRuntimeFunction("registerDeviceOrientationEventCallback", false);
-
-unexportedRuntimeFunction("fillDeviceMotionEventData", false);
-
-unexportedRuntimeFunction("registerDeviceMotionEventCallback", false);
-
-unexportedRuntimeFunction("screenOrientation", false);
-
-unexportedRuntimeFunction("fillOrientationChangeEventData", false);
-
-unexportedRuntimeFunction("registerOrientationChangeEventCallback", false);
-
-unexportedRuntimeFunction("fillFullscreenChangeEventData", false);
-
-unexportedRuntimeFunction("registerFullscreenChangeEventCallback", false);
-
-unexportedRuntimeFunction("registerRestoreOldStyle", false);
-
-unexportedRuntimeFunction("hideEverythingExceptGivenElement", false);
-
-unexportedRuntimeFunction("restoreHiddenElements", false);
-
-unexportedRuntimeFunction("setLetterbox", false);
-
-unexportedRuntimeFunction("currentFullscreenStrategy", false);
-
-unexportedRuntimeFunction("restoreOldWindowedStyle", false);
-
-unexportedRuntimeFunction("softFullscreenResizeWebGLRenderTarget", false);
-
-unexportedRuntimeFunction("doRequestFullscreen", false);
-
-unexportedRuntimeFunction("fillPointerlockChangeEventData", false);
-
-unexportedRuntimeFunction("registerPointerlockChangeEventCallback", false);
-
-unexportedRuntimeFunction("registerPointerlockErrorEventCallback", false);
-
-unexportedRuntimeFunction("requestPointerLock", false);
-
-unexportedRuntimeFunction("fillVisibilityChangeEventData", false);
-
-unexportedRuntimeFunction("registerVisibilityChangeEventCallback", false);
-
-unexportedRuntimeFunction("registerTouchEventCallback", false);
-
-unexportedRuntimeFunction("fillGamepadEventData", false);
-
-unexportedRuntimeFunction("registerGamepadEventCallback", false);
-
-unexportedRuntimeFunction("registerBeforeUnloadEventCallback", false);
-
-unexportedRuntimeFunction("fillBatteryEventData", false);
-
-unexportedRuntimeFunction("battery", false);
-
-unexportedRuntimeFunction("registerBatteryEventCallback", false);
-
-unexportedRuntimeFunction("setCanvasElementSize", false);
-
-unexportedRuntimeFunction("getCanvasElementSize", false);
-
-unexportedRuntimeFunction("demangle", false);
-
-unexportedRuntimeFunction("demangleAll", false);
-
-unexportedRuntimeFunction("jsStackTrace", false);
-
-unexportedRuntimeFunction("stackTrace", false);
-
-unexportedRuntimeFunction("getEnvStrings", false);
-
-unexportedRuntimeFunction("checkWasiClock", false);
-
-unexportedRuntimeFunction("writeI53ToI64", false);
-
-unexportedRuntimeFunction("writeI53ToI64Clamped", false);
-
-unexportedRuntimeFunction("writeI53ToI64Signaling", false);
-
-unexportedRuntimeFunction("writeI53ToU64Clamped", false);
-
-unexportedRuntimeFunction("writeI53ToU64Signaling", false);
-
-unexportedRuntimeFunction("readI53FromI64", false);
-
-unexportedRuntimeFunction("readI53FromU64", false);
-
-unexportedRuntimeFunction("convertI32PairToI53", false);
-
-unexportedRuntimeFunction("convertU32PairToI53", false);
-
-unexportedRuntimeFunction("dlopenMissingError", false);
-
-unexportedRuntimeFunction("setImmediateWrapped", false);
-
-unexportedRuntimeFunction("clearImmediateWrapped", false);
-
-unexportedRuntimeFunction("polyfillSetImmediate", false);
-
-unexportedRuntimeFunction("uncaughtExceptionCount", false);
-
-unexportedRuntimeFunction("exceptionLast", false);
-
-unexportedRuntimeFunction("exceptionCaught", false);
-
-unexportedRuntimeFunction("ExceptionInfo", false);
-
-unexportedRuntimeFunction("exception_addRef", false);
-
-unexportedRuntimeFunction("exception_decRef", false);
-
-unexportedRuntimeFunction("Browser", false);
-
-unexportedRuntimeFunction("setMainLoop", false);
-
-unexportedRuntimeFunction("wget", false);
-
-unexportedRuntimeFunction("FS", false);
-
-unexportedRuntimeFunction("MEMFS", false);
-
-unexportedRuntimeFunction("TTY", false);
-
-unexportedRuntimeFunction("PIPEFS", false);
-
-unexportedRuntimeFunction("SOCKFS", false);
-
-unexportedRuntimeFunction("_setNetworkCallback", false);
-
-unexportedRuntimeFunction("tempFixedLengthArray", false);
-
-unexportedRuntimeFunction("miniTempWebGLFloatBuffers", false);
-
-unexportedRuntimeFunction("heapObjectForWebGLType", false);
-
-unexportedRuntimeFunction("heapAccessShiftForWebGLHeap", false);
-
-unexportedRuntimeFunction("GL", false);
-
-unexportedRuntimeFunction("emscriptenWebGLGet", false);
-
-unexportedRuntimeFunction("computeUnpackAlignedImageSize", false);
-
-unexportedRuntimeFunction("emscriptenWebGLGetTexPixelData", false);
-
-unexportedRuntimeFunction("emscriptenWebGLGetUniform", false);
-
-unexportedRuntimeFunction("webglGetUniformLocation", false);
-
-unexportedRuntimeFunction("webglPrepareUniformLocationsBeforeFirstUse", false);
-
-unexportedRuntimeFunction("webglGetLeftBracePos", false);
-
-unexportedRuntimeFunction("emscriptenWebGLGetVertexAttrib", false);
-
-unexportedRuntimeFunction("writeGLArray", false);
-
-unexportedRuntimeFunction("AL", false);
-
-unexportedRuntimeFunction("SDL_unicode", false);
-
-unexportedRuntimeFunction("SDL_ttfContext", false);
-
-unexportedRuntimeFunction("SDL_audio", false);
-
-unexportedRuntimeFunction("SDL", false);
-
-unexportedRuntimeFunction("SDL_gfx", false);
-
-unexportedRuntimeFunction("GLUT", false);
-
-unexportedRuntimeFunction("EGL", false);
-
-unexportedRuntimeFunction("GLFW_Window", false);
-
-unexportedRuntimeFunction("GLFW", false);
-
-unexportedRuntimeFunction("GLEW", false);
-
-unexportedRuntimeFunction("IDBStore", false);
-
-unexportedRuntimeFunction("runAndAbortIfError", false);
-
-unexportedRuntimeFunction("warnOnce", false);
-
-unexportedRuntimeFunction("stackSave", false);
-
-unexportedRuntimeFunction("stackRestore", false);
-
-unexportedRuntimeFunction("stackAlloc", false);
-
-unexportedRuntimeFunction("AsciiToString", false);
-
-unexportedRuntimeFunction("stringToAscii", false);
-
-unexportedRuntimeFunction("UTF16ToString", false);
-
-unexportedRuntimeFunction("stringToUTF16", false);
-
-unexportedRuntimeFunction("lengthBytesUTF16", false);
-
-unexportedRuntimeFunction("UTF32ToString", false);
-
-unexportedRuntimeFunction("stringToUTF32", false);
-
-unexportedRuntimeFunction("lengthBytesUTF32", false);
-
-unexportedRuntimeFunction("allocateUTF8", false);
-
-unexportedRuntimeFunction("allocateUTF8OnStack", false);
-
-Module["writeStackCookie"] = writeStackCookie;
-
-Module["checkStackCookie"] = checkStackCookie;
-
-unexportedRuntimeSymbol("ALLOC_NORMAL", false);
-
-unexportedRuntimeSymbol("ALLOC_STACK", false);
+unexportedSymbols.forEach(unexportedRuntimeSymbol);
 
 var calledRun;
-
-function ExitStatus(status) {
- this.name = "ExitStatus";
- this.message = "Program terminated with exit(" + status + ")";
- this.status = status;
-}
-
-var calledMain = false;
 
 dependenciesFulfilled = function runCaller() {
  if (!calledRun) run();
  if (!calledRun) dependenciesFulfilled = runCaller;
 };
 
-function callMain(args) {
+function callMain(args = []) {
  assert(runDependencies == 0, 'cannot call main when async dependencies remain! (listen on Module["onRuntimeInitialized"])');
  assert(__ATPRERUN__.length == 0, "cannot call main when preRun functions remain to be called");
- var entryFunction = Module["_main"];
- args = args || [];
- var argc = args.length + 1;
+ var entryFunction = _main;
+ args.unshift(thisProgram);
+ var argc = args.length;
  var argv = stackAlloc((argc + 1) * 4);
- HEAP32[argv >>> 2] = allocateUTF8OnStack(thisProgram);
- for (var i = 1; i < argc; i++) {
-  HEAP32[(argv >> 2) + i >>> 0] = allocateUTF8OnStack(args[i - 1]);
- }
- HEAP32[(argv >> 2) + argc >>> 0] = 0;
+ var argv_ptr = argv >> 2;
+ args.forEach(arg => {
+  HEAP32[argv_ptr++ >>> 0] = allocateUTF8OnStack(arg);
+ });
+ HEAP32[argv_ptr >>> 0] = 0;
  try {
   var ret = entryFunction(argc, argv);
-  exit(ret, true);
+  exitJS(ret, true);
   return ret;
  } catch (e) {
   return handleException(e);
- } finally {
-  calledMain = true;
  }
 }
 
@@ -12792,8 +12017,7 @@ function stackCheckInit() {
  writeStackCookie();
 }
 
-function run(args) {
- args = args || arguments_;
+function run(args = arguments_) {
  if (runDependencies > 0) {
   return;
  }
@@ -12827,17 +12051,15 @@ function run(args) {
  checkStackCookie();
 }
 
-Module["run"] = run;
-
 function checkUnflushedContent() {
  var oldOut = out;
  var oldErr = err;
  var has = false;
- out = err = (x => {
+ out = err = x => {
   has = true;
- });
+ };
  try {
-  ___stdio_exit();
+  _fflush(0);
   [ "stdout", "stderr" ].forEach(function(name) {
    var info = FS.analyzePath("/dev/" + name);
    if (!info) return;
@@ -12854,25 +12076,6 @@ function checkUnflushedContent() {
  if (has) {
   warnOnce("stdio streams had content in them that was not flushed. you should set EXIT_RUNTIME to 1 (see the FAQ), or make sure to emit a newline when you printf etc.");
  }
-}
-
-function exit(status, implicit) {
- EXITSTATUS = status;
- checkUnflushedContent();
- if (keepRuntimeAlive() && !implicit) {
-  var msg = "program exited (with status: " + status + "), but EXIT_RUNTIME is not set, so halting execution but not exiting the runtime or preventing further async execution (build with EXIT_RUNTIME=1, if you want a true shutdown)";
-  err(msg);
- }
- procExit(status);
-}
-
-function procExit(code) {
- EXITSTATUS = code;
- if (!keepRuntimeAlive()) {
-  if (Module["onExit"]) Module["onExit"](code);
-  ABORT = true;
- }
- quit_(code, new ExitStatus(code));
 }
 
 if (Module["preInit"]) {
