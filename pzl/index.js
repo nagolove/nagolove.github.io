@@ -9484,9 +9484,9 @@ var dynCall_jiji = Module["dynCall_jiji"] = createExportWrapper("dynCall_jiji");
 
 var dynCall_iidiiii = Module["dynCall_iidiiii"] = createExportWrapper("dynCall_iidiiii");
 
-var ___start_em_js = Module["___start_em_js"] = 148496;
+var ___start_em_js = Module["___start_em_js"] = 149488;
 
-var ___stop_em_js = Module["___stop_em_js"] = 148571;
+var ___stop_em_js = Module["___stop_em_js"] = 149563;
 
 function invoke_vii(index, a1, a2) {
  var sp = stackSave();
