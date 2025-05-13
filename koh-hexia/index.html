@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>APPNAME</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="https://www.raylib.com/favicon.ico">
+
+  <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    canvas.emscripten {
+        border: 0;
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/gh/eligrey/FileSaver.js/dist/FileSaver.min.js"></script>
+  <script>
+    function saveFileFromMEMFSToDisk(memoryFSname, localFSname) {
+        var isSafari = false;
+        var data = FS.readFile(memoryFSname);
+        var blob = new Blob([data.buffer], {
+            type: isSafari ? "application/octet-stream" : "application/octet-binary"
+        });
+        saveAs(blob, localFSname);
+    }
+  </script>
+</head>
+<body>
+  <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+  <pre id="output"></pre>
+
+  <script>
+    // Обязательно выполнять после canvas в DOM
+    var canvas = document.getElementById("canvas");
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas(); // вызвать при загрузке
+
+    var Module = {
+        print: (function () {
+            var element = document.getElementById('output');
+            return function (text) {
+                console.log(text);
+                if (element) {
+                    element.textContent += text + "\n";
+                    element.scrollTop = element.scrollHeight;
+                }
+            };
+        })(),
+        canvas: canvas
+    };
+  </script>
+
+  <script async type="text/javascript" src="hexia.js"></script>
+</body>
+</html>
+
