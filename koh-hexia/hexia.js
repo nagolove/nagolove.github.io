@@ -46,7 +46,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/tmpqr5l0mbl.js
+// include: /tmp/tmpjk4gkivz.js
 Module["expectedDataFileDownloads"] ??= 0;
 
 Module["expectedDataFileDownloads"]++;
@@ -147,8 +147,6 @@ Module["expectedDataFileDownloads"]++;
         if (!check) throw msg + (new Error).stack;
       }
       Module["FS_createPath"]("/", "assets", true, true);
-      Module["FS_createPath"]("/assets", "food_01", true, true);
-      Module["FS_createPath"]("/assets", "food_01_unused", true, true);
       Module["FS_createPath"]("/assets", "food_02", true, true);
       Module["FS_createPath"]("/assets", "gfx", true, true);
       Module["FS_createPath"]("/assets/gfx", "mouse", true, true);
@@ -216,559 +214,387 @@ Module["expectedDataFileDownloads"]++;
   }
   loadPackage({
     "files": [ {
-      "filename": "/assets/ChatGPT Image 23 февр. 2026 г., 16_17_48.png",
-      "start": 0,
-      "end": 1598786
-    }, {
-      "filename": "/assets/ChatGPT Image 23 февр. 2026 г., 16_22_37.png",
-      "start": 1598786,
-      "end": 3543255
-    }, {
-      "filename": "/assets/ChatGPT Image 23 февр. 2026 г., 16_30_53.png",
-      "start": 3543255,
-      "end": 4534325
-    }, {
       "filename": "/assets/DejaVuSansMono.ttf",
-      "start": 4534325,
-      "end": 4877465
+      "start": 0,
+      "end": 343140
     }, {
       "filename": "/assets/ammo_01.png",
-      "start": 4877465,
-      "end": 5358621
-    }, {
-      "filename": "/assets/apple.png",
-      "start": 5358621,
-      "end": 5436366
-    }, {
-      "filename": "/assets/banana.png",
-      "start": 5436366,
-      "end": 5523143
+      "start": 343140,
+      "end": 824296
     }, {
       "filename": "/assets/brick_wall_01.png",
-      "start": 5523143,
-      "end": 7253170
+      "start": 824296,
+      "end": 2554323
     }, {
       "filename": "/assets/emoji_after_food_01.png",
-      "start": 7253170,
-      "end": 7424442
-    }, {
-      "filename": "/assets/emoji_after_food_01.png.original",
-      "start": 7424442,
-      "end": 7657780
+      "start": 2554323,
+      "end": 2725595
     }, {
       "filename": "/assets/emoji_after_food_02.png",
-      "start": 7657780,
-      "end": 7876776
+      "start": 2725595,
+      "end": 2944591
     }, {
       "filename": "/assets/emoji_after_food_03.png",
-      "start": 7876776,
-      "end": 7918107
-    }, {
-      "filename": "/assets/fish.png",
-      "start": 7918107,
-      "end": 7998026
-    }, {
-      "filename": "/assets/fitting_room.png",
-      "start": 7998026,
-      "end": 8477544
+      "start": 2944591,
+      "end": 2985922
     }, {
       "filename": "/assets/flame.glsl",
-      "start": 8477544,
-      "end": 8481085
-    }, {
-      "filename": "/assets/food_01/food_good_apple.png",
-      "start": 8481085,
-      "end": 8558830
-    }, {
-      "filename": "/assets/food_01/food_good_banana.png",
-      "start": 8558830,
-      "end": 8645607
-    }, {
-      "filename": "/assets/food_01/food_good_fish.png",
-      "start": 8645607,
-      "end": 8725526
-    }, {
-      "filename": "/assets/food_01/food_good_mushroom.png",
-      "start": 8725526,
-      "end": 8981647
-    }, {
-      "filename": "/assets/food_01/food_good_salad.png",
-      "start": 8981647,
-      "end": 9151441
-    }, {
-      "filename": "/assets/food_01_unused/food_good_apple.png",
-      "start": 9151441,
-      "end": 9229186
-    }, {
-      "filename": "/assets/food_01_unused/food_good_banana.png",
-      "start": 9229186,
-      "end": 9315963
-    }, {
-      "filename": "/assets/food_01_unused/food_good_fish.png",
-      "start": 9315963,
-      "end": 9395882
-    }, {
-      "filename": "/assets/food_01_unused/food_good_mushroom.png",
-      "start": 9395882,
-      "end": 9652003
-    }, {
-      "filename": "/assets/food_01_unused/food_good_salad.png",
-      "start": 9652003,
-      "end": 9821797
+      "start": 2985922,
+      "end": 2989463
     }, {
       "filename": "/assets/food_02/food_bad_apple.png",
-      "start": 9821797,
-      "end": 10039261
+      "start": 2989463,
+      "end": 3206927
     }, {
       "filename": "/assets/food_02/food_bad_banana.png",
-      "start": 10039261,
-      "end": 10300728
+      "start": 3206927,
+      "end": 3468394
     }, {
       "filename": "/assets/food_02/food_bad_fish.png",
-      "start": 10300728,
-      "end": 10435219
+      "start": 3468394,
+      "end": 3602885
     }, {
       "filename": "/assets/food_02/food_bad_mushroom.png",
-      "start": 10435219,
-      "end": 10681678
+      "start": 3602885,
+      "end": 3849344
     }, {
       "filename": "/assets/food_02/food_bad_none.png",
-      "start": 10681678,
-      "end": 10696118
+      "start": 3849344,
+      "end": 3863784
     }, {
       "filename": "/assets/food_02/food_bad_salad.png",
-      "start": 10696118,
-      "end": 10911929
+      "start": 3863784,
+      "end": 4079595
     }, {
       "filename": "/assets/food_02/food_good_apple.png",
-      "start": 10911929,
-      "end": 11140540
+      "start": 4079595,
+      "end": 4308206
     }, {
       "filename": "/assets/food_02/food_good_banana.png",
-      "start": 11140540,
-      "end": 11381198
+      "start": 4308206,
+      "end": 4548864
     }, {
       "filename": "/assets/food_02/food_good_cucumber.png",
-      "start": 11381198,
-      "end": 11581080
+      "start": 4548864,
+      "end": 4748746
     }, {
       "filename": "/assets/food_02/food_good_egg.png",
-      "start": 11581080,
-      "end": 11722373
+      "start": 4748746,
+      "end": 4890039
     }, {
       "filename": "/assets/food_02/food_good_fish.png",
-      "start": 11722373,
-      "end": 11840687
+      "start": 4890039,
+      "end": 5008353
     }, {
       "filename": "/assets/food_02/food_good_maize.png",
-      "start": 11840687,
-      "end": 11982424
+      "start": 5008353,
+      "end": 5150090
     }, {
       "filename": "/assets/food_02/food_good_mushroom.png",
-      "start": 11982424,
-      "end": 12275239
+      "start": 5150090,
+      "end": 5442905
     }, {
       "filename": "/assets/food_02/food_good_salad.png",
-      "start": 12275239,
-      "end": 12497957
+      "start": 5442905,
+      "end": 5665623
     }, {
       "filename": "/assets/food_02/food_good_water.png",
-      "start": 12497957,
-      "end": 12619631
+      "start": 5665623,
+      "end": 5787297
     }, {
       "filename": "/assets/frag_bolt.glsl",
-      "start": 12619631,
-      "end": 12625646
+      "start": 5787297,
+      "end": 5793312
     }, {
       "filename": "/assets/frag_clip.glsl",
-      "start": 12625646,
-      "end": 12629175
+      "start": 5793312,
+      "end": 5796841
     }, {
       "filename": "/assets/gfx/mouse/lb.png",
-      "start": 12629175,
-      "end": 12644201
+      "start": 5796841,
+      "end": 5811867
     }, {
       "filename": "/assets/gfx/mouse/mouse.png",
-      "start": 12644201,
-      "end": 12682304
+      "start": 5811867,
+      "end": 5849970
     }, {
       "filename": "/assets/gfx/mouse/rb.png",
-      "start": 12682304,
-      "end": 12697007
+      "start": 5849970,
+      "end": 5864673
     }, {
       "filename": "/assets/gfx/mouse/wheel.png",
-      "start": 12697007,
-      "end": 12705105
+      "start": 5864673,
+      "end": 5872771
     }, {
       "filename": "/assets/gfx/xbox.png",
-      "start": 12705105,
-      "end": 12721217
-    }, {
-      "filename": "/assets/grass_autumn.png",
-      "start": 12721217,
-      "end": 14648793
-    }, {
-      "filename": "/assets/grass_summer.png",
-      "start": 14648793,
-      "end": 16444344
+      "start": 5872771,
+      "end": 5888883
     }, {
       "filename": "/assets/heart.png",
-      "start": 16444344,
-      "end": 16448868
-    }, {
-      "filename": "/assets/heavy_tower.png",
-      "start": 16448868,
-      "end": 16942041
+      "start": 5888883,
+      "end": 5893407
     }, {
       "filename": "/assets/hex_batch.fs",
-      "start": 16942041,
-      "end": 16942140
+      "start": 5893407,
+      "end": 5893506
     }, {
       "filename": "/assets/hex_batch.vs",
-      "start": 16942140,
-      "end": 16942378
+      "start": 5893506,
+      "end": 5893744
     }, {
       "filename": "/assets/hex_batch_tex.fs",
-      "start": 16942378,
-      "end": 16942593
+      "start": 5893744,
+      "end": 5893959
     }, {
       "filename": "/assets/hex_batch_tex.vs",
-      "start": 16942593,
-      "end": 16942928
+      "start": 5893959,
+      "end": 5894294
     }, {
       "filename": "/assets/hex_instance.fs",
-      "start": 16942928,
-      "end": 16943027
+      "start": 5894294,
+      "end": 5894393
     }, {
       "filename": "/assets/hex_instance.vs",
-      "start": 16943027,
-      "end": 16943340
-    }, {
-      "filename": "/assets/mushroom.png",
-      "start": 16943340,
-      "end": 17199461
+      "start": 5894393,
+      "end": 5894706
     }, {
       "filename": "/assets/nausea_02.png",
-      "start": 17199461,
-      "end": 17344439
+      "start": 5894706,
+      "end": 6039684
     }, {
       "filename": "/assets/overlay/food_good_apple.png",
-      "start": 17344439,
-      "end": 17750843
+      "start": 6039684,
+      "end": 6446088
     }, {
       "filename": "/assets/overlay/food_good_banana.png",
-      "start": 17750843,
-      "end": 18079804
+      "start": 6446088,
+      "end": 6775049
     }, {
       "filename": "/assets/overlay/food_good_cucumber.png",
-      "start": 18079804,
-      "end": 18568358
+      "start": 6775049,
+      "end": 7263603
     }, {
       "filename": "/assets/overlay/food_good_egg.png",
-      "start": 18568358,
-      "end": 18951402
+      "start": 7263603,
+      "end": 7646647
     }, {
       "filename": "/assets/overlay/food_good_maize.png",
-      "start": 18951402,
-      "end": 19343075
+      "start": 7646647,
+      "end": 8038320
     }, {
       "filename": "/assets/overlay/p_tree_03.png",
-      "start": 19343075,
-      "end": 20349628
+      "start": 8038320,
+      "end": 9044873
     }, {
       "filename": "/assets/overlay/p_tree_04.png",
-      "start": 20349628,
-      "end": 20943217
+      "start": 9044873,
+      "end": 9638462
     }, {
       "filename": "/assets/overlay/snake_body_hex_02.png",
-      "start": 20943217,
-      "end": 21211130
-    }, {
-      "filename": "/assets/p_GPT Image 1 дек. 2025 г., 23_54_47.png",
-      "start": 21211130,
-      "end": 22427385
-    }, {
-      "filename": "/assets/p_GPT Image 1 дек. 2025 г., 23_54_52.png",
-      "start": 22427385,
-      "end": 23721451
-    }, {
-      "filename": "/assets/p_flame_01.png",
-      "start": 23721451,
-      "end": 24914600
-    }, {
-      "filename": "/assets/p_flame_02.png",
-      "start": 24914600,
-      "end": 25976379
-    }, {
-      "filename": "/assets/p_flame_03.png",
-      "start": 25976379,
-      "end": 27278664
-    }, {
-      "filename": "/assets/p_flame_04.png",
-      "start": 27278664,
-      "end": 28427987
-    }, {
-      "filename": "/assets/p_flame_05.png",
-      "start": 28427987,
-      "end": 29601054
+      "start": 9638462,
+      "end": 9906375
     }, {
       "filename": "/assets/p_flame_06.png",
-      "start": 29601054,
-      "end": 30774539
+      "start": 9906375,
+      "end": 11079860
     }, {
       "filename": "/assets/p_ground_00.png",
-      "start": 30774539,
-      "end": 31827827
-    }, {
-      "filename": "/assets/p_ground_01.png",
-      "start": 31827827,
-      "end": 32687843
+      "start": 11079860,
+      "end": 12133148
     }, {
       "filename": "/assets/p_ground_02.png",
-      "start": 32687843,
-      "end": 33458963
-    }, {
-      "filename": "/assets/p_tree00.png",
-      "start": 33458963,
-      "end": 34285892
-    }, {
-      "filename": "/assets/p_tree_01.png",
-      "start": 34285892,
-      "end": 35291829
-    }, {
-      "filename": "/assets/p_tree_02.png",
-      "start": 35291829,
-      "end": 36344770
+      "start": 12133148,
+      "end": 12904268
     }, {
       "filename": "/assets/p_tree_03.png",
-      "start": 36344770,
-      "end": 37600197
+      "start": 12904268,
+      "end": 14159695
     }, {
       "filename": "/assets/p_tree_04.png",
-      "start": 37600197,
-      "end": 39019130
+      "start": 14159695,
+      "end": 15578628
     }, {
       "filename": "/assets/p_tree_05.png",
-      "start": 39019130,
-      "end": 40476763
-    }, {
-      "filename": "/assets/p_water_01.png",
-      "start": 40476763,
-      "end": 41475413
-    }, {
-      "filename": "/assets/p_water_02.png",
-      "start": 41475413,
-      "end": 42331174
-    }, {
-      "filename": "/assets/p_water_03.png",
-      "start": 42331174,
-      "end": 43376152
+      "start": 15578628,
+      "end": 17036261
     }, {
       "filename": "/assets/progressbar.png",
-      "start": 43376152,
-      "end": 43382283
-    }, {
-      "filename": "/assets/salad.png",
-      "start": 43382283,
-      "end": 43552077
-    }, {
-      "filename": "/assets/shield_01.png",
-      "start": 43552077,
-      "end": 44577790
-    }, {
-      "filename": "/assets/shield_02.png",
-      "start": 44577790,
-      "end": 45622047
-    }, {
-      "filename": "/assets/shield_03.png",
-      "start": 45622047,
-      "end": 46691842
+      "start": 17036261,
+      "end": 17042392
     }, {
       "filename": "/assets/snake_body_hex_01.png",
-      "start": 46691842,
-      "end": 46998541
+      "start": 17042392,
+      "end": 17349091
     }, {
       "filename": "/assets/snake_body_hex_02.png",
-      "start": 46998541,
-      "end": 47302381
+      "start": 17349091,
+      "end": 17652931
     }, {
       "filename": "/assets/snake_body_hex_03.png",
-      "start": 47302381,
-      "end": 48901167
+      "start": 17652931,
+      "end": 19251717
     }, {
       "filename": "/assets/snake_body_hex_04.png",
-      "start": 48901167,
-      "end": 50845636
+      "start": 19251717,
+      "end": 21196186
     }, {
       "filename": "/assets/snake_body_hex_05.png",
-      "start": 50845636,
-      "end": 51836706
-    }, {
-      "filename": "/assets/snake_head1.png",
-      "start": 51836706,
-      "end": 51861495
+      "start": 21196186,
+      "end": 22187256
     }, {
       "filename": "/assets/snake_head_01.png",
-      "start": 51861495,
-      "end": 52521734
+      "start": 22187256,
+      "end": 22847495
     }, {
       "filename": "/assets/snake_head_01_exam.png",
-      "start": 52521734,
-      "end": 52778985
-    }, {
-      "filename": "/assets/snake_helmet.png",
-      "start": 52778985,
-      "end": 53174040
+      "start": 22847495,
+      "end": 23104746
     }, {
       "filename": "/assets/stone.png",
-      "start": 53174040,
-      "end": 53240707
+      "start": 23104746,
+      "end": 23171413
     }, {
       "filename": "/assets/trees_new/акварель-вирус.png",
-      "start": 53240707,
-      "end": 53395316
+      "start": 23171413,
+      "end": 23326022
     }, {
       "filename": "/assets/trees_new/акварель-водоросль-1.png",
-      "start": 53395316,
-      "end": 53439239
+      "start": 23326022,
+      "end": 23369945
     }, {
       "filename": "/assets/trees_new/акварель-водоросль-2.png",
-      "start": 53439239,
-      "end": 53484874
+      "start": 23369945,
+      "end": 23415580
     }, {
       "filename": "/assets/trees_new/акварель-клетка.png",
-      "start": 53484874,
-      "end": 53678622
+      "start": 23415580,
+      "end": 23609328
     }, {
       "filename": "/assets/trees_new/акварель-куст-большой.png",
-      "start": 53678622,
-      "end": 53816320
+      "start": 23609328,
+      "end": 23747026
     }, {
       "filename": "/assets/trees_new/акварель-куст-круг.png",
-      "start": 53816320,
-      "end": 53958023
+      "start": 23747026,
+      "end": 23888729
     }, {
       "filename": "/assets/trees_new/акварель-куст.png",
-      "start": 53958023,
-      "end": 54096769
+      "start": 23888729,
+      "end": 24027475
     }, {
       "filename": "/assets/trees_new/акварель-кустик.png",
-      "start": 54096769,
-      "end": 54131665
+      "start": 24027475,
+      "end": 24062371
     }, {
       "filename": "/assets/trees_new/акварель-листочки.png",
-      "start": 54131665,
-      "end": 54192829
+      "start": 24062371,
+      "end": 24123535
     }, {
       "filename": "/assets/trees_new/акварель-несимметрия.png",
-      "start": 54192829,
-      "end": 54448985
+      "start": 24123535,
+      "end": 24379691
     }, {
       "filename": "/assets/trees_new/акварель-осень.png",
-      "start": 54448985,
-      "end": 54595281
+      "start": 24379691,
+      "end": 24525987
     }, {
       "filename": "/assets/trees_new/букля-зеленая.png",
-      "start": 54595281,
-      "end": 54764278
+      "start": 24525987,
+      "end": 24694984
     }, {
       "filename": "/assets/trees_new/дерево-детальное-гибискус.png",
-      "start": 54764278,
-      "end": 54979392
+      "start": 24694984,
+      "end": 24910098
     }, {
       "filename": "/assets/trees_new/дерево-детальное-под-мох.png",
-      "start": 54979392,
-      "end": 55149324
+      "start": 24910098,
+      "end": 25080030
     }, {
       "filename": "/assets/trees_new/дерево-детальное.png",
-      "start": 55149324,
-      "end": 55343531
+      "start": 25080030,
+      "end": 25274237
     }, {
       "filename": "/assets/trees_new/куст-агрессор.png",
-      "start": 55343531,
-      "end": 55442408
+      "start": 25274237,
+      "end": 25373114
     }, {
       "filename": "/assets/trees_new/кустики-мелкие.png",
-      "start": 55442408,
-      "end": 55562031
+      "start": 25373114,
+      "end": 25492737
     }, {
       "filename": "/assets/trees_new/листья-лепешки.png",
-      "start": 55562031,
-      "end": 55642268
+      "start": 25492737,
+      "end": 25572974
     }, {
       "filename": "/assets/trees_new/морская-капуста.png",
-      "start": 55642268,
-      "end": 55703537
+      "start": 25572974,
+      "end": 25634243
     }, {
       "filename": "/assets/trees_new/пальма-агрессор.png",
-      "start": 55703537,
-      "end": 55795230
+      "start": 25634243,
+      "end": 25725936
     }, {
       "filename": "/assets/trees_new/пальма-фото-стандарт.png",
-      "start": 55795230,
-      "end": 58197826
+      "start": 25725936,
+      "end": 28128532
     }, {
       "filename": "/assets/trees_new/пальма-фото-широкие-листья.png",
-      "start": 58197826,
-      "end": 60612333
+      "start": 28128532,
+      "end": 30543039
     }, {
       "filename": "/assets/trees_new/пальма-фото.png",
-      "start": 60612333,
-      "end": 62525078
+      "start": 30543039,
+      "end": 32455784
     }, {
       "filename": "/assets/trees_new/салатовые-пузыри.png",
-      "start": 62525078,
-      "end": 62558007
+      "start": 32455784,
+      "end": 32488713
     }, {
       "filename": "/assets/trees_new/салатовый-кружок-с-вырезом.png",
-      "start": 62558007,
-      "end": 62594769
+      "start": 32488713,
+      "end": 32525475
     }, {
       "filename": "/assets/trees_new/салатовый-орнамент-с-вырезом.png",
-      "start": 62594769,
-      "end": 62629928
+      "start": 32525475,
+      "end": 32560634
     }, {
       "filename": "/assets/trees_new/салатовый-орнамент.png",
-      "start": 62629928,
-      "end": 62664140
+      "start": 32560634,
+      "end": 32594846
     }, {
       "filename": "/assets/trees_new/салотовый-кружок.png",
-      "start": 62664140,
-      "end": 62701739
-    }, {
-      "filename": "/assets/turret.png",
-      "start": 62701739,
-      "end": 62711558
+      "start": 32594846,
+      "end": 32632445
     }, {
       "filename": "/assets/turret_01.png",
-      "start": 62711558,
-      "end": 62729912
+      "start": 32632445,
+      "end": 32650799
     }, {
       "filename": "/assets/turret_kit_01.png",
-      "start": 62729912,
-      "end": 62747390
+      "start": 32650799,
+      "end": 32668277
     } ],
-    "remote_package_size": 62747390
+    "remote_package_size": 32668277
   });
 })();
 
-// end include: /tmp/tmpqr5l0mbl.js
-// include: /tmp/tmp3583hwrl.js
+// end include: /tmp/tmpjk4gkivz.js
+// include: /tmp/tmpw8oxcyv3.js
 // All the pre-js content up to here must remain later on, we need to run
 // it.
 if (Module["$ww"] || (typeof ENVIRONMENT_IS_PTHREAD != "undefined" && ENVIRONMENT_IS_PTHREAD)) Module["preRun"] = [];
 
 var necessaryPreJSTasks = Module["preRun"].slice();
 
-// end include: /tmp/tmp3583hwrl.js
-// include: /tmp/tmpcszu1npk.js
+// end include: /tmp/tmpw8oxcyv3.js
+// include: /tmp/tmpz7x3ucz1.js
 if (!Module["preRun"]) throw "Module.preRun should exist because file support used it; did a pre-js delete it?";
 
 necessaryPreJSTasks.forEach(task => {
   if (Module["preRun"].indexOf(task) < 0) throw "All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?";
 });
 
-// end include: /tmp/tmpcszu1npk.js
+// end include: /tmp/tmpz7x3ucz1.js
 // Sometimes an existing Module object exists with properties
 // meant to overwrite the default module functionality. Here
 // we collect those properties and reapply _after_ we configure
@@ -2176,196 +2002,6 @@ var onPostRuns = [];
 
 var addOnPostRun = cb => onPostRuns.unshift(cb);
 
-var withStackSave = f => {
-  var stack = stackSave();
-  var ret = f();
-  stackRestore(stack);
-  return ret;
-};
-
-var lengthBytesUTF8 = str => {
-  var len = 0;
-  for (var i = 0; i < str.length; ++i) {
-    // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code
-    // unit, not a Unicode code point of the character! So decode
-    // UTF16->UTF32->UTF8.
-    // See http://unicode.org/faq/utf_bom.html#utf16-3
-    var c = str.charCodeAt(i);
-    // possibly a lead surrogate
-    if (c <= 127) {
-      len++;
-    } else if (c <= 2047) {
-      len += 2;
-    } else if (c >= 55296 && c <= 57343) {
-      len += 4;
-      ++i;
-    } else {
-      len += 3;
-    }
-  }
-  return len;
-};
-
-var stringToUTF8Array = (str, heap, outIdx, maxBytesToWrite) => {
-  assert(typeof str === "string", `stringToUTF8Array expects a string (got ${typeof str})`);
-  // Parameter maxBytesToWrite is not optional. Negative values, 0, null,
-  // undefined and false each don't write out any bytes.
-  if (!(maxBytesToWrite > 0)) return 0;
-  var startIdx = outIdx;
-  var endIdx = outIdx + maxBytesToWrite - 1;
-  // -1 for string null terminator.
-  for (var i = 0; i < str.length; ++i) {
-    // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code
-    // unit, not a Unicode code point of the character! So decode
-    // UTF16->UTF32->UTF8.
-    // See http://unicode.org/faq/utf_bom.html#utf16-3
-    // For UTF8 byte structure, see http://en.wikipedia.org/wiki/UTF-8#Description
-    // and https://www.ietf.org/rfc/rfc2279.txt
-    // and https://tools.ietf.org/html/rfc3629
-    var u = str.charCodeAt(i);
-    // possibly a lead surrogate
-    if (u >= 55296 && u <= 57343) {
-      var u1 = str.charCodeAt(++i);
-      u = 65536 + ((u & 1023) << 10) | (u1 & 1023);
-    }
-    if (u <= 127) {
-      if (outIdx >= endIdx) break;
-      heap[outIdx++] = u;
-    } else if (u <= 2047) {
-      if (outIdx + 1 >= endIdx) break;
-      heap[outIdx++] = 192 | (u >> 6);
-      heap[outIdx++] = 128 | (u & 63);
-    } else if (u <= 65535) {
-      if (outIdx + 2 >= endIdx) break;
-      heap[outIdx++] = 224 | (u >> 12);
-      heap[outIdx++] = 128 | ((u >> 6) & 63);
-      heap[outIdx++] = 128 | (u & 63);
-    } else {
-      if (outIdx + 3 >= endIdx) break;
-      if (u > 1114111) warnOnce("Invalid Unicode code point " + ptrToString(u) + " encountered when serializing a JS string to a UTF-8 string in wasm memory! (Valid unicode code points should be in range 0-0x10FFFF).");
-      heap[outIdx++] = 240 | (u >> 18);
-      heap[outIdx++] = 128 | ((u >> 12) & 63);
-      heap[outIdx++] = 128 | ((u >> 6) & 63);
-      heap[outIdx++] = 128 | (u & 63);
-    }
-  }
-  // Null-terminate the pointer to the buffer.
-  heap[outIdx] = 0;
-  return outIdx - startIdx;
-};
-
-var stringToUTF8 = (str, outPtr, maxBytesToWrite) => {
-  assert(typeof maxBytesToWrite == "number", "stringToUTF8(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!");
-  return stringToUTF8Array(str, GROWABLE_HEAP_U8(), outPtr, maxBytesToWrite);
-};
-
-var stringToUTF8OnStack = str => {
-  var size = lengthBytesUTF8(str) + 1;
-  var ret = stackAlloc(size);
-  stringToUTF8(str, ret, size);
-  return ret;
-};
-
-var UTF8Decoder = typeof TextDecoder != "undefined" ? new TextDecoder : undefined;
-
-/**
-     * Given a pointer 'idx' to a null-terminated UTF8-encoded string in the given
-     * array that contains uint8 values, returns a copy of that string as a
-     * Javascript String object.
-     * heapOrArray is either a regular array, or a JavaScript typed array view.
-     * @param {number=} idx
-     * @param {number=} maxBytesToRead
-     * @return {string}
-     */ var UTF8ArrayToString = (heapOrArray, idx = 0, maxBytesToRead = NaN) => {
-  var endIdx = idx + maxBytesToRead;
-  var endPtr = idx;
-  // TextDecoder needs to know the byte length in advance, it doesn't stop on
-  // null terminator by itself.  Also, use the length info to avoid running tiny
-  // strings through TextDecoder, since .subarray() allocates garbage.
-  // (As a tiny code save trick, compare endPtr against endIdx using a negation,
-  // so that undefined/NaN means Infinity)
-  while (heapOrArray[endPtr] && !(endPtr >= endIdx)) ++endPtr;
-  if (endPtr - idx > 16 && heapOrArray.buffer && UTF8Decoder) {
-    return UTF8Decoder.decode(heapOrArray.buffer instanceof ArrayBuffer ? heapOrArray.subarray(idx, endPtr) : heapOrArray.slice(idx, endPtr));
-  }
-  var str = "";
-  // If building with TextDecoder, we have already computed the string length
-  // above, so test loop end condition against that
-  while (idx < endPtr) {
-    // For UTF8 byte structure, see:
-    // http://en.wikipedia.org/wiki/UTF-8#Description
-    // https://www.ietf.org/rfc/rfc2279.txt
-    // https://tools.ietf.org/html/rfc3629
-    var u0 = heapOrArray[idx++];
-    if (!(u0 & 128)) {
-      str += String.fromCharCode(u0);
-      continue;
-    }
-    var u1 = heapOrArray[idx++] & 63;
-    if ((u0 & 224) == 192) {
-      str += String.fromCharCode(((u0 & 31) << 6) | u1);
-      continue;
-    }
-    var u2 = heapOrArray[idx++] & 63;
-    if ((u0 & 240) == 224) {
-      u0 = ((u0 & 15) << 12) | (u1 << 6) | u2;
-    } else {
-      if ((u0 & 248) != 240) warnOnce("Invalid UTF-8 leading byte " + ptrToString(u0) + " encountered when deserializing a UTF-8 string in wasm memory to a JS string!");
-      u0 = ((u0 & 7) << 18) | (u1 << 12) | (u2 << 6) | (heapOrArray[idx++] & 63);
-    }
-    if (u0 < 65536) {
-      str += String.fromCharCode(u0);
-    } else {
-      var ch = u0 - 65536;
-      str += String.fromCharCode(55296 | (ch >> 10), 56320 | (ch & 1023));
-    }
-  }
-  return str;
-};
-
-/**
-     * Given a pointer 'ptr' to a null-terminated UTF8-encoded string in the
-     * emscripten HEAP, returns a copy of that string as a Javascript String object.
-     *
-     * @param {number} ptr
-     * @param {number=} maxBytesToRead - An optional length that specifies the
-     *   maximum number of bytes to read. You can omit this parameter to scan the
-     *   string until the first 0 byte. If maxBytesToRead is passed, and the string
-     *   at [ptr, ptr+maxBytesToReadr[ contains a null byte in the middle, then the
-     *   string will cut short at that byte index (i.e. maxBytesToRead will not
-     *   produce a string of exact length [ptr, ptr+maxBytesToRead[) N.B. mixing
-     *   frequent uses of UTF8ToString() with and without maxBytesToRead may throw
-     *   JS JIT optimizations off, so it is worth to consider consistently using one
-     * @return {string}
-     */ var UTF8ToString = (ptr, maxBytesToRead) => {
-  assert(typeof ptr == "number", `UTF8ToString expects a number (got ${typeof ptr})`);
-  return ptr ? UTF8ArrayToString(GROWABLE_HEAP_U8(), ptr, maxBytesToRead) : "";
-};
-
-var demangle = func => {
-  // If demangle has failed before, stop demangling any further function names
-  // This avoids an infinite recursion with malloc()->abort()->stackTrace()->demangle()->malloc()->...
-  demangle.recursionGuard = (demangle.recursionGuard | 0) + 1;
-  if (demangle.recursionGuard > 1) return func;
-  return withStackSave(() => {
-    try {
-      var s = func;
-      if (s.startsWith("__Z")) s = s.slice(1);
-      var buf = stringToUTF8OnStack(s);
-      var status = stackAlloc(4);
-      var ret = ___cxa_demangle(buf, 0, 0, status);
-      if (GROWABLE_HEAP_I32()[((status) >> 2)] === 0 && ret) {
-        return UTF8ToString(ret);
-      }
-    } catch (e) {} finally {
-      _free(ret);
-      if (demangle.recursionGuard < 2) --demangle.recursionGuard;
-    }
-    // failure when using libcxxabi, don't demangle
-    return func;
-  });
-};
-
 var establishStackSpace = pthread_ptr => {
   // If memory growth is enabled, the memory views may have gotten out of date,
   // so resync them before accessing the pthread ptr below.
@@ -2506,14 +2142,6 @@ var registerTLSInit = tlsInitFunc => PThread.tlsInitFunctions.push(tlsInitFunc);
   }
 }
 
-var jsStackTrace = () => (new Error).stack.toString();
-
-var stackTrace = () => {
-  var js = jsStackTrace();
-  if (Module["extraStackTrace"]) js += "\n" + Module["extraStackTrace"]();
-  return js;
-};
-
 var warnOnce = text => {
   warnOnce.shown ||= {};
   if (!warnOnce.shown[text]) {
@@ -2521,6 +2149,82 @@ var warnOnce = text => {
     if (ENVIRONMENT_IS_NODE) text = "warning: " + text;
     err(text);
   }
+};
+
+var UTF8Decoder = typeof TextDecoder != "undefined" ? new TextDecoder : undefined;
+
+/**
+     * Given a pointer 'idx' to a null-terminated UTF8-encoded string in the given
+     * array that contains uint8 values, returns a copy of that string as a
+     * Javascript String object.
+     * heapOrArray is either a regular array, or a JavaScript typed array view.
+     * @param {number=} idx
+     * @param {number=} maxBytesToRead
+     * @return {string}
+     */ var UTF8ArrayToString = (heapOrArray, idx = 0, maxBytesToRead = NaN) => {
+  var endIdx = idx + maxBytesToRead;
+  var endPtr = idx;
+  // TextDecoder needs to know the byte length in advance, it doesn't stop on
+  // null terminator by itself.  Also, use the length info to avoid running tiny
+  // strings through TextDecoder, since .subarray() allocates garbage.
+  // (As a tiny code save trick, compare endPtr against endIdx using a negation,
+  // so that undefined/NaN means Infinity)
+  while (heapOrArray[endPtr] && !(endPtr >= endIdx)) ++endPtr;
+  if (endPtr - idx > 16 && heapOrArray.buffer && UTF8Decoder) {
+    return UTF8Decoder.decode(heapOrArray.buffer instanceof ArrayBuffer ? heapOrArray.subarray(idx, endPtr) : heapOrArray.slice(idx, endPtr));
+  }
+  var str = "";
+  // If building with TextDecoder, we have already computed the string length
+  // above, so test loop end condition against that
+  while (idx < endPtr) {
+    // For UTF8 byte structure, see:
+    // http://en.wikipedia.org/wiki/UTF-8#Description
+    // https://www.ietf.org/rfc/rfc2279.txt
+    // https://tools.ietf.org/html/rfc3629
+    var u0 = heapOrArray[idx++];
+    if (!(u0 & 128)) {
+      str += String.fromCharCode(u0);
+      continue;
+    }
+    var u1 = heapOrArray[idx++] & 63;
+    if ((u0 & 224) == 192) {
+      str += String.fromCharCode(((u0 & 31) << 6) | u1);
+      continue;
+    }
+    var u2 = heapOrArray[idx++] & 63;
+    if ((u0 & 240) == 224) {
+      u0 = ((u0 & 15) << 12) | (u1 << 6) | u2;
+    } else {
+      if ((u0 & 248) != 240) warnOnce("Invalid UTF-8 leading byte " + ptrToString(u0) + " encountered when deserializing a UTF-8 string in wasm memory to a JS string!");
+      u0 = ((u0 & 7) << 18) | (u1 << 12) | (u2 << 6) | (heapOrArray[idx++] & 63);
+    }
+    if (u0 < 65536) {
+      str += String.fromCharCode(u0);
+    } else {
+      var ch = u0 - 65536;
+      str += String.fromCharCode(55296 | (ch >> 10), 56320 | (ch & 1023));
+    }
+  }
+  return str;
+};
+
+/**
+     * Given a pointer 'ptr' to a null-terminated UTF8-encoded string in the
+     * emscripten HEAP, returns a copy of that string as a Javascript String object.
+     *
+     * @param {number} ptr
+     * @param {number=} maxBytesToRead - An optional length that specifies the
+     *   maximum number of bytes to read. You can omit this parameter to scan the
+     *   string until the first 0 byte. If maxBytesToRead is passed, and the string
+     *   at [ptr, ptr+maxBytesToReadr[ contains a null byte in the middle, then the
+     *   string will cut short at that byte index (i.e. maxBytesToRead will not
+     *   produce a string of exact length [ptr, ptr+maxBytesToRead[) N.B. mixing
+     *   frequent uses of UTF8ToString() with and without maxBytesToRead may throw
+     *   JS JIT optimizations off, so it is worth to consider consistently using one
+     * @return {string}
+     */ var UTF8ToString = (ptr, maxBytesToRead) => {
+  assert(typeof ptr == "number", `UTF8ToString expects a number (got ${typeof ptr})`);
+  return ptr ? UTF8ArrayToString(GROWABLE_HEAP_U8(), ptr, maxBytesToRead) : "";
 };
 
 var ___assert_fail = (condition, filename, line, func) => abort(`Assertion failed: ${UTF8ToString(condition)}, at: ` + [ filename ? UTF8ToString(filename) : "unknown filename", line, func ? UTF8ToString(func) : "unknown function" ]);
@@ -2757,6 +2461,77 @@ var PATH_FS = {
 };
 
 var FS_stdin_getChar_buffer = [];
+
+var lengthBytesUTF8 = str => {
+  var len = 0;
+  for (var i = 0; i < str.length; ++i) {
+    // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code
+    // unit, not a Unicode code point of the character! So decode
+    // UTF16->UTF32->UTF8.
+    // See http://unicode.org/faq/utf_bom.html#utf16-3
+    var c = str.charCodeAt(i);
+    // possibly a lead surrogate
+    if (c <= 127) {
+      len++;
+    } else if (c <= 2047) {
+      len += 2;
+    } else if (c >= 55296 && c <= 57343) {
+      len += 4;
+      ++i;
+    } else {
+      len += 3;
+    }
+  }
+  return len;
+};
+
+var stringToUTF8Array = (str, heap, outIdx, maxBytesToWrite) => {
+  assert(typeof str === "string", `stringToUTF8Array expects a string (got ${typeof str})`);
+  // Parameter maxBytesToWrite is not optional. Negative values, 0, null,
+  // undefined and false each don't write out any bytes.
+  if (!(maxBytesToWrite > 0)) return 0;
+  var startIdx = outIdx;
+  var endIdx = outIdx + maxBytesToWrite - 1;
+  // -1 for string null terminator.
+  for (var i = 0; i < str.length; ++i) {
+    // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code
+    // unit, not a Unicode code point of the character! So decode
+    // UTF16->UTF32->UTF8.
+    // See http://unicode.org/faq/utf_bom.html#utf16-3
+    // For UTF8 byte structure, see http://en.wikipedia.org/wiki/UTF-8#Description
+    // and https://www.ietf.org/rfc/rfc2279.txt
+    // and https://tools.ietf.org/html/rfc3629
+    var u = str.charCodeAt(i);
+    // possibly a lead surrogate
+    if (u >= 55296 && u <= 57343) {
+      var u1 = str.charCodeAt(++i);
+      u = 65536 + ((u & 1023) << 10) | (u1 & 1023);
+    }
+    if (u <= 127) {
+      if (outIdx >= endIdx) break;
+      heap[outIdx++] = u;
+    } else if (u <= 2047) {
+      if (outIdx + 1 >= endIdx) break;
+      heap[outIdx++] = 192 | (u >> 6);
+      heap[outIdx++] = 128 | (u & 63);
+    } else if (u <= 65535) {
+      if (outIdx + 2 >= endIdx) break;
+      heap[outIdx++] = 224 | (u >> 12);
+      heap[outIdx++] = 128 | ((u >> 6) & 63);
+      heap[outIdx++] = 128 | (u & 63);
+    } else {
+      if (outIdx + 3 >= endIdx) break;
+      if (u > 1114111) warnOnce("Invalid Unicode code point " + ptrToString(u) + " encountered when serializing a JS string to a UTF-8 string in wasm memory! (Valid unicode code points should be in range 0-0x10FFFF).");
+      heap[outIdx++] = 240 | (u >> 18);
+      heap[outIdx++] = 128 | ((u >> 12) & 63);
+      heap[outIdx++] = 128 | ((u >> 6) & 63);
+      heap[outIdx++] = 128 | (u & 63);
+    }
+  }
+  // Null-terminate the pointer to the buffer.
+  heap[outIdx] = 0;
+  return outIdx - startIdx;
+};
 
 /** @type {function(string, boolean=, number=)} */ var intArrayFromString = (stringy, dontAddNull, length) => {
   var len = length > 0 ? length : lengthBytesUTF8(stringy) + 1;
@@ -5356,6 +5131,11 @@ function ___syscall_fstat64(fd, buf) {
     return -e.errno;
   }
 }
+
+var stringToUTF8 = (str, outPtr, maxBytesToWrite) => {
+  assert(typeof maxBytesToWrite == "number", "stringToUTF8(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!");
+  return stringToUTF8Array(str, GROWABLE_HEAP_U8(), outPtr, maxBytesToWrite);
+};
 
 function ___syscall_getcwd(buf, size) {
   if (ENVIRONMENT_IS_PTHREAD) return proxyToMainThread(8, 0, 1, buf, size);
@@ -11406,6 +11186,13 @@ var _glfwWindowHint = (target, hint) => {
   GLFW.hints[target] = hint;
 };
 
+var stringToUTF8OnStack = str => {
+  var size = lengthBytesUTF8(str) + 1;
+  var ret = stackAlloc(size);
+  stringToUTF8(str, ret, size);
+  return ret;
+};
+
 var FS_createPath = FS.createPath;
 
 var FS_unlink = path => FS.unlink(path);
@@ -11480,28 +11267,32 @@ function checkIncomingModuleAPI() {
 }
 
 var ASM_CONSTS = {
-  2327510: () => {
+  1633064: () => {
+    var el = document.getElementById("loader");
+    if (el) el.style.display = "none";
+  },
+  1633147: () => {
     if (document.fullscreenElement) return 1;
   },
-  2327556: () => Module.canvas.width,
-  2327588: () => parseInt(Module.canvas.style.width),
-  2327636: () => {
+  1633193: () => Module.canvas.width,
+  1633225: () => parseInt(Module.canvas.style.width),
+  1633273: () => {
     document.exitFullscreen();
   },
-  2327663: () => {
+  1633300: () => {
     setTimeout(function() {
       Module.requestFullscreen(false, false);
     }, 100);
   },
-  2327735: () => {
+  1633372: () => {
     if (document.fullscreenElement) return 1;
   },
-  2327781: () => Module.canvas.width,
-  2327813: () => screen.width,
-  2327838: () => {
+  1633418: () => Module.canvas.width,
+  1633450: () => screen.width,
+  1633475: () => {
     document.exitFullscreen();
   },
-  2327865: $0 => {
+  1633502: $0 => {
     const canvasId = UTF8ToString($0);
     setTimeout(function() {
       Module.requestFullscreen(false, true);
@@ -11510,54 +11301,54 @@ var ASM_CONSTS = {
       }, 100);
     }, 100);
   },
-  2328059: () => window.innerWidth,
-  2328085: () => window.innerHeight,
-  2328112: () => {
+  1633696: () => window.innerWidth,
+  1633722: () => window.innerHeight,
+  1633749: () => {
     if (document.fullscreenElement) return 1;
   },
-  2328158: () => Module.canvas.width,
-  2328190: () => parseInt(Module.canvas.style.width),
-  2328238: () => {
+  1633795: () => Module.canvas.width,
+  1633827: () => parseInt(Module.canvas.style.width),
+  1633875: () => {
     if (document.fullscreenElement) return 1;
   },
-  2328284: () => Module.canvas.width,
-  2328316: () => screen.width,
-  2328341: () => window.innerWidth,
-  2328367: () => window.innerHeight,
-  2328394: () => {
+  1633921: () => Module.canvas.width,
+  1633953: () => screen.width,
+  1633978: () => window.innerWidth,
+  1634004: () => window.innerHeight,
+  1634031: () => {
     if (document.fullscreenElement) return 1;
   },
-  2328440: () => Module.canvas.width,
-  2328472: () => screen.width,
-  2328497: () => {
+  1634077: () => Module.canvas.width,
+  1634109: () => screen.width,
+  1634134: () => {
     document.exitFullscreen();
   },
-  2328524: () => {
+  1634161: () => {
     if (document.fullscreenElement) return 1;
   },
-  2328570: () => Module.canvas.width,
-  2328602: () => parseInt(Module.canvas.style.width),
-  2328650: () => {
+  1634207: () => Module.canvas.width,
+  1634239: () => parseInt(Module.canvas.style.width),
+  1634287: () => {
     document.exitFullscreen();
   },
-  2328677: $0 => {
+  1634314: $0 => {
     Module.canvas.style.opacity = $0;
   },
-  2328715: () => screen.width,
-  2328740: () => screen.height,
-  2328766: () => window.screenX,
-  2328793: () => window.screenY,
-  2328820: () => window.devicePixelRatio,
-  2328856: $0 => {
+  1634352: () => screen.width,
+  1634377: () => screen.height,
+  1634403: () => window.screenX,
+  1634430: () => window.screenY,
+  1634457: () => window.devicePixelRatio,
+  1634493: $0 => {
     navigator.clipboard.writeText(UTF8ToString($0));
   },
-  2328909: $0 => {
+  1634546: $0 => {
     Module.canvas.style.cursor = UTF8ToString($0);
   },
-  2328960: () => {
+  1634597: () => {
     Module.canvas.style.cursor = "none";
   },
-  2328997: ($0, $1, $2, $3) => {
+  1634634: ($0, $1, $2, $3) => {
     try {
       navigator.getGamepads()[$0].vibrationActuator.playEffect("dual-rumble", {
         startDelay: 0,
@@ -11571,18 +11362,18 @@ var ASM_CONSTS = {
       } catch (e) {}
     }
   },
-  2329253: $0 => {
+  1634890: $0 => {
     Module.canvas.style.cursor = UTF8ToString($0);
   },
-  2329304: () => {
+  1634941: () => {
     if (document.pointerLockElement) return 1;
   },
-  2329351: () => {
+  1634988: () => {
     if (document.fullscreenElement) return 1;
   },
-  2329397: () => window.innerWidth,
-  2329423: () => window.innerHeight,
-  2329450: ($0, $1, $2, $3, $4) => {
+  1635034: () => window.innerWidth,
+  1635060: () => window.innerHeight,
+  1635087: ($0, $1, $2, $3, $4) => {
     if (typeof window === "undefined" || (window.AudioContext || window.webkitAudioContext) === undefined) {
       return 0;
     }
@@ -11654,7 +11445,7 @@ var ASM_CONSTS = {
     window.miniaudio.referenceCount += 1;
     return 1;
   },
-  2331628: () => {
+  1637265: () => {
     if (typeof (window.miniaudio) !== "undefined") {
       window.miniaudio.unlock_event_types.map(function(event_type) {
         document.removeEventListener(event_type, window.miniaudio.unlock, true);
@@ -11665,8 +11456,8 @@ var ASM_CONSTS = {
       }
     }
   },
-  2331932: () => (navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia !== undefined),
-  2332036: () => {
+  1637569: () => (navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia !== undefined),
+  1637673: () => {
     try {
       var temp = new (window.AudioContext || window.webkitAudioContext);
       var sampleRate = temp.sampleRate;
@@ -11676,7 +11467,7 @@ var ASM_CONSTS = {
       return 0;
     }
   },
-  2332207: ($0, $1, $2, $3, $4, $5) => {
+  1637844: ($0, $1, $2, $3, $4, $5) => {
     var deviceType = $0;
     var channels = $1;
     var sampleRate = $2;
@@ -11747,8 +11538,8 @@ var ASM_CONSTS = {
     device.pDevice = pDevice;
     return window.miniaudio.track_device(device);
   },
-  2335084: $0 => window.miniaudio.get_device_by_index($0).webaudio.sampleRate,
-  2335157: $0 => {
+  1640721: $0 => window.miniaudio.get_device_by_index($0).webaudio.sampleRate,
+  1640794: $0 => {
     var device = window.miniaudio.get_device_by_index($0);
     if (device.scriptNode !== undefined) {
       device.scriptNode.onaudioprocess = function(e) {};
@@ -11763,15 +11554,15 @@ var ASM_CONSTS = {
     device.webaudio = undefined;
     device.pDevice = undefined;
   },
-  2335557: $0 => {
+  1641194: $0 => {
     window.miniaudio.untrack_device_by_index($0);
   },
-  2335607: $0 => {
+  1641244: $0 => {
     var device = window.miniaudio.get_device_by_index($0);
     device.webaudio.resume();
     device.state = window.miniaudio.device_state.started;
   },
-  2335746: $0 => {
+  1641383: $0 => {
     var device = window.miniaudio.get_device_by_index($0);
     device.webaudio.suspend();
     device.state = window.miniaudio.device_state.stopped;
@@ -12271,8 +12062,6 @@ var _emscripten_stack_get_current = () => (_emscripten_stack_get_current = wasmE
 
 var ___cxa_increment_exception_refcount = createExportWrapper("__cxa_increment_exception_refcount", 1);
 
-var ___cxa_demangle = createExportWrapper("__cxa_demangle", 4);
-
 function invoke_vii(index, a1, a2) {
   var sp = stackSave();
   try {
@@ -12302,11 +12091,11 @@ Module["FS_createDataFile"] = FS_createDataFile;
 
 Module["FS_createLazyFile"] = FS_createLazyFile;
 
-var missingLibrarySymbols = [ "writeI53ToI64Clamped", "writeI53ToI64Signaling", "writeI53ToU64Clamped", "writeI53ToU64Signaling", "convertI32PairToI53", "convertI32PairToI53Checked", "convertU32PairToI53", "getTempRet0", "setTempRet0", "inetPton4", "inetNtop4", "inetPton6", "inetNtop6", "readSockaddr", "writeSockaddr", "emscriptenLog", "runMainThreadEmAsm", "listenOnce", "autoResumeAudioContext", "getDynCaller", "dynCall", "setWasmTableEntry", "asmjsMangle", "HandleAllocator", "getNativeTypeSize", "addOnInit", "addOnPostCtor", "addOnPreMain", "STACK_SIZE", "STACK_ALIGN", "POINTER_SIZE", "ASSERTIONS", "getCFunc", "ccall", "cwrap", "uleb128Encode", "sigToWasmTypes", "generateFuncType", "convertJsFunctionToWasm", "getEmptyTableSlot", "updateTableMap", "getFunctionAddress", "addFunction", "removeFunction", "reallyNegative", "unSign", "strLen", "reSign", "formatString", "intArrayToString", "AsciiToString", "UTF16ToString", "stringToUTF16", "lengthBytesUTF16", "UTF32ToString", "stringToUTF32", "lengthBytesUTF32", "writeArrayToMemory", "registerKeyEventCallback", "registerWheelEventCallback", "fillDeviceOrientationEventData", "registerDeviceOrientationEventCallback", "fillDeviceMotionEventData", "registerDeviceMotionEventCallback", "screenOrientation", "fillOrientationChangeEventData", "registerOrientationChangeEventCallback", "JSEvents_requestFullscreen", "JSEvents_resizeCanvasForFullscreen", "registerRestoreOldStyle", "hideEverythingExceptGivenElement", "restoreHiddenElements", "setLetterbox", "softFullscreenResizeWebGLRenderTarget", "doRequestFullscreen", "registerPointerlockErrorEventCallback", "requestPointerLock", "registerBeforeUnloadEventCallback", "fillBatteryEventData", "battery", "registerBatteryEventCallback", "setCanvasElementSize", "getCanvasSizeCallingThread", "getCanvasSizeMainThread", "getCanvasElementSize", "getCallstack", "convertPCtoSourceLocation", "wasiRightsToMuslOFlags", "wasiOFlagsToMuslOFlags", "setImmediateWrapped", "safeRequestAnimationFrame", "clearImmediateWrapped", "registerPostMainLoop", "registerPreMainLoop", "getPromise", "makePromise", "idsToPromises", "makePromiseCallback", "findMatchingCatch", "Browser_asyncPrepareDataCounter", "arraySum", "addDays", "getSocketFromFD", "getSocketAddress", "FS_mkdirTree", "_setNetworkCallback", "writeGLArray", "emscripten_webgl_destroy_context_before_on_calling_thread", "registerWebGlEventCallback", "runAndAbortIfError", "ALLOC_NORMAL", "ALLOC_STACK", "allocate", "writeStringToMemory", "writeAsciiToMemory", "setErrNo" ];
+var missingLibrarySymbols = [ "writeI53ToI64Clamped", "writeI53ToI64Signaling", "writeI53ToU64Clamped", "writeI53ToU64Signaling", "convertI32PairToI53", "convertI32PairToI53Checked", "convertU32PairToI53", "getTempRet0", "setTempRet0", "inetPton4", "inetNtop4", "inetPton6", "inetNtop6", "readSockaddr", "writeSockaddr", "emscriptenLog", "runMainThreadEmAsm", "listenOnce", "autoResumeAudioContext", "getDynCaller", "dynCall", "setWasmTableEntry", "asmjsMangle", "HandleAllocator", "getNativeTypeSize", "addOnInit", "addOnPostCtor", "addOnPreMain", "STACK_SIZE", "STACK_ALIGN", "POINTER_SIZE", "ASSERTIONS", "getCFunc", "ccall", "cwrap", "uleb128Encode", "sigToWasmTypes", "generateFuncType", "convertJsFunctionToWasm", "getEmptyTableSlot", "updateTableMap", "getFunctionAddress", "addFunction", "removeFunction", "reallyNegative", "unSign", "strLen", "reSign", "formatString", "intArrayToString", "AsciiToString", "UTF16ToString", "stringToUTF16", "lengthBytesUTF16", "UTF32ToString", "stringToUTF32", "lengthBytesUTF32", "writeArrayToMemory", "registerKeyEventCallback", "registerWheelEventCallback", "fillDeviceOrientationEventData", "registerDeviceOrientationEventCallback", "fillDeviceMotionEventData", "registerDeviceMotionEventCallback", "screenOrientation", "fillOrientationChangeEventData", "registerOrientationChangeEventCallback", "JSEvents_requestFullscreen", "JSEvents_resizeCanvasForFullscreen", "registerRestoreOldStyle", "hideEverythingExceptGivenElement", "restoreHiddenElements", "setLetterbox", "softFullscreenResizeWebGLRenderTarget", "doRequestFullscreen", "registerPointerlockErrorEventCallback", "requestPointerLock", "registerBeforeUnloadEventCallback", "fillBatteryEventData", "battery", "registerBatteryEventCallback", "setCanvasElementSize", "getCanvasSizeCallingThread", "getCanvasSizeMainThread", "getCanvasElementSize", "jsStackTrace", "getCallstack", "convertPCtoSourceLocation", "wasiRightsToMuslOFlags", "wasiOFlagsToMuslOFlags", "setImmediateWrapped", "safeRequestAnimationFrame", "clearImmediateWrapped", "registerPostMainLoop", "registerPreMainLoop", "getPromise", "makePromise", "idsToPromises", "makePromiseCallback", "findMatchingCatch", "Browser_asyncPrepareDataCounter", "arraySum", "addDays", "getSocketFromFD", "getSocketAddress", "FS_mkdirTree", "_setNetworkCallback", "writeGLArray", "emscripten_webgl_destroy_context_before_on_calling_thread", "registerWebGlEventCallback", "runAndAbortIfError", "ALLOC_NORMAL", "ALLOC_STACK", "allocate", "writeStringToMemory", "writeAsciiToMemory", "setErrNo", "demangle", "stackTrace" ];
 
 missingLibrarySymbols.forEach(missingLibrarySymbol);
 
-var unexportedSymbols = [ "run", "out", "err", "callMain", "abort", "wasmMemory", "wasmExports", "GROWABLE_HEAP_I8", "GROWABLE_HEAP_U8", "GROWABLE_HEAP_I16", "GROWABLE_HEAP_U16", "GROWABLE_HEAP_I32", "GROWABLE_HEAP_U32", "GROWABLE_HEAP_F32", "GROWABLE_HEAP_F64", "writeStackCookie", "checkStackCookie", "writeI53ToI64", "readI53FromI64", "readI53FromU64", "INT53_MAX", "INT53_MIN", "bigintToI53Checked", "stackSave", "stackRestore", "stackAlloc", "ptrToString", "zeroMemory", "exitJS", "getHeapMax", "growMemory", "ENV", "ERRNO_CODES", "strError", "DNS", "Protocols", "Sockets", "timers", "warnOnce", "readEmAsmArgsArray", "readEmAsmArgs", "runEmAsmFunction", "jstoi_q", "jstoi_s", "getExecutableName", "getWasmTableEntry", "handleException", "keepRuntimeAlive", "runtimeKeepalivePush", "runtimeKeepalivePop", "callUserCallback", "maybeExit", "asyncLoad", "alignMemory", "mmapAlloc", "wasmTable", "noExitRuntime", "addOnPreRun", "addOnExit", "addOnPostRun", "freeTableIndexes", "functionsInTableMap", "setValue", "getValue", "PATH", "PATH_FS", "UTF8Decoder", "UTF8ArrayToString", "UTF8ToString", "stringToUTF8Array", "stringToUTF8", "lengthBytesUTF8", "intArrayFromString", "stringToAscii", "UTF16Decoder", "stringToNewUTF8", "stringToUTF8OnStack", "JSEvents", "specialHTMLTargets", "maybeCStringToJsString", "findEventTarget", "findCanvasEventTarget", "getBoundingClientRect", "fillMouseEventData", "registerMouseEventCallback", "registerUiEventCallback", "registerFocusEventCallback", "fillFullscreenChangeEventData", "registerFullscreenChangeEventCallback", "currentFullscreenStrategy", "restoreOldWindowedStyle", "fillPointerlockChangeEventData", "registerPointerlockChangeEventCallback", "fillVisibilityChangeEventData", "registerVisibilityChangeEventCallback", "registerTouchEventCallback", "fillGamepadEventData", "registerGamepadEventCallback", "setCanvasElementSizeCallingThread", "setCanvasElementSizeMainThread", "jsStackTrace", "UNWIND_CACHE", "ExitStatus", "getEnvStrings", "checkWasiClock", "doReadv", "doWritev", "initRandomFill", "randomFill", "safeSetTimeout", "emSetImmediate", "emClearImmediate_deps", "emClearImmediate", "promiseMap", "uncaughtExceptionCount", "exceptionLast", "exceptionCaught", "ExceptionInfo", "Browser", "getPreloadedImageData__data", "wget", "MONTH_DAYS_REGULAR", "MONTH_DAYS_LEAP", "MONTH_DAYS_REGULAR_CUMULATIVE", "MONTH_DAYS_LEAP_CUMULATIVE", "isLeapYear", "ydayFromDate", "SYSCALLS", "preloadPlugins", "FS_modeStringToFlags", "FS_getMode", "FS_stdin_getChar_buffer", "FS_stdin_getChar", "FS_readFile", "FS", "MEMFS", "TTY", "PIPEFS", "SOCKFS", "tempFixedLengthArray", "miniTempWebGLFloatBuffers", "miniTempWebGLIntBuffers", "heapObjectForWebGLType", "toTypedArrayIndex", "webgl_enable_ANGLE_instanced_arrays", "webgl_enable_OES_vertex_array_object", "webgl_enable_WEBGL_draw_buffers", "webgl_enable_WEBGL_multi_draw", "webgl_enable_EXT_polygon_offset_clamp", "webgl_enable_EXT_clip_control", "webgl_enable_WEBGL_polygon_mode", "GL", "emscriptenWebGLGet", "computeUnpackAlignedImageSize", "colorChannelsInGlTextureFormat", "emscriptenWebGLGetTexPixelData", "emscriptenWebGLGetUniform", "webglGetUniformLocation", "webglPrepareUniformLocationsBeforeFirstUse", "webglGetLeftBracePos", "emscriptenWebGLGetVertexAttrib", "__glGetActiveAttribOrUniform", "AL", "GLUT", "EGL", "GLEW", "IDBStore", "SDL", "SDL_gfx", "GLFW_Window", "GLFW", "allocateUTF8", "allocateUTF8OnStack", "demangle", "stackTrace", "print", "printErr", "PThread", "terminateWorker", "cleanupThread", "registerTLSInit", "spawnThread", "exitOnMainThread", "proxyToMainThread", "proxiedJSCallArgs", "invokeEntryPoint", "checkMailbox" ];
+var unexportedSymbols = [ "run", "out", "err", "callMain", "abort", "wasmMemory", "wasmExports", "GROWABLE_HEAP_I8", "GROWABLE_HEAP_U8", "GROWABLE_HEAP_I16", "GROWABLE_HEAP_U16", "GROWABLE_HEAP_I32", "GROWABLE_HEAP_U32", "GROWABLE_HEAP_F32", "GROWABLE_HEAP_F64", "writeStackCookie", "checkStackCookie", "writeI53ToI64", "readI53FromI64", "readI53FromU64", "INT53_MAX", "INT53_MIN", "bigintToI53Checked", "stackSave", "stackRestore", "stackAlloc", "ptrToString", "zeroMemory", "exitJS", "getHeapMax", "growMemory", "ENV", "ERRNO_CODES", "strError", "DNS", "Protocols", "Sockets", "timers", "warnOnce", "readEmAsmArgsArray", "readEmAsmArgs", "runEmAsmFunction", "jstoi_q", "jstoi_s", "getExecutableName", "getWasmTableEntry", "handleException", "keepRuntimeAlive", "runtimeKeepalivePush", "runtimeKeepalivePop", "callUserCallback", "maybeExit", "asyncLoad", "alignMemory", "mmapAlloc", "wasmTable", "noExitRuntime", "addOnPreRun", "addOnExit", "addOnPostRun", "freeTableIndexes", "functionsInTableMap", "setValue", "getValue", "PATH", "PATH_FS", "UTF8Decoder", "UTF8ArrayToString", "UTF8ToString", "stringToUTF8Array", "stringToUTF8", "lengthBytesUTF8", "intArrayFromString", "stringToAscii", "UTF16Decoder", "stringToNewUTF8", "stringToUTF8OnStack", "JSEvents", "specialHTMLTargets", "maybeCStringToJsString", "findEventTarget", "findCanvasEventTarget", "getBoundingClientRect", "fillMouseEventData", "registerMouseEventCallback", "registerUiEventCallback", "registerFocusEventCallback", "fillFullscreenChangeEventData", "registerFullscreenChangeEventCallback", "currentFullscreenStrategy", "restoreOldWindowedStyle", "fillPointerlockChangeEventData", "registerPointerlockChangeEventCallback", "fillVisibilityChangeEventData", "registerVisibilityChangeEventCallback", "registerTouchEventCallback", "fillGamepadEventData", "registerGamepadEventCallback", "setCanvasElementSizeCallingThread", "setCanvasElementSizeMainThread", "UNWIND_CACHE", "ExitStatus", "getEnvStrings", "checkWasiClock", "doReadv", "doWritev", "initRandomFill", "randomFill", "safeSetTimeout", "emSetImmediate", "emClearImmediate_deps", "emClearImmediate", "promiseMap", "uncaughtExceptionCount", "exceptionLast", "exceptionCaught", "ExceptionInfo", "Browser", "getPreloadedImageData__data", "wget", "MONTH_DAYS_REGULAR", "MONTH_DAYS_LEAP", "MONTH_DAYS_REGULAR_CUMULATIVE", "MONTH_DAYS_LEAP_CUMULATIVE", "isLeapYear", "ydayFromDate", "SYSCALLS", "preloadPlugins", "FS_modeStringToFlags", "FS_getMode", "FS_stdin_getChar_buffer", "FS_stdin_getChar", "FS_readFile", "FS", "MEMFS", "TTY", "PIPEFS", "SOCKFS", "tempFixedLengthArray", "miniTempWebGLFloatBuffers", "miniTempWebGLIntBuffers", "heapObjectForWebGLType", "toTypedArrayIndex", "webgl_enable_ANGLE_instanced_arrays", "webgl_enable_OES_vertex_array_object", "webgl_enable_WEBGL_draw_buffers", "webgl_enable_WEBGL_multi_draw", "webgl_enable_EXT_polygon_offset_clamp", "webgl_enable_EXT_clip_control", "webgl_enable_WEBGL_polygon_mode", "GL", "emscriptenWebGLGet", "computeUnpackAlignedImageSize", "colorChannelsInGlTextureFormat", "emscriptenWebGLGetTexPixelData", "emscriptenWebGLGetUniform", "webglGetUniformLocation", "webglPrepareUniformLocationsBeforeFirstUse", "webglGetLeftBracePos", "emscriptenWebGLGetVertexAttrib", "__glGetActiveAttribOrUniform", "AL", "GLUT", "EGL", "GLEW", "IDBStore", "SDL", "SDL_gfx", "GLFW_Window", "GLFW", "allocateUTF8", "allocateUTF8OnStack", "print", "printErr", "PThread", "terminateWorker", "cleanupThread", "registerTLSInit", "spawnThread", "exitOnMainThread", "proxyToMainThread", "proxiedJSCallArgs", "invokeEntryPoint", "checkMailbox" ];
 
 unexportedSymbols.forEach(unexportedRuntimeSymbol);
 
